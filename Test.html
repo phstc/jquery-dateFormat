@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>JavaScript unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <script src="assets/jsunittest.js" type="text/javascript"></script>
+
+  <script src="jquery-1.4.min.js" type="text/javascript"></script>
+  <script src="jquery.dateFormat-1.0.js" type="text/javascript"></script>
+  
+  <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+</head>
+<body>
+
+<div id="content">
+
+  <div id="header">
+    <h1>JavaScript unit test file</h1>
+  </div>
+
+  <!-- Log output (one per Runner, via {testLog: "testlog"} option)-->
+  <div id="testlog"></div>
+  
+  <!-- Put sample/test html here -->
+  <div id="sample">
+  </div>
+</div>
+
+<script type="text/javascript"><!--
+// <![CDATA[
+  new Test.Unit.Runner({
+    setup: function() {
+    },
+    
+    teardown: function() {
+      
+    },
+    
+    testTruth: function() { with(this) {
+      assert(true);
+    }},
+
+    testFormatDateType1 : function() { with(this) {
+    	assertEqual("18/12/2009", $.format.date("2009-12-18 10:54:50.546", "dd/MM/yyyy"));
+    	assertEqual("2009", $.format.date("2009-12-18 10:54:50.546", "yyyy"));
+    	assertEqual("12", $.format.date("2009-12-18 10:54:50.546", "MM"));
+    	assertEqual("10:54:50", $.format.date("2009-12-18 10:54:50.546", "hh:mm:ss"));
+    	assertEqual("10", $.format.date("2009-12-18 10:54:50.546", "hh"));
+    	assertEqual("54", $.format.date("2009-12-18 10:54:50.546", "mm"));
+    	assertEqual("50", $.format.date("2009-12-18 10:54:50.546", "ss"));
+    	assertEqual("18/12/2009 10:54:50", $.format.date("2009-12-18 10:54:50.546", "dd/MM/yyyy hh:mm:ss"));
+    	assertEqual("a18/b12/c2009 d10:e54:f50", $.format.date("2009-12-18 10:54:50.546", "add/bMM/cyyyy dhh:emm:fss"));
+    }},
+    testFormatDateType2 : function() { with(this) {
+    	assertEqual("13/01/2010", $.format.date("Wed Jan 13 10:43:41 CET 2010", "dd/MM/yyyy"));
+    	assertEqual("2010", $.format.date("Wed Jan 13 10:43:41 CET 2010", "yyyy"));
+    	assertEqual("01", $.format.date("Wed Jan 13 10:43:41 CET 2010", "MM"));
+    	assertEqual("10:43:41", $.format.date("Wed Jan 13 10:43:41 CET 2010", "hh:mm:ss"));
+    	assertEqual("10", $.format.date("Wed Jan 13 10:43:41 CET 2010", "hh"));
+    	assertEqual("43", $.format.date("Wed Jan 13 10:43:41 CET 2010", "mm"));
+    	assertEqual("41", $.format.date("Wed Jan 13 10:43:41 CET 2010", "ss"));
+    	assertEqual("13/01/2010 10:43:41", $.format.date("Wed Jan 13 10:43:41 CET 2010", "dd/MM/yyyy hh:mm:ss"));
+    	assertEqual("a13/b01/c2010 d10:e43:f41", $.format.date("Wed Jan 13 10:43:41 CET 2010", "add/bMM/cyyyy dhh:emm:fss"));    	
+    }}    
+  }); 
+// ]]>
+</script>
+</body>
+</html>
