@@ -1,1 +1,50 @@
-http://code.google.com/p/jquery-dateformat/
+http://plugins.jquery.com/project/jquery-dateFormat
+
+The jQuery Date Format plugin enables the formatting and parsing of dates.
+
+Format with css class name
+<code>
+<span class="shortDateFormat">2009-12-18 10:54:50.546</span>
+<span class="longDateFormat">2009-12-18 10:54:50.546</span>
+</code>
+
+output
+#1 18/12/2009
+#2 18/12/2009 10:54:50
+
+Format with javascript
+<code>
+<script>
+$.format.date("2009-12-18 10:54:50.546", "dd/MM/yyyy");
+</script>
+</code>
+
+input dates formats
+#1 2009-12-18 10:54:50.546
+#2 Wed Jan 13 10:43:41 CET 2010
+
+date and time patterns
+yyyy = year
+MM = month
+dd = day
+hh = hour
+mm = minute
+ss = second
+
+Examples
+<code>
+<script>
+document.write($.format.date("2009-12-18 10:54:50.546", "Test: dd/MM/yyyy"));
+document.write($.format.date("Wed Jan 13 10:43:41 CET 2010", "dd~MM~yyyy"));
+</script>
+</code>
+
+output
+#1 Test: 18/12/2009
+#2 18~12~2009
+
+The css class names patterns by default are
+shortDateFormat = dd/MM/yyyy
+longDateFormat = dd/MM/yyyy hh:mm:ss
+
+You can change the patterns in jquery.dateFormat
