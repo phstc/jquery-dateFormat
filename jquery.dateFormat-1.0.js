@@ -168,3 +168,21 @@
         };
     })();
 }(jQuery));
+
+
+$(document).ready(function() {
+    $(".shortDateFormat").each(function(idx, elem) {
+        if ($(elem).is(":input")){
+            $(elem).val($.format.date($(elem).val(), 'dd/MM/yyyy'));
+        } else {
+            $(elem).text($.format.date($(elem).text(), 'dd/MM/yyyy'));
+        }
+    });   
+    $(".longDateFormat").each(function(idx, elem) {
+        if ($(elem).is(":input")){
+            $(elem).val($.format.date($(elem).val(), 'dd/MM/yyyy hh:mm:ss'));
+        } else {
+            $(elem).text($.format.date($(elem).text(), 'dd/MM/yyyy hh:mm:ss'));
+        }
+    });   
+});
