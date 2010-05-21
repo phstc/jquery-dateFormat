@@ -31,6 +31,7 @@ hh = hour in am/pm (1-12)
 HH = hour in day (0-23) 
 mm = minute
 ss = second
+a  = Am/pm marker 
 
 Examples
 <code>
