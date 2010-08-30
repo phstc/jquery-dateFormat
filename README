@@ -1,6 +1,10 @@
 http://plugins.jquery.com/project/jquery-dateFormat (Please, rate this plugin in jQuery Plugin Page)
 
-The jQuery Date Format plugin enables the formatting and parsing of dates.
+The jQuery Date Format plugin enables the formatting and parsing of dates
+like java.util.Date.toString(), using java.text.SimpleDateFormat patterns
+
+http://download.oracle.com/javase/1.4.2/docs/api/java/util/Date.html#toString%28%29
+http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 
 Format with css class name
 <code>
