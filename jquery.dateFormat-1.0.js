@@ -100,8 +100,9 @@
                     
                     var pattern = "";
                     var retValue = "";
-                    
-                    for (i = 0; i < format.length; i++) {
+                    //Issue 1 - variable scope issue in format.date 
+					//Thanks jakemonO
+                    for (var i = 0; i < format.length; i++) {
                         var currentPattern = format.charAt(i);
                         pattern += currentPattern;
                         switch (pattern) {
