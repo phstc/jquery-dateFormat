@@ -54,3 +54,7 @@ shortDateFormat = dd/MM/yyyy
 longDateFormat = dd/MM/yyyy hh:mm:ss
 
 You can change the patterns in jquery.dateFormat
+
+To execute tests (TDD)
+
+Open Test.html (test suite) in Firefox
