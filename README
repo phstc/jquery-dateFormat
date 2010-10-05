@@ -1,4 +1,7 @@
-http://plugins.jquery.com/project/jquery-dateFormat (rate this plugin in jQuery Plugin Page)
+jQuery Plugin Page
+http://plugins.jquery.com/project/jquery-dateFormat 
+
+If you liked this plugin, please, rate it in jQuery Plugin Page
 
 The jQuery Date Format plugin enables the formatting and parsing of dates
 like java.util.Date.toString(), using java.text.SimpleDateFormat patterns
@@ -59,6 +62,6 @@ To execute tests (TDD)
 
 Open Test.html (test suite) in Firefox
 
-Blog post to explain this plugin usage 
+This blog post explain the plugin usage 
 http://pablocantero.com/blog/2010/09/04/jquery-plugin-javascript-for-formatting-java-util-date/
 (in portuguese)
