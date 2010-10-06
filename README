@@ -3,13 +3,12 @@ http://plugins.jquery.com/project/jquery-dateFormat
 
 If you liked this plugin, please, rate it in jQuery Plugin Page
 
-The jQuery Date Format plugin enables the formatting and parsing of dates
-like java.util.Date.toString(), using java.text.SimpleDateFormat patterns
+jquery-dateFormat it’s a jQuery Plugin that I made to formatting java.util.Date.toString output using JavaScript
 
 http://download.oracle.com/javase/1.4.2/docs/api/java/util/Date.html#toString%28%29
 http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 
-Format with css class name
+Formatting using css classes
 <code>
 <span class="shortDateFormat">2009-12-18 10:54:50.546</span>
 <span class="longDateFormat">2009-12-18 10:54:50.546</span>
@@ -19,18 +18,18 @@ output
 #1 18/12/2009
 #2 18/12/2009 10:54:50
 
-Format with javascript
+Formatting using JavaScript
 <code>
 <script>
 $.format.date("2009-12-18 10:54:50.546", "dd/MM/yyyy");
 </script>
 </code>
 
-input dates formats
+Expected input dates formats
 #1 2009-12-18 10:54:50.546
 #2 Wed Jan 13 10:43:41 CET 2010
 
-date and time patterns
+Date and time patterns
 yyyy = year
 MM = month
 dd = day
@@ -58,10 +57,9 @@ longDateFormat = dd/MM/yyyy hh:mm:ss
 
 You can change the patterns in jquery.dateFormat
 
-To execute tests (TDD)
+To execute the test suite
 
-Open Test.html (test suite) in Firefox
+Open Test.html in Firefox
 
-This blog post explain the plugin usage 
+This blog post explains more detailed the usage of this plugin  
 http://pablocantero.com/blog/2010/09/04/jquery-plugin-javascript-for-formatting-java-util-date/
-(in portuguese)
