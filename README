@@ -3,7 +3,7 @@ http://plugins.jquery.com/project/jquery-dateFormat
 
 If you liked this plugin, please, rate it in jQuery Plugin Page
 
-jquery-dateFormat it’s a jQuery Plugin that I made to formatting java.util.Date.toString output using JavaScript
+jquery-dateFormat it’s a jQuery Plugin that I made for formatting java.util.Date.toString output using JavaScript
 
 http://download.oracle.com/javase/1.4.2/docs/api/java/util/Date.html#toString%28%29
 http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
