@@ -26,8 +26,10 @@ $.format.date("2009-12-18 10:54:50.546", "dd/MM/yyyy");
 </code>
 
 Expected input dates formats
-#1 2009-12-18 10:54:50.546
-#2 Wed Jan 13 10:43:41 CET 2010
+#1 2009-12-18 10:54:50.546 (default java.util.Date.toString format)
+#2 Wed Jan 13 10:43:41 CET 2010 (???)
+#3 2010-10-19T11:40:33.527+02:00 (default JAXB formatting of java.util.Date.)
+
 
 Date and time patterns
 yyyy = year
@@ -60,6 +62,8 @@ You can change the patterns in jquery.dateFormat
 To execute the test suite
 
 Open Test.html in Firefox
+
+Thanks for jharting, jakemonO and eemeyer for the help to improve this plugin
 
 This blog post explains more detailed the usage of this plugin  
 http://pablocantero.com/blog/2010/09/04/jquery-plugin-javascript-for-formatting-java-util-date/
