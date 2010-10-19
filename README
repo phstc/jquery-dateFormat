@@ -28,7 +28,7 @@ $.format.date("2009-12-18 10:54:50.546", "dd/MM/yyyy");
 Expected input dates formats
 #1 2009-12-18 10:54:50.546 (default java.util.Date.toString format)
 #2 Wed Jan 13 10:43:41 CET 2010 (???)
-#3 2010-10-19T11:40:33.527+02:00 (default JAXB formatting of java.util.Date.)
+#3 2010-10-19T11:40:33.527+02:00 (default JAXB formatting of java.util.Date)
 
 
 Date and time patterns
