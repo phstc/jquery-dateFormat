@@ -143,11 +143,11 @@
                                 retValue += time.second.substring(0, 2);
                                 pattern = "";
                                 break;
-                            case "tz":
-                                //parse out the timezone information
-                                retValue += time.second.substring(3, time.second.length);
-                                pattern = "";
-                                break;
+                            //case "tz":
+                            //    //parse out the timezone information
+                            //    retValue += time.second.substring(3, time.second.length);
+                            //    pattern = "";
+                            //    break;
                             case "a":
                                 retValue += time.hour >= 12 ? "PM" : "AM";
                                 pattern = "";
