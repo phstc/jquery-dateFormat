@@ -72,4 +72,4 @@ Open Test.html in Firefox to run the test suite
 
 == Contributors
 
-Thanks for docchang, eemeyer, jakemonO, jharting for the help to improve this plugin
+Thanks to docchang, eemeyer, jakemonO, jharting for the help to improve this plugin
