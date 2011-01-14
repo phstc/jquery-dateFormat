@@ -18,6 +18,7 @@ http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 
 * yyyy = year
 * MM = month
+* MMM = month abbreviation (Jan,Feb....Dec)
 * dd = day
 * hh = hour in am/pm (1-12)
 * HH = hour in day (0-23) 
