@@ -18,13 +18,13 @@ http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 
 * yyyy = year
 * MM = month
-* MMM = month abbreviation (Jan,Feb....Dec)
+* MMM = month abbreviation (Jan, Feb ... Dec)
 * dd = day
 * hh = hour in am/pm (1-12)
 * HH = hour in day (0-23) 
 * mm = minute
 * ss = second
-* a  = Am/pm marker 
+* a = am/pm marker 
 
 == Expected input dates formats
 
@@ -69,8 +69,12 @@ You can change the patterns in jquery.dateFormat
 
 This plugin was developed using http://jsunittest.com
 
-Open Test.html in Firefox to run the test suite
+Open Test.html in Firefox to run the entire test suite
 
-== Contributors
+== Do you want to improve jquery-dateFormat
 
-Thanks to docchang, eemeyer, jakemonO, jharting
+You’re welcome to make your contributions and send them as a pull request
+
+=== Contributors
+
+Thanks to jafin, docchang, eemeyer, jakemonO, jharting
