@@ -36,61 +36,76 @@
     teardown: function() {
       
     },
-    
-    testTruth: function() { with(this) {
-      assert(true);
-    }},
-
     testFormatDateType1 : function() { with(this) {
-    	assertEqual("18/12/2009", $.format.date("2009-12-18 10:54:50.546", "dd/MM/yyyy"));
-		assertEqual("Dec/2009", $.format.date("2009-12-18 10:54:50.546", "MMM/yyyy"));
-		assertEqual("12", $.format.date("2009-12-18 10:54:50.546", "MM"));
-    	assertEqual("2009", $.format.date("2009-12-18 10:54:50.546", "yyyy"));
-    	assertEqual("12", $.format.date("2009-12-18 10:54:50.546", "MM"));
-    	assertEqual("10:54:50", $.format.date("2009-12-18 10:54:50.546", "hh:mm:ss"));
-    	assertEqual("10", $.format.date("2009-12-18 10:54:50.546", "hh"));
-    	assertEqual("54", $.format.date("2009-12-18 10:54:50.546", "mm"));
-    	assertEqual("50", $.format.date("2009-12-18 10:54:50.546", "ss"));
-    	assertEqual("18/12/2009 1:54:50", $.format.date("2009-12-18 13:54:50.546", "dd/MM/yyyy hh:mm:ss"));
-		assertEqual("18/12/2009 14:54:50", $.format.date("2009-12-18 14:54:50.546", "dd/MM/yyyy HH:mm:ss"));
-		assertEqual("18/12/2009 10:54:50 AM", $.format.date("2009-12-18 10:54:50.546", "dd/MM/yyyy hh:mm:ss a"));
-		assertEqual("18/12/2009 1:54:50 PM", $.format.date("2009-12-18 13:54:50.546", "dd/MM/yyyy hh:mm:ss a"));
-    	assertEqual("z18/b12/c2009 d10:e54:f50", $.format.date("2009-12-18 10:54:50.546", "zdd/bMM/cyyyy dhh:emm:fss"));
-    	assertEqual("2010", $.format.date(new Date(1274370756526), "yyyy"));
+		// Java java.util.Date output
+    	assertEqual('18/12/2009', $.format.date('2009-12-18 10:54:50.546', 'dd/MM/yyyy'));
+		assertEqual('Dec/2009', $.format.date('2009-12-18 10:54:50.546', 'MMM/yyyy'));
+		assertEqual('12', $.format.date('2009-12-18 10:54:50.546', 'MM'));
+    	assertEqual('2009', $.format.date('2009-12-18 10:54:50.546', 'yyyy'));
+    	assertEqual('12', $.format.date('2009-12-18 10:54:50.546', 'MM'));
+    	assertEqual('10:54:50', $.format.date('2009-12-18 10:54:50.546', 'hh:mm:ss'));
+    	assertEqual('10', $.format.date('2009-12-18 10:54:50.546', 'hh'));
+    	assertEqual('54', $.format.date('2009-12-18 10:54:50.546', 'mm'));
+    	assertEqual('50', $.format.date('2009-12-18 10:54:50.546', 'ss'));
+    	assertEqual('18/12/2009 1:54:50', $.format.date('2009-12-18 13:54:50.546', 'dd/MM/yyyy hh:mm:ss'));
+		assertEqual('18/12/2009 14:54:50', $.format.date('2009-12-18 14:54:50.546', 'dd/MM/yyyy HH:mm:ss'));
+		assertEqual('18/12/2009 10:54:50 AM', $.format.date('2009-12-18 10:54:50.546', 'dd/MM/yyyy hh:mm:ss a'));
+		assertEqual('18/12/2009 1:54:50 PM', $.format.date('2009-12-18 13:54:50.546', 'dd/MM/yyyy hh:mm:ss a'));
+    	assertEqual('z18/b12/c2009 d10:e54:f50', $.format.date('2009-12-18 10:54:50.546', 'zdd/bMM/cyyyy dhh:emm:fss'));
+    	assertEqual('2010', $.format.date(new Date(1274370756526), 'yyyy'));
 
     }},
     testFormatDateType2 : function() { with(this) {
-    	assertEqual("13/01/2010", $.format.date("Wed Jan 13 10:43:41 CET 2010", "dd/MM/yyyy"));
-		assertEqual("Jan/2010", $.format.date("Wed Jan 13 10:43:41 CET 2010", "MMM/yyyy"));
-		assertEqual("01", $.format.date("Wed Jan 13 10:43:41 CET 2010", "MM"));
-    	assertEqual("2010", $.format.date("Wed Jan 13 10:43:41 CET 2010", "yyyy"));
-    	assertEqual("01", $.format.date("Wed Jan 13 10:43:41 CET 2010", "MM"));
-    	assertEqual("10:43:41", $.format.date("Wed Jan 13 10:43:41 CET 2010", "hh:mm:ss"));
-    	assertEqual("10", $.format.date("Wed Jan 13 10:43:41 CET 2010", "hh"));
-    	assertEqual("43", $.format.date("Wed Jan 13 10:43:41 CET 2010", "mm"));
-    	assertEqual("41", $.format.date("Wed Jan 13 10:43:41 CET 2010", "ss"));
-    	assertEqual("13/01/2010 1:43:41", $.format.date("Wed Jan 13 13:43:41 CET 2010", "dd/MM/yyyy hh:mm:ss"));
-		assertEqual("13/01/2010 14:43:41", $.format.date("Wed Jan 13 14:43:41 CET 2010", "dd/MM/yyyy HH:mm:ss"));
-		assertEqual("13/01/2010 10:43:41 AM", $.format.date("Wed Jan 13 10:43:41 CET 2010", "dd/MM/yyyy hh:mm:ss a"));
-		assertEqual("13/01/2010 5:43:41 PM", $.format.date("Wed Jan 13 17:43:41 CET 2010", "dd/MM/yyyy hh:mm:ss a"));
-    	assertEqual("z13/b01/c2010 d10:e43:f41", $.format.date("Wed Jan 13 10:43:41 CET 2010", "zdd/bMM/cyyyy dhh:emm:fss"));    	
+	    // ??? Wed Jan 13 10:43:41 CET 2010
+    	assertEqual('13/01/2010', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'dd/MM/yyyy'));
+		assertEqual('Jan/2010', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'MMM/yyyy'));
+		assertEqual('01', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'MM'));
+    	assertEqual('2010', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'yyyy'));
+    	assertEqual('01', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'MM'));
+    	assertEqual('10:43:41', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'hh:mm:ss'));
+    	assertEqual('10', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'hh'));
+    	assertEqual('43', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'mm'));
+    	assertEqual('41', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'ss'));
+    	assertEqual('13/01/2010 1:43:41', $.format.date('Wed Jan 13 13:43:41 CET 2010', 'dd/MM/yyyy hh:mm:ss'));
+		assertEqual('13/01/2010 14:43:41', $.format.date('Wed Jan 13 14:43:41 CET 2010', 'dd/MM/yyyy HH:mm:ss'));
+		assertEqual('13/01/2010 10:43:41 AM', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'dd/MM/yyyy hh:mm:ss a'));
+		assertEqual('13/01/2010 5:43:41 PM', $.format.date('Wed Jan 13 17:43:41 CET 2010', 'dd/MM/yyyy hh:mm:ss a'));
+    	assertEqual('z13/b01/c2010 d10:e43:f41', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'zdd/bMM/cyyyy dhh:emm:fss'));    	
     }},    
     testFormatDateType3 : function() { with(this) {
-    	assertEqual("19/10/2010", $.format.date("2010-10-19T11:40:33.527+02:00", "dd/MM/yyyy"));
-		assertEqual("Oct/2010", $.format.date("2010-10-19T11:40:33.527+02:00", "MMM/yyyy"));
-		assertEqual("10", $.format.date("2010-10-19T11:40:33.527+02:00", "MM"));
-    	assertEqual("2010", $.format.date("2010-10-19T11:40:33.527+02:00", "yyyy"));
-    	assertEqual("10", $.format.date("2010-10-19T11:40:33.527+02:00", "MM"));
-    	assertEqual("11:40:33", $.format.date("2010-10-19T11:40:33.527+02:00", "hh:mm:ss"));
-    	assertEqual("11", $.format.date("2010-10-19T11:40:33.527+02:00", "hh"));
-    	assertEqual("40", $.format.date("2010-10-19T11:40:33.527+02:00", "mm"));
-    	assertEqual("33", $.format.date("2010-10-19T11:40:33.527+02:00", "ss"));
-    	assertEqual("19/10/2010 1:43:41", $.format.date("2010-10-19T13:43:41.527+02:00", "dd/MM/yyyy hh:mm:ss"));
-		assertEqual("19/10/2010 14:43:41", $.format.date("2010-10-19T14:43:41.527+02:000", "dd/MM/yyyy HH:mm:ss"));
-		assertEqual("19/10/2010 10:43:41 AM", $.format.date("2010-10-19T10:43:41.527+02:00", "dd/MM/yyyy hh:mm:ss a"));
-		assertEqual("19/10/2010 5:43:41 PM", $.format.date("2010-10-19T17:43:41.527+02:00", "dd/MM/yyyy hh:mm:ss a"));
-    	assertEqual("z19/b10/c2010 d11:e40:f33", $.format.date("2010-10-19T11:40:33.527+02:00", "zdd/bMM/cyyyy dhh:emm:fss"));    	
-    }}
+	    // Java JAXB java.util.Date output
+    	assertEqual('19/10/2010', $.format.date('2010-10-19T11:40:33.527+02:00', 'dd/MM/yyyy'));
+		assertEqual('Oct/2010', $.format.date('2010-10-19T11:40:33.527+02:00', 'MMM/yyyy'));
+		assertEqual('10', $.format.date('2010-10-19T11:40:33.527+02:00', 'MM'));
+    	assertEqual('2010', $.format.date('2010-10-19T11:40:33.527+02:00', 'yyyy'));
+    	assertEqual('19', $.format.date('2010-10-19T11:40:33.527+02:00', 'dd'));
+    	assertEqual('11:40:33', $.format.date('2010-10-19T11:40:33.527+02:00', 'hh:mm:ss'));
+    	assertEqual('11', $.format.date('2010-10-19T11:40:33.527+02:00', 'hh'));
+    	assertEqual('40', $.format.date('2010-10-19T11:40:33.527+02:00', 'mm'));
+    	assertEqual('33', $.format.date('2010-10-19T11:40:33.527+02:00', 'ss'));
+    	assertEqual('19/10/2010 1:43:41', $.format.date('2010-10-19T13:43:41.527+02:00', 'dd/MM/yyyy hh:mm:ss'));
+		assertEqual('19/10/2010 14:43:41', $.format.date('2010-10-19T14:43:41.527+02:000', 'dd/MM/yyyy HH:mm:ss'));
+		assertEqual('19/10/2010 10:43:41 AM', $.format.date('2010-10-19T10:43:41.527+02:00', 'dd/MM/yyyy hh:mm:ss a'));
+		assertEqual('19/10/2010 5:43:41 PM', $.format.date('2010-10-19T17:43:41.527+02:00', 'dd/MM/yyyy hh:mm:ss a'));
+    	assertEqual('z19/b10/c2010 d11:e40:f33', $.format.date('2010-10-19T11:40:33.527+02:00', 'zdd/bMM/cyyyy dhh:emm:fss'));    	
+    }},
+	testFormatDateType4: function() { with(this) {
+		// JavaScript Date output
+    	assertEqual('19/10/2010', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'dd/MM/yyyy'));
+		assertEqual('Oct/2010', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'MMM/yyyy'));
+		assertEqual('10', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'MM'));
+    	assertEqual('2010', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'yyyy'));
+		assertEqual('19', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'dd'));
+    	assertEqual('11:40:33', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'hh:mm:ss'));
+    	assertEqual('11', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'hh'));
+    	assertEqual('40', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'mm'));
+    	assertEqual('33', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'ss'));
+    	assertEqual('19/10/2010 1:43:41', $.format.date(new Date('10/19/2010 13:43:41').toString(), 'dd/MM/yyyy hh:mm:ss'));
+		assertEqual('19/10/2010 14:43:41', $.format.date(new Date('10/19/2010 14:43:41').toString(), 'dd/MM/yyyy HH:mm:ss'));
+		assertEqual('19/10/2010 10:43:41 AM', $.format.date(new Date('10/19/2010 10:43:41').toString(), 'dd/MM/yyyy hh:mm:ss a'));
+		assertEqual('19/10/2010 5:43:41 PM', $.format.date(new Date('10/19/2010 17:43:41').toString(), 'dd/MM/yyyy hh:mm:ss a'));
+    	assertEqual('z19/b10/c2010 d11:e40:f33', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'zdd/bMM/cyyyy dhh:emm:fss'));		
+	}}
   }); 
 // ]]>
 </script>

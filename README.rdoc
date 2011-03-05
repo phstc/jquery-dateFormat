@@ -31,6 +31,7 @@ http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 * 2009-12-18 10:54:50.546 (default java.util.Date.toString output)
 * Wed Jan 13 10:43:41 CET 2010 (???)
 * 2010-10-19T11:40:33.527+02:00 (default JAXB formatting of java.util.Date)
+* Sat Mar 05 2011 11:47:35 GMT-0300 (BRT) (default JavaScript new Date().toString() output)
 
 == Examples
 
@@ -77,4 +78,4 @@ You’re welcome to make your contributions and send them as a pull request
 
 === Contributors
 
-Thanks to jafin, docchang, eemeyer, jakemonO, jharting
+Thanks to jafin, docchang, eemeyer, jakemonO, jharting, christopherstott

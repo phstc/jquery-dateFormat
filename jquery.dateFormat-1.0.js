@@ -108,14 +108,12 @@
                         time = parseTime(value.toTimeString());
                     } else if (value.search(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}\+\d{2}:\d{2}/) != -1) { // 2009-04-19T16:11:05+02:00
                         var values = value.split(/[T\+-]/);
-
                         year = values[0];
                         month = values[1];
                         dayOfMonth = values[2];
                         time = parseTime(values[3].split(".")[0]);
                     } else {
                         var values = value.split(" ");
-
                         switch (values.length) {
                             case 6: //Wed Jan 13 10:43:41 CET 2010
                                 year = values[5];
@@ -130,6 +128,12 @@
                                 dayOfMonth = values2[2];
                                 time = parseTime(values[1]);
                                 break;
+						    case 7: // Tue Mar 01 2011 12:01:42 GMT-0800 (PST)
+	                            year = values[3];
+	                            month = parseMonth(values[1]);
+	                            dayOfMonth = values[2];
+	                            time = parseTime(values[4]);
+	                            break;
                             default:
                                 return value;
                         }
