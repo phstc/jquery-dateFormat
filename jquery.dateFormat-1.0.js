@@ -148,6 +148,9 @@
                         pattern += currentPattern;
                         switch (pattern) {
                             case "dd":
+								if(dayOfMonth.length === 1){
+									dayOfMonth = '0' + dayOfMonth;
+								}
                                 retValue += dayOfMonth;
                                 pattern = "";
                                 break;
