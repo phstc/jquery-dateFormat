@@ -128,14 +128,16 @@
                                 dayOfMonth = values2[2];
                                 time = parseTime(values[1]);
                                 break;
-						    case 7: // Tue Mar 01 2011 12:01:42 GMT-0800 (PST)
+						    case 7:   // Tue Mar 01 2011 12:01:42 GMT-0800 (PST)
+							case 9:   //added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0800 (China Standard Time)
+                            case 10:  //added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0200 (W. Europe Daylight Time)
 	                            year = values[3];
 	                            month = parseMonth(values[1]);
 	                            dayOfMonth = values[2];
 	                            time = parseTime(values[4]);
 	                            break;
                             default:
-                                return value;
+                                return value; 
                         }
                     }
 
