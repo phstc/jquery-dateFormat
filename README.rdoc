@@ -79,4 +79,4 @@ You’re welcome to make your contributions and send them as a pull request
 
 === Contributors
 
-Thanks to kitto, jafin, docchang, eemeyer, jakemonO, jharting, christopherstott, larryzhao, albertjan
+Thanks to albertjan, christopherstott, docchang, eemeyer, jafin, jakemonO, jharting, kitto, larryzhao, nashg842
