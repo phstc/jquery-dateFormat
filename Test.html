@@ -48,6 +48,7 @@
     	assertEqual('10', $.format.date('2009-12-18 10:54:50.546', 'hh'));
     	assertEqual('54', $.format.date('2009-12-18 10:54:50.546', 'mm'));
     	assertEqual('50', $.format.date('2009-12-18 10:54:50.546', 'ss'));
+    	assertEqual('546', $.format.date('2009-12-18 10:54:50.546', 'SSS'));
     	assertEqual('18/12/2009 1:54:50', $.format.date('2009-12-18 13:54:50.546', 'dd/MM/yyyy hh:mm:ss'));
 		assertEqual('18/12/2009 14:54:50', $.format.date('2009-12-18 14:54:50.546', 'dd/MM/yyyy HH:mm:ss'));
 		assertEqual('18/12/2009 10:54:50 AM', $.format.date('2009-12-18 10:54:50.546', 'dd/MM/yyyy hh:mm:ss a'));
