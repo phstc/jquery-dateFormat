@@ -85,8 +85,11 @@
 
         var parseTime = function (value) {
                 var retValue = value;
+                var millis = "";
                 if (retValue.indexOf(".") !== -1) {
-                    retValue = retValue.substring(0, retValue.indexOf("."));
+                    var delimited = retValue.split('.');
+                    retValue = delimited[0];
+                    millis = delimited[1];
                 }
 
                 var values3 = retValue.split(":");
@@ -100,14 +103,16 @@
                         time: retValue,
                         hour: hour,
                         minute: minute,
-                        second: second
+                        second: second,
+                        millis: millis
                     };
                 } else {
                     return {
                         time: "",
                         hour: "",
                         minute: "",
-                        second: ""
+                        second: "",
+                        millis: ""
                     };
                 }
             };
@@ -245,6 +250,10 @@
                             //    retValue += time.second.substring(3, time.second.length);
                             //    pattern = "";
                             //    break;
+                        case "SSS":
+                            retValue += time.millis.substring(0, 3);
+                            pattern = "";
+                            break;
                         case "a":
                             retValue += time.hour >= 12 ? "PM" : "AM";
                             pattern = "";
@@ -262,7 +271,7 @@
                             pattern = "";
                             break;
                         default:
-                            if (pattern.length === 2 && pattern.indexOf("y") !== 0) {
+                            if (pattern.length === 2 && pattern.indexOf("y") !== 0 && pattern != "SS") {
                                 retValue += pattern.substring(0, 1);
                                 pattern = pattern.substring(1, 2);
                             } else if ((pattern.length === 3 && pattern.indexOf("yyy") === -1)) {
