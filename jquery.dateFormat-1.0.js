@@ -206,7 +206,7 @@
                             if (format.charAt(i + 1) == "d") {
                                 break;
                             }
-                            if (dayOfMonth.length === 1) {
+                            if (String(dayOfMonth).length === 1) {
                                 dayOfMonth = '0' + dayOfMonth;
                             }
                             retValue += dayOfMonth;
@@ -219,6 +219,9 @@
                         case "MM":
                             if (format.charAt(i + 1) == "M") {
                                 break;
+                            }
+                            if (String(month).length === 1) {
+                                month = '0' + month;
                             }
                             retValue += month;
                             pattern = "";
