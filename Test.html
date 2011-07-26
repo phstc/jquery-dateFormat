@@ -154,6 +154,10 @@
 		/* Reference: http://pablocantero.com/blog/2010/09/04/jquery-plugin-javascript-for-java-util-date-tostring-format/#comment-259520318 */
 		assertEqual('19/04/2009', $.format.date('2009-04-19T16:11:05-02:00', 'dd/MM/yyyy'));
 		assertEqual('Apr/2009', $.format.date('2009-04-19T16:11:05-02:00', 'MMM/yyyy'));
+	}},
+	testFormatDateType8: function() { with(this) {
+		/* Reference: http://pablocantero.com/blog/2010/09/04/jquery-plugin-javascript-for-java-util-date-tostring-format/#comment-178490699 */
+		assertEqual('5:45PM', $.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', 'hh:mma'));
 	}}
   }); 
 // ]]>
