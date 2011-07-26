@@ -119,22 +119,24 @@
 
         return {
             date: function (value, format) {
-                //value = new java.util.Date()
-                //2009-12-18 10:54:50.546
+                /* 
+					value = new java.util.Date()
+                 	2009-12-18 10:54:50.546 
+				*/
                 try {
                     var date = null;
                     var year = null;
                     var month = null;
                     var dayOfMonth = null;
                     var dayOfWeek = null;
-                    var time = null; //json, time, hour, minute, second
+                    var time = null;
                     if (typeof value.getFullYear === "function") {
                         year = value.getFullYear();
                         month = value.getMonth() + 1;
                         dayOfMonth = value.getDate();
                         dayOfWeek = value.getDay();
                         time = parseTime(value.toTimeString());
-                    } else if (value.search(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}\+\d{2}:\d{2}/) != -1) { // 2009-04-19T16:11:05+02:00
+					} else if (value.search(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[-+]?\d{2}:\d{2}/) != -1) { /* 2009-04-19T16:11:05+02:00 */
                         var values = value.split(/[T\+-]/);
                         year = values[0];
                         month = values[1];
@@ -146,7 +148,7 @@
                         var values = value.split(" ");
                         switch (values.length) {
                         case 6:
-                            //Wed Jan 13 10:43:41 CET 2010
+                            /* Wed Jan 13 10:43:41 CET 2010 */
                             year = values[5];
                             month = parseMonth(values[1]);
                             dayOfMonth = values[2];
@@ -155,7 +157,7 @@
                             dayOfWeek = date.getDay();
                             break;
                         case 2:
-                            //2009-12-18 10:54:50.546
+                            /* 2009-12-18 10:54:50.546 */
                             var values2 = values[0].split("-");
                             year = values2[0];
                             month = values2[1];
@@ -165,11 +167,11 @@
                             dayOfWeek = date.getDay();
                             break;
                         case 7:
-                            // Tue Mar 01 2011 12:01:42 GMT-0800 (PST)
+                            /* Tue Mar 01 2011 12:01:42 GMT-0800 (PST) */
                         case 9:
-                            //added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0800 (China Standard Time)
+                            /*added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0800 (China Standard Time) */
                         case 10:
-                            //added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0200 (W. Europe Daylight Time)
+                            /* added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0200 (W. Europe Daylight Time) */
                             year = values[3];
                             month = parseMonth(values[1]);
                             dayOfMonth = values[2];
@@ -177,14 +179,6 @@
                             date = new Date(year, month - 1, dayOfMonth);
                             dayOfWeek = date.getDay();
                             break;
-                                    /*
-                                    case 7: // Tue Mar 01 2011 12:01:42 GMT-0800 (PST)
-                                    year = values[3];
-                                    month = parseMonth(values[1]);
-                                    dayOfMonth = values[2];
-                                    time = parseTime(values[4]);
-                                    break;
-                                                        */
                         default:
                             return value;
                         }
@@ -192,8 +186,10 @@
 
                     var pattern = "";
                     var retValue = "";
-                    //Issue 1 - variable scope issue in format.date 
-                    //Thanks jakemonO
+                    /*
+						Issue 1 - variable scope issue in format.date 
+                    	Thanks jakemonO
+					*/
                     for (var i = 0; i < format.length; i++) {
                         var currentPattern = format.charAt(i);
                         pattern += currentPattern;
@@ -235,7 +231,7 @@
                             pattern = "";
                             break;
                         case "hh":
-                            //time.hour is "00" as string == is used instead of ===
+                            /* time.hour is "00" as string == is used instead of === */
                             retValue += (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);
                             pattern = "";
                             break;
@@ -244,15 +240,10 @@
                             pattern = "";
                             break;
                         case "ss":
-                            //ensure only seconds are added to the return string
+                            /* ensure only seconds are added to the return string */
                             retValue += time.second.substring(0, 2);
                             pattern = "";
                             break;
-                            //case "tz":
-                            //    //parse out the timezone information
-                            //    retValue += time.second.substring(3, time.second.length);
-                            //    pattern = "";
-                            //    break;
                         case "SSS":
                             retValue += time.millis.substring(0, 3);
                             pattern = "";
@@ -296,16 +287,16 @@
 $(document).ready(function () {
     $(".shortDateFormat").each(function (idx, elem) {
         if ($(elem).is(":input")) {
-            $(elem).val($.format.date($(elem).val(), 'dd/MM/yyyy'));
+            $(elem).val($.format.date($(elem).val(), "dd/MM/yyyy"));
         } else {
-            $(elem).text($.format.date($(elem).text(), 'dd/MM/yyyy'));
+            $(elem).text($.format.date($(elem).text(), "dd/MM/yyyy"));
         }
     });
     $(".longDateFormat").each(function (idx, elem) {
         if ($(elem).is(":input")) {
-            $(elem).val($.format.date($(elem).val(), 'dd/MM/yyyy hh:mm:ss'));
+            $(elem).val($.format.date($(elem).val(), "dd/MM/yyyy hh:mm:ss"));
         } else {
-            $(elem).text($.format.date($(elem).text(), 'dd/MM/yyyy hh:mm:ss'));
+            $(elem).text($.format.date($(elem).text(), "dd/MM/yyyy hh:mm:ss"));
         }
     });
 });
