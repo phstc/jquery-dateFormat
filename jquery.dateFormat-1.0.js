@@ -1,118 +1,41 @@
 (function ($) {
+		
+		var daysInWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var shortMonthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var longMonthsInYear = ["January", "February", "March", "April", "May", "June", 
+														"July", "August", "September", "October", "November", "December"];
+		var shortMonthsToNumber = [];
+		shortMonthsToNumber["Jan"] = "01";
+		shortMonthsToNumber["Feb"] = "02";
+		shortMonthsToNumber["Mar"] = "03";
+		shortMonthsToNumber["Apr"] = "04";
+		shortMonthsToNumber["May"] = "05";
+		shortMonthsToNumber["Jun"] = "06";
+		shortMonthsToNumber["Jul"] = "07";
+		shortMonthsToNumber["Aug"] = "08";
+		shortMonthsToNumber["Sep"] = "09";
+		shortMonthsToNumber["Oct"] = "10";
+		shortMonthsToNumber["Nov"] = "11";
+		shortMonthsToNumber["Dec"] = "12";
+	
     $.format = (function () {
         function strDay(value) {
-            switch (parseInt(value)) {
-            case 0:
-                return "Sunday";
-            case 1:
-                return "Monday";
-            case 2:
-                return "Tuesday";
-            case 3:
-                return "Wednesday";
-            case 4:
-                return "Thursday";
-            case 5:
-                return "Friday";
-            case 6:
-                return "Saturday";
-            default:
-                return value;
-            }
+ 						return daysInWeek[parseInt(value)] || value;
         }
 
         function strMonth(value) {
-            switch (parseInt(value)) {
-            case 1:
-                return "Jan";
-            case 2:
-                return "Feb";
-            case 3:
-                return "Mar";
-            case 4:
-                return "Apr";
-            case 5:
-                return "May";
-            case 6:
-                return "Jun";
-            case 7:
-                return "Jul";
-            case 8:
-                return "Aug";
-            case 9:
-                return "Sep";
-            case 10:
-                return "Oct";
-            case 11:
-                return "Nov";
-            case 12:
-                return "Dec";
-            default:
-                return value;
-            }
+						var monthArrayIndex = parseInt(value) - 1;
+ 						return shortMonthsInYear[monthArrayIndex] || value;
         }
 
         function strLongMonth(value) {
-            switch (parseInt(value)) {
-            case 1:
-                return "January";
-            case 2:
-                return "February";
-            case 3:
-                return "March";
-            case 4:
-                return "April";
-            case 5:
-                return "May";
-            case 6:
-                return "June";
-            case 7:
-                return "July"; 
-            case 8:
-                return "August";
-            case 9:
-                return "September";
-            case 10:
-                return "October";
-            case 11:
-                return "November";
-            case 12:
-                return "December";
-            default:
-                return value;
-            }
+					var monthArrayIndex = parseInt(value) - 1;
+					return longMonthsInYear[monthArrayIndex] || value;					
         }
 
         var parseMonth = function (value) {
-                switch (value) {
-                case "Jan":
-                    return "01";
-                case "Feb":
-                    return "02";
-                case "Mar":
-                    return "03";
-                case "Apr":
-                    return "04";
-                case "May":
-                    return "05";
-                case "Jun":
-                    return "06";
-                case "Jul":
-                    return "07";
-                case "Aug":
-                    return "08";
-                case "Sep":
-                    return "09";
-                case "Oct":
-                    return "10";
-                case "Nov":
-                    return "11";
-                case "Dec":
-                    return "12";
-                default:
-                    return value;
-                }
-            };
+					return shortMonthsToNumber[value] || value;
+        };
 
         var parseTime = function (value) {
                 var retValue = value;
@@ -167,7 +90,7 @@
                         dayOfMonth = value.getDate();
                         dayOfWeek = value.getDay();
                         time = parseTime(value.toTimeString());
-					} else if (value.search(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[-+]?\d{2}:\d{2}/) != -1) { /* 2009-04-19T16:11:05+02:00 */
+										} else if (value.search(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[-+]?\d{2}:\d{2}/) != -1) { /* 2009-04-19T16:11:05+02:00 */
                         var values = value.split(/[T\+-]/);
                         year = values[0];
                         month = values[1];
@@ -244,8 +167,7 @@
                             pattern = "";
                             break;
                         case "MMM":
-                            if (format.charAt(i + 1) == "M") {
-                                console.log("M + 1");
+                            if (format.charAt(i + 1) === "M") {
                                 break;
                             }
                             retValue += strMonth(month);

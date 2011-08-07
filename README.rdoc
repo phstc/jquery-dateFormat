@@ -19,6 +19,7 @@ http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 * yyyy = year
 * MM = month
 * MMM = month abbreviation (Jan, Feb ... Dec)
+* MMMM = long month (January, February ... December)
 * ddd = day of the week in words (Monday, Tuesday ... Sunday)
 * dd = day
 * hh = hour in am/pm (1-12)
@@ -77,6 +78,13 @@ Open Test.html in Firefox to run the entire test suite
 == Do you want to improve jquery-dateFormat
 
 You’re welcome to make your contributions and send them as a pull request
+
+== Licenses
+
+This plugin is licensed under:
+
+MIT License
+GPL
 
 === Contributors
 

@@ -36,7 +36,7 @@
     teardown: function() {
       
     },
-    testFormatDateType1 : function() { with(this) {
+    testeJavaUtilDateFormat : function() { with(this) {
 			/* Java java.util.Date output */
 	    assertEqual('18/12/2009', $.format.date('2009-12-18 10:54:50.546', 'dd/MM/yyyy'));
 			assertEqual('Dec/2009', $.format.date('2009-12-18 10:54:50.546', 'MMM/yyyy'));
@@ -76,7 +76,7 @@
 			assertEqual('z13/b01/c2010 d10:e43:f41', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'zdd/bMM/cyyyy dhh:emm:fss'));    	
 			assertEqual('Wednesday', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'ddd'));
     }},    
-    testFormatDateType3 : function() { with(this) {
+    testJAXBFormat : function() { with(this) {
 			/* Java JAXB java.util.Date output */
 			assertEqual('19/10/2010', $.format.date('2010-10-19T11:40:33.527+02:00', 'dd/MM/yyyy'));
 			assertEqual('Oct/2010', $.format.date('2010-10-19T11:40:33.527+02:00', 'MMM/yyyy'));
@@ -95,7 +95,7 @@
 			assertEqual('z19/b10/c2010 d11:e40:f33', $.format.date('2010-10-19T11:40:33.527+02:00', 'zdd/bMM/cyyyy dhh:emm:fss'));    	
 			assertEqual('Tuesday', $.format.date('2010-10-19T11:40:33.527+02:00', 'ddd'));
     }},
-	testFormatDateType4: function() { with(this) {
+	testeJavaScriptDateFormat: function() { with(this) {
 		/* JavaScript Date output */
 		assertEqual('19/10/2010', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'dd/MM/yyyy'));
 		assertEqual('Oct/2010', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'MMM/yyyy'));
@@ -158,6 +158,16 @@
 	testFormatDateType8: function() { with(this) {
 		/* Reference: http://pablocantero.com/blog/2010/09/04/jquery-plugin-javascript-for-java-util-date-tostring-format/#comment-178490699 */
 		assertEqual('5:45PM', $.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', 'hh:mma'));
+	}},
+	testDayInWeek: function() { with(this) {
+		assertEqual('Monday', $.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', 'ddd'));
+	}},
+	testMonthInYear: function() { with(this) {
+		assertEqual('Mar', $.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', 'MMM'));
+		assertEqual('March', $.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', 'MMMM'));
+	}},
+	testLongMonth: function() { with(this) {
+		assertEqual('February', $.format.date('Mon Feb 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', 'MMMM'));
 	}}
   }); 
 // ]]>
