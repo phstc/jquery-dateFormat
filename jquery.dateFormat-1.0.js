@@ -20,16 +20,16 @@
 	
     $.format = (function () {
         function strDay(value) {
- 						return daysInWeek[parseInt(value)] || value;
+ 						return daysInWeek[parseInt(value, 10)] || value;
         }
 
         function strMonth(value) {
-						var monthArrayIndex = parseInt(value) - 1;
+						var monthArrayIndex = parseInt(value, 10) - 1;
  						return shortMonthsInYear[monthArrayIndex] || value;
         }
 
         function strLongMonth(value) {
-					var monthArrayIndex = parseInt(value) - 1;
+					var monthArrayIndex = parseInt(value, 10) - 1;
 					return longMonthsInYear[monthArrayIndex] || value;					
         }
 
