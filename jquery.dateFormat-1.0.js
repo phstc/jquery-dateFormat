@@ -193,7 +193,9 @@
                             break;
                         case "hh":
                             /* time.hour is "00" as string == is used instead of === */
-                            retValue += (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);
+                            var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);
+                            hour = String(hour).length == 1 ? '0'+hour : hour;
+                            retValue += hour;
                             pattern = "";
                             break;
                         case "mm":
