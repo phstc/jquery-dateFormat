@@ -168,6 +168,11 @@
 	}},
 	testLongMonth: function() { with(this) {
 		assertEqual('February', $.format.date('Mon Feb 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', 'MMMM'));
+	}},
+	testShortYear: function() { with(this) {
+		assertEqual(11, $.format.date('Mon Feb 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', 'yy'));
+		assertEqual(12, $.format.date('Mon Feb 28 20112 17:45:00 GMT-0400 (Eastern Daylight Time)', 'yy'));
+		assertEqual('13.01.10', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'dd.MM.yy'));
 	}}
   }); 
 // ]]>

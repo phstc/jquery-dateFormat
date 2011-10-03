@@ -187,6 +187,14 @@
                             retValue += year;
                             pattern = "";
                             break;
+                        case "yy":
+                            if (format.charAt(i + 1) == "y" &&
+                           	format.charAt(i + 2) == "y") {
+                            	break;
+                      	    }
+                            retValue += String(year).slice(-2);
+                            pattern = "";
+                            break;
                         case "HH":
                             retValue += time.hour;
                             pattern = "";
