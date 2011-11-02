@@ -206,6 +206,14 @@
                             retValue += hour;
                             pattern = "";
                             break;
+												case "h":
+												    if (format.charAt(i + 1) == "h") {
+												        break;
+												    }
+												    var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);                           
+												    retValue += hour;
+												    pattern = "";
+												    break;
                         case "mm":
                             retValue += time.minute;
                             pattern = "";

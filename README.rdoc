@@ -88,4 +88,4 @@ GPL
 
 === Contributors
 
-Thanks to albertjan, christopherstott, cipa, dahdread, docchang, eemeyer, jafin, jakemonO, jharting, kitto, larryzhao, leesolutions, nashg842
+Thanks to albertjan, christopherstott, cipa, dahdread, docchang, eemeyer, gwilson2151, jafin, jakemonO, jharting, kitto, larryzhao, leesolutions, nashg842
