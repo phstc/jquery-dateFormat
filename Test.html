@@ -181,6 +181,9 @@
 	}},
 	testIssue19: function() { with(this) {
 		assertEqual('Sep 29, 2011', $.format.date("2011-09-29 14:50:49", "MMM dd, yyyy"));
+	}},
+	testIssue17: function() { with(this) {
+		assertEqual('2011-04-25 09:04', $.format.date("2011-04-25T09:04:14.7270000", "yyyy-MM-dd HH:mm"));
 	}}
   }); 
 // ]]>
