@@ -16,7 +16,8 @@ http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 
 === Date and time patterns
 
-* yyyy = year
+* yyyy = long year
+* yy = short year
 * MM = month
 * MMM = month abbreviation (Jan, Feb ... Dec)
 * MMMM = long month (January, February ... December)
