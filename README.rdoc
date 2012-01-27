@@ -43,6 +43,11 @@ http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
  <span class="shortDateFormat">2009-12-18 10:54:50.546</span>
  <span class="longDateFormat">2009-12-18 10:54:50.546</span>
 
+The default shortDateFormat and longDateFormat are defined in the variables
+
+ jQuery.format.date.defaultShortDateFormat = "dd/MM/yyyy";
+ jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy hh:mm:ss";
+
 === output
 
  #1 18/12/2009
@@ -59,15 +64,6 @@ http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 
  #1 Test: 18/12/2009
  #2 18~12~2009
-
-== Tips
-
-The css class names patterns by default are
-
-* shortDateFormat = dd/MM/yyyy
-* longDateFormat = dd/MM/yyyy hh:mm:ss
-
-You can change the patterns in jquery.dateFormat
 
 == Test
 

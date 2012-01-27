@@ -1,4 +1,4 @@
-(function ($) {
+(function (jQuery) {
 		
 		var daysInWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var shortMonthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -18,7 +18,7 @@
 		shortMonthsToNumber["Nov"] = "11";
 		shortMonthsToNumber["Dec"] = "12";
 	
-    $.format = (function () {
+    jQuery.format = (function () {
         function strDay(value) {
  						return daysInWeek[parseInt(value, 10)] || value;
         }
@@ -262,20 +262,22 @@
     }());
 }(jQuery));
 
+jQuery.format.date.defaultShortDateFormat = "dd/MM/yyyy";
+jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy hh:mm:ss";
 
-$(document).ready(function () {
-    $(".shortDateFormat").each(function (idx, elem) {
-        if ($(elem).is(":input")) {
-            $(elem).val($.format.date($(elem).val(), "dd/MM/yyyy"));
+jQuery(document).ready(function () {
+    jQuery(".shortDateFormat").each(function (idx, elem) {
+        if (jQuery(elem).is(":input")) {
+            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultShortDateFormat));
         } else {
-            $(elem).text($.format.date($(elem).text(), "dd/MM/yyyy"));
+            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultShortDateFormat));
         }
     });
-    $(".longDateFormat").each(function (idx, elem) {
-        if ($(elem).is(":input")) {
-            $(elem).val($.format.date($(elem).val(), "dd/MM/yyyy hh:mm:ss"));
+    jQuery(".longDateFormat").each(function (idx, elem) {
+        if (jQuery(elem).is(":input")) {
+            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultLongDateFormat));
         } else {
-            $(elem).text($.format.date($(elem).text(), "dd/MM/yyyy hh:mm:ss"));
+            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultLongDateFormat));
         }
     });
 });
