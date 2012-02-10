@@ -202,7 +202,7 @@
                         case "hh":
                             /* time.hour is "00" as string == is used instead of === */
                             var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);
-                            hour = String(hour).length == 1 ? '0'+hour : hour;
+                            hour = String(hour).length == 1 ? '0' + hour : hour;
                             retValue += hour;
                             pattern = "";
                             break;
@@ -211,7 +211,9 @@
 												        break;
 												    }
 												    var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);                           
-												    retValue += hour;
+												    retValue += parseInt(hour, 10);
+														// Fixing issue https://github.com/phstc/jquery-dateFormat/issues/21
+														// retValue = parseInt(retValue, 10);
 												    pattern = "";
 												    break;
                         case "mm":
