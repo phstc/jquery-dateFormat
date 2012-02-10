@@ -162,6 +162,13 @@
                             retValue += dayOfMonth;
                             pattern = "";
                             break;
+                        case "d":
+                            if (format.charAt(i + 1) == "d") {
+                                break;
+                            }
+                            retValue += parseInt(dayOfMonth, 10);
+                            pattern = "";
+                            break;
                         case "MMMM":
                             retValue += strLongMonth(month);
                             pattern = "";

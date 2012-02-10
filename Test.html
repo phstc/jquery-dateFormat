@@ -53,7 +53,7 @@
 			assertEqual('18/12/2009 14:54:50', $.format.date('2009-12-18 14:54:50.546', 'dd/MM/yyyy HH:mm:ss'));
 			assertEqual('18/12/2009 10:54:50 AM', $.format.date('2009-12-18 10:54:50.546', 'dd/MM/yyyy hh:mm:ss a'));
 			assertEqual('18/12/2009 01:54:50 PM', $.format.date('2009-12-18 13:54:50.546', 'dd/MM/yyyy hh:mm:ss a'));
-	    assertEqual('z18/b12/c2009 d10:e54:f50', $.format.date('2009-12-18 10:54:50.546', 'zdd/bMM/cyyyy dhh:emm:fss'));
+	    assertEqual('z18/b12/c2009 x10:e54:f50', $.format.date('2009-12-18 10:54:50.546', 'zdd/bMM/cyyyy xhh:emm:fss'));
 	    assertEqual('2010', $.format.date(new Date(1274370756526), 'yyyy'));
 	    assertEqual('Friday', $.format.date('2009-12-18 10:54:50.546', 'ddd'));
     }},
@@ -73,7 +73,7 @@
 			assertEqual('13/01/2010 14:43:41', $.format.date('Wed Jan 13 14:43:41 CET 2010', 'dd/MM/yyyy HH:mm:ss'));
 			assertEqual('13/01/2010 10:43:41 AM', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'dd/MM/yyyy hh:mm:ss a'));
 			assertEqual('13/01/2010 05:43:41 PM', $.format.date('Wed Jan 13 17:43:41 CET 2010', 'dd/MM/yyyy hh:mm:ss a'));
-			assertEqual('z13/b01/c2010 d10:e43:f41', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'zdd/bMM/cyyyy dhh:emm:fss'));    	
+			assertEqual('z13/b01/c2010 x10:e43:f41', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'zdd/bMM/cyyyy xhh:emm:fss'));    	
 			assertEqual('Wednesday', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'ddd'));
     }},    
     testJAXBFormat : function() { with(this) {
@@ -92,7 +92,7 @@
 			assertEqual('19/10/2010 14:43:41', $.format.date('2010-10-19T14:43:41.527+02:000', 'dd/MM/yyyy HH:mm:ss'));
 			assertEqual('19/10/2010 10:43:41 AM', $.format.date('2010-10-19T10:43:41.527+02:00', 'dd/MM/yyyy hh:mm:ss a'));
 			assertEqual('19/10/2010 05:43:41 PM', $.format.date('2010-10-19T17:43:41.527+02:00', 'dd/MM/yyyy hh:mm:ss a'));
-			assertEqual('z19/b10/c2010 d11:e40:f33', $.format.date('2010-10-19T11:40:33.527+02:00', 'zdd/bMM/cyyyy dhh:emm:fss'));    	
+			assertEqual('z19/b10/c2010 x11:e40:f33', $.format.date('2010-10-19T11:40:33.527+02:00', 'zdd/bMM/cyyyy xhh:emm:fss'));    	
 			assertEqual('Tuesday', $.format.date('2010-10-19T11:40:33.527+02:00', 'ddd'));
     }},
 	testeJavaScriptDateFormat: function() { with(this) {
@@ -111,7 +111,7 @@
 		assertEqual('19/10/2010 14:43:41', $.format.date(new Date('10/19/2010 14:43:41').toString(), 'dd/MM/yyyy HH:mm:ss'));
 		assertEqual('19/10/2010 10:43:41 AM', $.format.date(new Date('10/19/2010 10:43:41').toString(), 'dd/MM/yyyy hh:mm:ss a'));
 		assertEqual('19/10/2010 05:43:41 PM', $.format.date(new Date('10/19/2010 17:43:41').toString(), 'dd/MM/yyyy hh:mm:ss a'));
-		assertEqual('z19/b10/c2010 d11:e40:f33', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'zdd/bMM/cyyyy dhh:emm:fss'));		
+		assertEqual('z19/b10/c2010 x11:e40:f33', $.format.date(new Date('10/19/2010 11:40:33').toString(), 'zdd/bMM/cyyyy xhh:emm:fss'));		
 		assertEqual('Tuesday', $.format.date(new Date('10/19/2010 10:43:41').toString(), 'ddd'));
 	}},
 	testFormatDateType5: function() { with(this) {
@@ -129,7 +129,7 @@
 		assertEqual('08/04/2011 14:02:03', $.format.date('Fri Apr 08 2011 14:02:03 GMT+0800 (China Standard Time)', 'dd/MM/yyyy HH:mm:ss'));
 		assertEqual('08/04/2011 01:02:03 AM', $.format.date('Fri Apr 08 2011 01:02:03 GMT+0800 (China Standard Time)', 'dd/MM/yyyy hh:mm:ss a'));
 		assertEqual('08/04/2011 07:02:03 PM', $.format.date('Fri Apr 08 2011 19:02:03 GMT+0800 (China Standard Time)', 'dd/MM/yyyy hh:mm:ss a'));
-		assertEqual('z08/b04/c2011 d01:e02:f03', $.format.date('Fri Apr 08 2011 01:02:03 GMT+0800 (China Standard Time)', 'zdd/bMM/cyyyy dhh:emm:fss'));
+		assertEqual('z08/b04/c2011 x01:e02:f03', $.format.date('Fri Apr 08 2011 01:02:03 GMT+0800 (China Standard Time)', 'zdd/bMM/cyyyy xhh:emm:fss'));
 		assertEqual('Friday', $.format.date('Fri Apr 08 2011 13:02:03 GMT+0800 (China Standard Time)', 'ddd'));
 	}},
 	testFormatDateType6: function() { with(this) {
@@ -147,7 +147,7 @@
 		assertEqual('08/04/2011 14:02:03', $.format.date('Fri Apr 08 2011 14:02:03 GMT+0200 (W. Europe Daylight Time)', 'dd/MM/yyyy HH:mm:ss'));
 		assertEqual('08/04/2011 01:02:03 AM', $.format.date('Fri Apr 08 2011 01:02:03 GMT+0200 (W. Europe Daylight Time)', 'dd/MM/yyyy hh:mm:ss a'));
 		assertEqual('08/04/2011 07:02:03 PM', $.format.date('Fri Apr 08 2011 19:02:03 GMT+0200 (W. Europe Daylight Time)', 'dd/MM/yyyy hh:mm:ss a'));
-		assertEqual('z08/b04/c2011 d01:e02:f03', $.format.date('Fri Apr 08 2011 01:02:03 GMT+0200 (W. Europe Daylight Time)', 'zdd/bMM/cyyyy dhh:emm:fss'));
+		assertEqual('z08/b04/c2011 x01:e02:f03', $.format.date('Fri Apr 08 2011 01:02:03 GMT+0200 (W. Europe Daylight Time)', 'zdd/bMM/cyyyy xhh:emm:fss'));
 		assertEqual('Friday', $.format.date('Fri Apr 08 2011 14:02:03 GMT+0200 (W. Europe Daylight Time)', 'ddd'));
 	}},
 	testFormatDateType7: function() { with(this) {
@@ -189,6 +189,10 @@
 	}},
 	testIssue17: function() { with(this) {
 		assertEqual('2011-04-25 09:04', $.format.date("2011-04-25T09:04:14.7270000", "yyyy-MM-dd HH:mm"));
+	}},
+	testShortDay: function() { with(this) {
+	    assertEqual('January 9, 2012', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'MMMM d, yyyy'));
+	    assertEqual('January 09, 2012', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'MMMM dd, yyyy'));
 	}}
   }); 
 // ]]>
