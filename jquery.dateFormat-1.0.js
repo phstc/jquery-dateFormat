@@ -140,6 +140,7 @@
 
                     var pattern = "";
                     var retValue = "";
+                    var unparsedRest = "";
                     /*
 						Issue 1 - variable scope issue in format.date 
                     	Thanks jakemonO
@@ -147,6 +148,7 @@
                     for (var i = 0; i < format.length; i++) {
                         var currentPattern = format.charAt(i);
                         pattern += currentPattern;
+                        unparsedRest = "";
                         switch (pattern) {
                         case "ddd":
                             retValue += strDay(dayOfWeek);
@@ -258,9 +260,12 @@
                                 pattern = pattern.substring(1, 2);
                             } else if ((pattern.length === 3 && pattern.indexOf("yyy") === -1)) {
                                 pattern = "";
+                            } else {
+                            	unparsedRest = pattern;
                             }
                         }
                     }
+                    retValue += unparsedRest;
                     return retValue;
                 } catch (e) {
                     console.log(e);
