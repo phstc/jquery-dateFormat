@@ -133,6 +133,16 @@
                             date = new Date(year, month - 1, dayOfMonth);
                             dayOfWeek = date.getDay();
                             break;
+                        case 1:
+                            /* added by Jonny, for 2012-02-07CET00:00:00 (Doctrine Entity -> Json Serializer) */
+                            var values2 = values[0].split("");
+                            year=values2[0]+values2[1]+values2[2]+values2[3];
+                            month= values2[5]+values2[6];
+                            dayOfMonth = values2[8]+values2[9];
+                            time = parseTime(values2[13]+values2[14]+values2[15]+values2[16]+values2[17]+values2[18]+values2[19]+values2[20])
+                            date = new Date(year, month - 1, dayOfMonth);
+                            dayOfWeek = date.getDay();
+                            break;
                         default:
                             return value;
                         }
