@@ -201,6 +201,14 @@
 		assertEqual('-', $.format.date('Wed Jan 09 06:23:38 PST 2012', '-'));
 		assertEqual('9-', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'd-'));
 		assertEqual('9/', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'd/'));
+	}},
+	testPullRequest: function() { with(this) {
+		// https://github.com/phstc/jquery-dateFormat/pull/22
+		assertEqual('07/02/2012', $.format.date('2012-02-07CET00:00:00', 'dd/MM/yyyy'));
+		assertEqual('Feb/2012', $.format.date('2012-02-07CET00:00:00', 'MMM/yyyy'));
+		assertEqual('02', $.format.date('2012-02-07CET00:00:00', 'MM'));
+		assertEqual('07', $.format.date('2012-02-07CET00:00:00', 'dd'));
+    assertEqual('2012', $.format.date('2012-02-07CET00:00:00', 'yyyy'));
 	}}
   }); 
 // ]]>
