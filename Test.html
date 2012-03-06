@@ -209,7 +209,17 @@
 		assertEqual('02', $.format.date('2012-02-07CET00:00:00', 'MM'));
 		assertEqual('07', $.format.date('2012-02-07CET00:00:00', 'dd'));
     assertEqual('2012', $.format.date('2012-02-07CET00:00:00', 'yyyy'));
-	}}
+	}},
+	testUnixTimeStamp: function() { with(this) {
+		// https://github.com/phstc/jquery-dateFormat/pull/22
+		var testDate = new Date("Jan 2, 2000 01:02:03");
+		assertEqual("01", $.format.date(testDate.getTime(), 'MM'));
+		assertEqual("2", $.format.date(testDate.getTime(), 'd'));
+		assertEqual("2000", $.format.date(testDate.getTime(), 'yyyy'));
+		assertEqual("01", $.format.date(testDate.getTime(), 'HH'));
+		assertEqual("02", $.format.date(testDate.getTime(), 'mm'));
+		assertEqual("03", $.format.date(testDate.getTime(), 'ss'));
+	}},
   }); 
 // ]]>
 </script>

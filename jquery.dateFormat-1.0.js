@@ -84,7 +84,9 @@
                     var dayOfMonth = null;
                     var dayOfWeek = null;
                     var time = null;
-                    if (typeof value.getFullYear === "function") {
+										if (typeof value == "number"){
+											return this.date(new Date(value), format);
+										} else if (typeof value.getFullYear == "function") {
                         year = value.getFullYear();
                         month = value.getMonth() + 1;
                         dayOfMonth = value.getDate();
