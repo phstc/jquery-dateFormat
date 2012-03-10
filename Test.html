@@ -220,6 +220,12 @@
 		assertEqual("02", $.format.date(testDate.getTime(), 'mm'));
 		assertEqual("03", $.format.date(testDate.getTime(), 'ss'));
 	}},
+	testeShortMonthNoPrependedZero: function() { with(this) {
+		var testDate = new Date("Jan 2, 2000 01:02:03");
+    assertEqual('2', $.format.date('Wed Feb 09 06:23:38 PST 2012', 'M'));
+		assertEqual("1", $.format.date(testDate.getTime(), 'M'));
+		assertEqual('5', $.format.date('2012-05-07CET00:00:00', 'M'));
+	}},
   }); 
 // ]]>
 </script>

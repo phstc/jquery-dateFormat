@@ -208,7 +208,7 @@
                             if (format.charAt(i + 1) == "M") {
                                 break;
                             }
-                            retValue += month;
+                            retValue += parseInt(month, 10);
                             pattern = "";
                             break;
                         case "yyyy":

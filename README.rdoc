@@ -18,7 +18,8 @@ http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 
 * yyyy = long year
 * yy = short year
-* MM = month
+* M = month (1-12)
+* MM = month (01-12)
 * MMM = month abbreviation (Jan, Feb ... Dec)
 * MMMM = long month (January, February ... December)
 * ddd = day of the week in words (Monday, Tuesday ... Sunday)
@@ -88,4 +89,4 @@ GPL
 
 === Contributors
 
-Thanks to albertjan, christopherstott, cipa, dahdread, docchang, eemeyer, gwilson2151, jafin, jakemonO, jharting, kitto, larryzhao, leesolutions, nashg842, fuzzygroove, stuttufu, thiloplanz.
+Thanks to albertjan, christopherstott, cipa, dahdread, docchang, eemeyer, gwilson2151, jafin, jakemonO, jharting, kitto, larryzhao, leesolutions, nashg842, fuzzygroove, stuttufu, thiloplanz, Zyber17.
