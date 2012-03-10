@@ -204,6 +204,13 @@
                             retValue += month;
                             pattern = "";
                             break;
+                        case "M":
+                            if (format.charAt(i + 1) == "M") {
+                                break;
+                            }
+                            retValue += month;
+                            pattern = "";
+                            break;
                         case "yyyy":
                             retValue += year;
                             pattern = "";
