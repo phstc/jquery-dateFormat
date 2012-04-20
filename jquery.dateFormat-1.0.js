@@ -302,18 +302,25 @@ jQuery.format.date.defaultShortDateFormat = "dd/MM/yyyy";
 jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy hh:mm:ss";
 
 jQuery(document).ready(function () {
+
     jQuery(".shortDateFormat").each(function (idx, elem) {
-        if (jQuery(elem).is(":input")) {
-            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultShortDateFormat));
+    	var element = jQuery(elem);
+
+        if (element.is(":input")) {
+        	element.val(jQuery.format.date(element.val(), jQuery.format.date.defaultShortDateFormat));
         } else {
-            jQuery(elem).html(jQuery.format.date(jQuery(elem).html(), jQuery.format.date.defaultShortDateFormat));
+        	element.html(jQuery.format.date(element.html(), jQuery.format.date.defaultShortDateFormat));
         }
     });
+
     jQuery(".longDateFormat").each(function (idx, elem) {
-        if (jQuery(elem).is(":input")) {
-            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultLongDateFormat));
+    	var element = jQuery(elem);
+
+        if (element.is(":input")) {
+        	element.val(jQuery.format.date(element.val(), jQuery.format.date.defaultLongDateFormat));
         } else {
-            jQuery(elem).html(jQuery.format.date(jQuery(elem).html(), jQuery.format.date.defaultLongDateFormat));
+        	element.html(jQuery.format.date(element.html(), jQuery.format.date.defaultLongDateFormat));
         }
     });
+
 });
