@@ -1,4 +1,4 @@
-(function (jQuery) {
+;(function (jQuery) {
 		
 		var daysInWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var shortMonthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -287,7 +287,10 @@
                     retValue += unparsedRest;
                     return retValue;
                 } catch (e) {
-                    console.log(e);
+            		if (window.console && window.console.log) {
+            			console.log(e);
+            		}
+
                     return value;
                 }
             }
@@ -298,19 +301,26 @@
 jQuery.format.date.defaultShortDateFormat = "dd/MM/yyyy";
 jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy hh:mm:ss";
 
-jQuery(document).ready(function () {
+jQuery(function() {
+
     jQuery(".shortDateFormat").each(function (idx, elem) {
-        if (jQuery(elem).is(":input")) {
-            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultShortDateFormat));
+    	var element = jQuery(elem);
+
+        if (element.is(":input")) {
+        	element.val(jQuery.format.date(element.val(), jQuery.format.date.defaultShortDateFormat));
         } else {
-            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultShortDateFormat));
+        	element.html(jQuery.format.date(element.html(), jQuery.format.date.defaultShortDateFormat));
         }
     });
+
     jQuery(".longDateFormat").each(function (idx, elem) {
-        if (jQuery(elem).is(":input")) {
-            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultLongDateFormat));
+    	var element = jQuery(elem);
+
+        if (element.is(":input")) {
+        	element.val(jQuery.format.date(element.val(), jQuery.format.date.defaultLongDateFormat));
         } else {
-            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultLongDateFormat));
+        	element.html(jQuery.format.date(element.html(), jQuery.format.date.defaultLongDateFormat));
         }
     });
+
 });
