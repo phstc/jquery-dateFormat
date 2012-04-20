@@ -287,7 +287,10 @@
                     retValue += unparsedRest;
                     return retValue;
                 } catch (e) {
-                    console.log(e);
+            		if (window.console && window.console.log) {
+            			console.log(e);
+            		}
+
                     return value;
                 }
             }
