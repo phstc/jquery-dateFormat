@@ -303,14 +303,14 @@ jQuery(document).ready(function () {
         if (jQuery(elem).is(":input")) {
             jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultShortDateFormat));
         } else {
-            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultShortDateFormat));
+            jQuery(elem).html(jQuery.format.date(jQuery(elem).html(), jQuery.format.date.defaultShortDateFormat));
         }
     });
     jQuery(".longDateFormat").each(function (idx, elem) {
         if (jQuery(elem).is(":input")) {
             jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultLongDateFormat));
         } else {
-            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultLongDateFormat));
+            jQuery(elem).html(jQuery.format.date(jQuery(elem).html(), jQuery.format.date.defaultLongDateFormat));
         }
     });
 });
