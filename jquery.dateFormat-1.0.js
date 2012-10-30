@@ -1,5 +1,5 @@
 (function (jQuery) {
-		
+
 		var daysInWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var shortMonthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 		var longMonthsInYear = ["January", "February", "March", "April", "May", "June", 
@@ -17,7 +17,13 @@
 		shortMonthsToNumber["Oct"] = "10";
 		shortMonthsToNumber["Nov"] = "11";
 		shortMonthsToNumber["Dec"] = "12";
-	
+		
+		var pm = [];
+		pm["PM"] = true;
+		pm["pm"] = true;
+		pm["p.m."] = true;
+		pm["P.M."] = true;
+
     jQuery.format = (function () {
         function strDay(value) {
  						return daysInWeek[parseInt(value, 10)] || value;
@@ -37,7 +43,7 @@
 					return shortMonthsToNumber[value] || value;
         };
 
-        var parseTime = function (value) {
+        var parseTime = function (value, meridian) {
                 var retValue = value;
                 var millis = "";
                 if (retValue.indexOf(".") !== -1) {
@@ -52,6 +58,10 @@
                     hour = values3[0];
                     minute = values3[1];
                     second = values3[2];
+                    
+                    if (hour == 12 && pm[meridian]);
+                    else if (hour == 12) hour = '00';
+                    else if (pm[meridian]) hour = parseInt(hour) + 12;
 
                     return {
                         time: retValue,
@@ -141,8 +151,17 @@
                             year=values2[0]+values2[1]+values2[2]+values2[3];
                             month= values2[5]+values2[6];
                             dayOfMonth = values2[8]+values2[9];
-                            time = parseTime(values2[13]+values2[14]+values2[15]+values2[16]+values2[17]+values2[18]+values2[19]+values2[20])
+                            time = parseTime(values2[13]+values2[14]+values2[15]+values2[16]+values2[17]+values2[18]+values2[19]+values2[20]);
                             date = new Date(year, month - 1, dayOfMonth);
+                            dayOfWeek = date.getDay();
+                            break;
+                        case 5:
+                        	/* added by TTo314, for Oct 30, 2012 10:04:00 AM*/
+                        	month = parseMonth(values[0]);
+                        	dayOfMonth = values[1].substring(0, values[1].length - 1);
+                        	year = values[2];
+                        	time = parseTime(values[3], values[4]);
+                        	date = new Date(year, month - 1, dayOfMonth);
                             dayOfWeek = date.getDay();
                             break;
                         default:
