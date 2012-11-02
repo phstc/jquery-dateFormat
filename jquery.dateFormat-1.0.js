@@ -1,8 +1,8 @@
 (function (jQuery) {
-		
+
 		var daysInWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var shortMonthsInYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-		var longMonthsInYear = ["January", "February", "March", "April", "May", "June", 
+		var longMonthsInYear = ["January", "February", "March", "April", "May", "June",
 														"July", "August", "September", "October", "November", "December"];
 		var shortMonthsToNumber = [];
 		shortMonthsToNumber["Jan"] = "01";
@@ -17,7 +17,7 @@
 		shortMonthsToNumber["Oct"] = "10";
 		shortMonthsToNumber["Nov"] = "11";
 		shortMonthsToNumber["Dec"] = "12";
-	
+
     jQuery.format = (function () {
         function strDay(value) {
  						return daysInWeek[parseInt(value, 10)] || value;
@@ -30,7 +30,7 @@
 
         function strLongMonth(value) {
 					var monthArrayIndex = parseInt(value, 10) - 1;
-					return longMonthsInYear[monthArrayIndex] || value;					
+					return longMonthsInYear[monthArrayIndex] || value;
         }
 
         var parseMonth = function (value) {
@@ -73,9 +73,9 @@
 
         return {
             date: function (value, format) {
-                /* 
+                /*
 					value = new java.util.Date()
-                 	2009-12-18 10:54:50.546 
+                 	2009-12-18 10:54:50.546
 				*/
                 try {
                     var date = null;
@@ -92,7 +92,8 @@
                         dayOfMonth = value.getDate();
                         dayOfWeek = value.getDay();
                         time = parseTime(value.toTimeString());
-										} else if (value.search(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[-+]?\d{2}:?\d{2}/) != -1) { /* 2009-04-19T16:11:05+02:00 */											
+                    } else if (value.search(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[Z\-+]?(\d{2}:?\d{2})?/) != -1) {
+                        /* 2009-04-19T16:11:05+02:00 || 2009-04-19T16:11:05Z */
                         var values = value.split(/[T\+-]/);
                         year = values[0];
                         month = values[1];
@@ -154,7 +155,7 @@
                     var retValue = "";
                     var unparsedRest = "";
                     /*
-						Issue 1 - variable scope issue in format.date 
+						Issue 1 - variable scope issue in format.date
                     	Thanks jakemonO
 					*/
                     for (var i = 0; i < format.length; i++) {
@@ -238,7 +239,7 @@
 												    if (format.charAt(i + 1) == "h") {
 												        break;
 												    }
-												    var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);                           
+												    var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);
 												    retValue += parseInt(hour, 10);
 														// Fixing issue https://github.com/phstc/jquery-dateFormat/issues/21
 														// retValue = parseInt(retValue, 10);
