@@ -212,10 +212,14 @@
                             retValue += parseInt(month, 10);
                             pattern = "";
                             break;
-                        case "yyyy":
-                            retValue += year;
-                            pattern = "";
-                            break;
+						case "y":
+						case "yyy":
+							if (format.charAt(i + 1) == "y") {
+								break;
+							}
+							retValue += pattern;
+							pattern = "";
+							break;
                         case "yy":
                             if (format.charAt(i + 1) == "y" &&
                            	format.charAt(i + 2) == "y") {
@@ -224,6 +228,17 @@
                             retValue += String(year).slice(-2);
                             pattern = "";
                             break;
+                        case "yyyy":
+                            retValue += year;
+                            pattern = "";
+                            break;
+						case "H":
+							if (format.charAt(i + 1) == "H") {
+								break;
+							}
+							retValue += pattern;
+							pattern = "";
+							break;
                         case "HH":
                             retValue += time.hour;
                             pattern = "";
@@ -235,25 +250,47 @@
                             retValue += hour;
                             pattern = "";
                             break;
-												case "h":
-												    if (format.charAt(i + 1) == "h") {
-												        break;
-												    }
-												    var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);
-												    retValue += parseInt(hour, 10);
-														// Fixing issue https://github.com/phstc/jquery-dateFormat/issues/21
-														// retValue = parseInt(retValue, 10);
-												    pattern = "";
-												    break;
+						case "h":
+							if (format.charAt(i + 1) == "h") {
+								break;
+							}
+							var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);
+							retValue += parseInt(hour, 10);
+							// Fixing issue https://github.com/phstc/jquery-dateFormat/issues/21
+							// retValue = parseInt(retValue, 10);
+							pattern = "";
+							break;
+						case "m":
+							if (format.charAt(i + 1) == "m") {
+								break;
+							}
+							retValue += pattern;
+							pattern = "";
+							break;
                         case "mm":
                             retValue += time.minute;
                             pattern = "";
                             break;
+						case "s":
+							if (format.charAt(i + 1) == "s") {
+								break;
+							}
+							retValue += pattern;
+							pattern = "";
+							break;
                         case "ss":
                             /* ensure only seconds are added to the return string */
                             retValue += time.second.substring(0, 2);
                             pattern = "";
                             break;
+						case "S":
+						case "SS":
+							if (format.charAt(i + 1) == "S") {
+								break;
+							}
+							retValue += pattern;
+							pattern = "";
+							break;
                         case "SSS":
                             retValue += time.millis.substring(0, 3);
                             pattern = "";
@@ -262,27 +299,10 @@
                             retValue += time.hour >= 12 ? "PM" : "AM";
                             pattern = "";
                             break;
-                        case " ":
-                            retValue += currentPattern;
-                            pattern = "";
-                            break;
-                        case "/":
-                            retValue += currentPattern;
-                            pattern = "";
-                            break;
-                        case ":":
-                            retValue += currentPattern;
-                            pattern = "";
-                            break;
                         default:
-                            if (pattern.length === 2 && pattern.indexOf("y") !== 0 && pattern != "SS") {
-                                retValue += pattern.substring(0, 1);
-                                pattern = pattern.substring(1, 2);
-                            } else if ((pattern.length === 3 && pattern.indexOf("yyy") === -1)) {
-                                pattern = "";
-                            } else {
-                            	unparsedRest = pattern;
-                            }
+                            retValue += currentPattern;
+                            pattern = "";
+                            break;
                         }
                     }
                     retValue += unparsedRest;
