@@ -213,6 +213,8 @@
 	testShortDay: function() { with(this) {
 	    assertEqual('January 9, 2012', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'MMMM d, yyyy'));
 	    assertEqual('January 09, 2012', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'MMMM dd, yyyy'));
+	    assertEqual('2012.1.9', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'yyyy.M.d'));
+		assertEqual('1.9.2012', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'M.d.yyyy'));
 	}},
 	testJapanese: function() { with(this) {
 		assertEqual('2012年01月09日', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'yyyy年MM月dd日'));
