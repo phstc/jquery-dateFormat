@@ -31,7 +31,8 @@ http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 * mm = minute
 * ss = second
 * SSS = milliseconds
-* a = am/pm marker 
+* a = AM/PM marker 
+* p = a.m./p.m. marker
 
 == Expected input dates formats
 

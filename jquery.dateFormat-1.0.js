@@ -299,6 +299,10 @@
                             retValue += time.hour >= 12 ? "PM" : "AM";
                             pattern = "";
                             break;
+                        case "p":
+                            retValue += time.hour >= 12 ? "p.m." : "a.m.";
+                            pattern = "";
+                            break;
                         default:
                             retValue += currentPattern;
                             pattern = "";
