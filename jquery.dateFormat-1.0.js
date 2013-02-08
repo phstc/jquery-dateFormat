@@ -184,6 +184,19 @@
                             retValue += parseInt(dayOfMonth, 10);
                             pattern = "";
                             break;
+                        case "D":
+                        	if (dayOfMonth == 1 || dayOfMonth == 21 || dayOfMonth == 31) {
+                               	dayOfMonth = dayOfMonth + 'st';
+                            } else if (dayOfMonth == 2 || dayOfMonth == 22) {
+                               	dayOfMonth = dayOfMonth + 'nd';
+                        	} else if (dayOfMonth == 3 || dayOfMonth == 23) {
+                               	dayOfMonth = dayOfMonth + 'rd';
+                        	} else {
+                               	dayOfMonth = dayOfMonth + 'th';
+                        	}
+                            retValue += dayOfMonth;
+                            pattern = "";
+                            break;
                         case "MMMM":
                             retValue += strLongMonth(month);
                             pattern = "";
