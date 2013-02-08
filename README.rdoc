@@ -25,6 +25,7 @@ http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 * d = day (1 - 31)
 * dd = day (01 - 31)
 * ddd = day of the week in words (Monday, Tuesday ... Sunday)
+* D - Ordinal day (1st, 2nd, 3rd, 21st, 22nd, 23rd, 31st, 4th...)
 * h = hour in am/pm (0-12)
 * hh = hour in am/pm (00-12)
 * HH = hour in day (00-23) 

@@ -263,6 +263,39 @@
 		assertEqual("1", $.format.date(testDate.getTime(), 'M'));
 		assertEqual('5', $.format.date('2012-05-07CET00:00:00', 'M'));
 	}},
+	testeOrdinalDays: function() { with(this) {
+    	assertEqual('1st', $.format.date(new Date("Jan 1, 2000 01:02:03"), 'D'));
+    	assertEqual('2nd', $.format.date(new Date("Jan 2, 2000 01:02:03"), 'D'));
+    	assertEqual('3rd', $.format.date(new Date("Jan 3, 2000 01:02:03"), 'D'));
+    	assertEqual('4th', $.format.date(new Date("Jan 4, 2000 01:02:03"), 'D'));
+    	assertEqual('5th', $.format.date(new Date("Jan 5, 2000 01:02:03"), 'D'));
+    	assertEqual('6th', $.format.date(new Date("Jan 6, 2000 01:02:03"), 'D'));
+    	assertEqual('7th', $.format.date(new Date("Jan 7, 2000 01:02:03"), 'D'));
+    	assertEqual('8th', $.format.date(new Date("Jan 8, 2000 01:02:03"), 'D'));
+    	assertEqual('9th', $.format.date(new Date("Jan 9, 2000 01:02:03"), 'D'));
+    	assertEqual('10th', $.format.date(new Date("Jan 10, 2000 01:02:03"), 'D'));
+    	assertEqual('11th', $.format.date(new Date("Jan 11, 2000 01:02:03"), 'D'));
+    	assertEqual('12th', $.format.date(new Date("Jan 12, 2000 01:02:03"), 'D'));
+    	assertEqual('13th', $.format.date(new Date("Jan 13, 2000 01:02:03"), 'D'));
+    	assertEqual('14th', $.format.date(new Date("Jan 14, 2000 01:02:03"), 'D'));
+    	assertEqual('15th', $.format.date(new Date("Jan 15, 2000 01:02:03"), 'D'));
+    	assertEqual('16th', $.format.date(new Date("Jan 16, 2000 01:02:03"), 'D'));
+    	assertEqual('17th', $.format.date(new Date("Jan 17, 2000 01:02:03"), 'D'));
+    	assertEqual('18th', $.format.date(new Date("Jan 18, 2000 01:02:03"), 'D'));
+    	assertEqual('19th', $.format.date(new Date("Jan 19, 2000 01:02:03"), 'D'));
+    	assertEqual('20th', $.format.date(new Date("Jan 20, 2000 01:02:03"), 'D'));
+    	assertEqual('21st', $.format.date(new Date("Jan 21, 2000 01:02:03"), 'D'));
+    	assertEqual('22nd', $.format.date(new Date("Jan 22, 2000 01:02:03"), 'D'));
+    	assertEqual('23rd', $.format.date(new Date("Jan 23, 2000 01:02:03"), 'D'));
+    	assertEqual('24th', $.format.date(new Date("Jan 24, 2000 01:02:03"), 'D'));
+    	assertEqual('25th', $.format.date(new Date("Jan 25, 2000 01:02:03"), 'D'));
+    	assertEqual('26th', $.format.date(new Date("Jan 26, 2000 01:02:03"), 'D'));
+    	assertEqual('27th', $.format.date(new Date("Jan 27, 2000 01:02:03"), 'D'));
+    	assertEqual('28th', $.format.date(new Date("Jan 28, 2000 01:02:03"), 'D'));
+    	assertEqual('29th', $.format.date(new Date("Jan 29, 2000 01:02:03"), 'D'));
+    	assertEqual('30th', $.format.date(new Date("Jan 30, 2000 01:02:03"), 'D'));
+    	assertEqual('31st', $.format.date(new Date("Jan 31, 2000 01:02:03"), 'D'));
+	}},
   });
 // ]]>
 </script>
