@@ -72,6 +72,19 @@ The default shortDateFormat and longDateFormat are defined in the variables
  #1 Test: 18/12/2009
  #2 18~12~2009
 
+== Pretty date formatting
+Takes an ISO time and returns a string representing how long ago the date represents
+
+jQuery.format.prettyDate("2008-01-28T20:24:17Z") // => "2 hours ago"
+jQuery.format.prettyDate("2008-01-27T22:24:17Z") // => "Yesterday"
+jQuery.format.prettyDate("2008-01-26T22:24:17Z") // => "2 days ago"
+jQuery.format.prettyDate("2008-01-14T22:24:17Z") // => "2 weeks ago"
+jQuery.format.prettyDate("2007-12-15T22:24:17Z") // => undefined
+
+== toBrowserTimeZone
+jQuery.format.toBrowserTimeZone takes two parameters (value, format) and converts into browsers timezone.
+All input formats valid for jQuery.format.date are valid for this method.
+
 == Test
 
 This plugin was developed using http://jsunittest.com
