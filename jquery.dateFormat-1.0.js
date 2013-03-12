@@ -334,7 +334,7 @@
 }(jQuery));
 
 jQuery.format.date.defaultShortDateFormat = "dd/MM/yyyy";
-jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy hh:mm:ss";
+jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy HH:mm:ss";
 
 jQuery(document).ready(function () {
     jQuery(".shortDateFormat").each(function (idx, elem) {
