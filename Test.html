@@ -296,6 +296,23 @@
     	assertEqual('30th', $.format.date(new Date("Jan 30, 2000 01:02:03"), 'D'));
     	assertEqual('31st', $.format.date(new Date("Jan 31, 2000 01:02:03"), 'D'));
 	}},
+	testDefaultLongDateFormat: function() { with(this) {
+		var dldf = jQuery.format.date.defaultLongDateFormat;
+    	assertEqual('01/01/2000 01:02:03', $.format.date(new Date("Jan 1, 2000 01:02:03"), dldf));
+		assertEqual('19/10/2010 11:40:33', $.format.date(new Date('10/19/2010 11:40:33').toString(), dldf));
+		assertEqual('28/03/2011 17:45:00', $.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', dldf));
+		assertEqual('08/04/2011 19:02:03', $.format.date('Fri Apr 08 2011 19:02:03 GMT+0200 (W. Europe Daylight Time)', dldf));
+		assertEqual('19/10/2010 11:40:33', $.format.date('2010-10-19T11:40:33.527+02:00', dldf));
+		
+	}},
+	testDefaultShortDateFormat: function() { with(this) {
+		var dsdf = jQuery.format.date.defaultShortDateFormat;
+    	assertEqual('01/01/2000', $.format.date(new Date("Jan 1, 2000 01:02:03"), dsdf));
+		assertEqual('19/10/2010', $.format.date(new Date('10/19/2010 11:40:33').toString(), dsdf));
+		assertEqual('28/03/2011', $.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', dsdf));
+		assertEqual('08/04/2011', $.format.date('Fri Apr 08 2011 19:02:03 GMT+0200 (W. Europe Daylight Time)', dsdf));
+		assertEqual('19/10/2010', $.format.date('2010-10-19T11:40:33.527+02:00', dsdf));
+	}},
   });
 // ]]>
 </script>
