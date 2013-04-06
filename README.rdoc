@@ -28,7 +28,8 @@ http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 * D - Ordinal day (1st, 2nd, 3rd, 21st, 22nd, 23rd, 31st, 4th...)
 * h = hour in am/pm (0-12)
 * hh = hour in am/pm (00-12)
-* HH = hour in day (00-23) 
+* H = hour in day (0-23)
+* HH = hour in day (00-23)
 * mm = minute
 * ss = second
 * SSS = milliseconds

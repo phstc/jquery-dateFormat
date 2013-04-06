@@ -256,6 +256,13 @@
                             retValue += time.hour;
                             pattern = "";
                             break;
+                        case "H":
+                            if (format.charAt(i + 1) == "H") {
+                              break;
+                            }
+                            retValue += parseInt(time.hour, 10);
+                            pattern = "";
+                            break;                            
                         case "hh":
                             /* time.hour is "00" as string == is used instead of === */
                             var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);
