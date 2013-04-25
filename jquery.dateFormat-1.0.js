@@ -70,6 +70,13 @@
                     };
                 }
             };
+        var padding = function(value, length) {
+            var paddingCount = length - String(value).length;
+            for(var i = 0 ; i < paddingCount ; i++) {
+                value = "0" + value;
+            }
+            return value;
+        };
 
         return {
             date: function (value, format) {
@@ -171,10 +178,7 @@
                             if (format.charAt(i + 1) == "d") {
                                 break;
                             }
-                            if (String(dayOfMonth).length === 1) {
-                                dayOfMonth = '0' + dayOfMonth;
-                            }
-                            retValue += dayOfMonth;
+                            retValue += padding(dayOfMonth, 2);
                             pattern = "";
                             break;
                         case "d":
@@ -212,10 +216,8 @@
                             if (format.charAt(i + 1) == "M") {
                                 break;
                             }
-                            if (String(month).length === 1) {
-                                month = '0' + month;
-                            }
-                            retValue += month;
+
+                            retValue += padding(month, 2);
                             pattern = "";
                             break;
                         case "M":
@@ -245,15 +247,8 @@
                             retValue += year;
                             pattern = "";
                             break;
-						case "H":
-							if (format.charAt(i + 1) == "H") {
-								break;
-							}
-							retValue += pattern;
-							pattern = "";
-							break;
                         case "HH":
-                            retValue += time.hour;
+                            retValue += padding(time.hour, 2);
                             pattern = "";
                             break;
                         case "H":
@@ -266,8 +261,7 @@
                         case "hh":
                             /* time.hour is "00" as string == is used instead of === */
                             var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);
-                            hour = String(hour).length == 1 ? '0' + hour : hour;
-                            retValue += hour;
+                            retValue += padding(hour, 2);
                             pattern = "";
                             break;
 						case "h":
