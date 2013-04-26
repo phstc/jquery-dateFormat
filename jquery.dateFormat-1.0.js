@@ -274,29 +274,29 @@
 							// retValue = parseInt(retValue, 10);
 							pattern = "";
 							break;
+                        case "mm":
+                            retValue += padding(time.minute,2);
+                            pattern = "";
+                            break;
 						case "m":
 							if (format.charAt(i + 1) == "m") {
 								break;
 							}
-							retValue += pattern;
+							retValue += time.minute;
 							pattern = "";
 							break;
-                        case "mm":
-                            retValue += time.minute;
+                        case "ss":
+                            /* ensure only seconds are added to the return string */
+                            retValue += padding(time.second.substring(0, 2), 2);
                             pattern = "";
                             break;
 						case "s":
 							if (format.charAt(i + 1) == "s") {
 								break;
 							}
-							retValue += pattern;
+							retValue += time.second;
 							pattern = "";
 							break;
-                        case "ss":
-                            /* ensure only seconds are added to the return string */
-                            retValue += time.second.substring(0, 2);
-                            pattern = "";
-                            break;
 						case "S":
 						case "SS":
 							if (format.charAt(i + 1) == "S") {
