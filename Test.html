@@ -225,6 +225,7 @@
 		assertEqual('13.01.10 10', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'dd.MM.yy H'));
 		assertEqual('6', $.format.date('Wed Jan 25 06:23:38 PST 2012', 'H'));
 		assertEqual('06', $.format.date('Wed Jan 25 06:23:38 PST 2012', 'HH'));
+		assertEqual('06', $.format.date('Wed Jan 25 6:23:38 PST 2012', 'HH'));
 		assertEqual('17', $.format.date('Mon Feb 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', 'H'));
 		assertEqual('17', $.format.date('Mon Feb 28 20112 17:45:00 GMT-0400 (Eastern Daylight Time)', 'H'));
 		assertEqual('13.01.10 10', $.format.date('Wed Jan 13 10:43:41 CET 2010', 'dd.MM.yy H'));
@@ -240,6 +241,15 @@
 	    assertEqual('January 09, 2012', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'MMMM dd, yyyy'));
 	    assertEqual('2012.1.9', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'yyyy.M.d'));
 		assertEqual('1.9.2012', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'M.d.yyyy'));
+	}},
+	testMinute: function() { with(this) {
+		assertEqual('3', $.format.date('Wed Jan 09 06:3:38 PST 2012', 'm'));
+		assertEqual('03', $.format.date('Wed Jan 09 06:3:38 PST 2012', 'mm'));
+		assertEqual('Apr 17 2013 10:08:01', $.format.date("2013-04-17 10:8:1", "MMM dd yyyy HH:mm:ss"));
+	}},
+	testSecond: function() { with(this) {
+		assertEqual('8', $.format.date('Wed Jan 09 06:3:8 PST 2012', 's'));
+		assertEqual('08', $.format.date('Wed Jan 09 06:3:8 PST 2012', 'ss'));
 	}},
 	testJapanese: function() { with(this) {
 		assertEqual('2012年01月09日', $.format.date('Wed Jan 09 06:23:38 PST 2012', 'yyyy年MM月dd日'));
