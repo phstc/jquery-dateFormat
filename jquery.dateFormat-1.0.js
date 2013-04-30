@@ -353,3 +353,7 @@ jQuery(document).ready(function () {
         }
     });
 });
+
+Date.prototype.format = function(format) {
+	return jQuery.format.date(this, format);
+}
