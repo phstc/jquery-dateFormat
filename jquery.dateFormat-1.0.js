@@ -257,7 +257,7 @@
                             }
                             retValue += parseInt(time.hour, 10);
                             pattern = "";
-                            break;                            
+                            break;
                         case "hh":
                             /* time.hour is "00" as string == is used instead of === */
                             var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour : time.hour - 12);
@@ -329,27 +329,48 @@
                     console.log(e);
                     return value;
                 }
-            }
+            },
+    		/*
+			 * JavaScript Pretty Date
+			 * Copyright (c) 2011 John Resig (ejohn.org)
+			 * Licensed under the MIT and GPL licenses.
+			 *
+			 * Takes an ISO time and returns a string representing how long ago the date
+			 * represents
+			 *
+			 * ("2008-01-28T20:24:17Z") // => "2 hours ago"
+			 * ("2008-01-27T22:24:17Z") // => "Yesterday"
+			 * ("2008-01-26T22:24:17Z") // => "2 days ago"
+			 * ("2008-01-14T22:24:17Z") // => "2 weeks ago"
+			 * ("2007-12-15T22:24:17Z") // => more than 31 days
+			 *
+			 */
+			prettyDate : function (time) {
+				var date;
+				var diff;
+				var day_diff;
+
+				if(typeof time === "string"){
+					date = new Date(time);
+				}
+				if(typeof time === "object"){
+					date = new Date(time.toString());
+				}
+				diff = (((new Date ()).getTime() - date.getTime()) / 1000);
+				day_diff = Math.floor(diff / 86400);
+
+				if (isNaN(day_diff) || day_diff < 0)
+					return;
+
+				if (day_diff >= 31)
+					return "more than 31 days";
+
+				return day_diff == 0 && (diff < 60 && "just now" || diff < 120 && "1 minute ago" || diff < 3600 && Math.floor(diff / 60) + " minutes ago" || diff < 7200 && "1 hour ago" || diff < 86400 && Math.floor(diff / 3600) + " hours ago") || day_diff == 1 && "Yesterday" || day_diff < 7 && day_diff + " days ago" || day_diff < 31 && Math.ceil(day_diff / 7) + " weeks ago";
+			},
+			toBrowserTimeZone : function (value, format) {
+				return this.date(value, format || "MM/dd/yyyy");
+			}
         };
     }());
 }(jQuery));
 
-jQuery.format.date.defaultShortDateFormat = "dd/MM/yyyy";
-jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy HH:mm:ss";
-
-jQuery(document).ready(function () {
-    jQuery(".shortDateFormat").each(function (idx, elem) {
-        if (jQuery(elem).is(":input")) {
-            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultShortDateFormat));
-        } else {
-            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultShortDateFormat));
-        }
-    });
-    jQuery(".longDateFormat").each(function (idx, elem) {
-        if (jQuery(elem).is(":input")) {
-            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultLongDateFormat));
-        } else {
-            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultLongDateFormat));
-        }
-    });
-});
