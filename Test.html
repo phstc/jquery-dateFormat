@@ -296,6 +296,88 @@
     	assertEqual('30th', $.format.date(new Date("Jan 30, 2000 01:02:03"), 'D'));
     	assertEqual('31st', $.format.date(new Date("Jan 31, 2000 01:02:03"), 'D'));
 	}},
+	testToBrowserTimeZone: function() { with(this) {
+		var date = new Date("Sat Jun 15 2013 09:03:41 GMT (GMT)").toString();
+		var today = new Date();
+		assertEqual($.format.date(today, "MM/dd/yyyy"), $.format.toBrowserTimeZone(today));
+		assertEqual("06/15/2013", $.format.toBrowserTimeZone(date));
+		assertEqual("15/06/2013", $.format.toBrowserTimeZone(date, "dd/MM/yyyy"));
+		assertEqual("06/15/2013", $.format.toBrowserTimeZone(date, "MM/dd/yyyy"));
+		assertEqual("03/15/2013", $.format.toBrowserTimeZone(date, "mm/dd/yyyy"));
+		assertEqual("15/06/2013 02:03:41 AM", $.format.toBrowserTimeZone(date, "dd/MM/yyyy hh:mm:ss a"));
+	}},
+	testPrettyDate: function() { with(this) {
+		var today = new Date();
+
+		var daysago1 = new Date();
+
+		var daysago6 = new Date();
+		var daysago7 = new Date();
+		var daysago8= new Date();
+
+		var daysago13 = new Date();
+		var daysago14 = new Date();
+		var daysago15 = new Date();
+
+		var daysago20 = new Date();
+		var daysago21 = new Date();
+		var daysago22 = new Date();
+
+		var daysago27 = new Date();
+		var daysago28 = new Date();
+		var daysago29 = new Date();
+
+		var daysago30 = new Date();
+		var daysago31 = new Date();
+		var daysago100 = new Date();
+
+		daysago1.setDate(daysago1.getDate() -1);
+
+		daysago6.setDate(daysago6.getDate() -6);
+		daysago7.setDate(daysago7.getDate() -7);
+		daysago8.setDate(daysago8.getDate() -8);
+
+		daysago13.setDate(daysago13.getDate() -13);
+		daysago14.setDate(daysago14.getDate() -14);
+		daysago15.setDate(daysago15.getDate() -15);
+
+		daysago20.setDate(daysago20.getDate() -20);
+		daysago21.setDate(daysago21.getDate() -21);
+		daysago22.setDate(daysago22.getDate() -22);
+
+		daysago27.setDate(daysago27.getDate() -27);
+		daysago28.setDate(daysago28.getDate() -28);
+		daysago29.setDate(daysago29.getDate() -29);
+
+		daysago30.setDate(daysago30.getDate() -30);
+		daysago31.setDate(daysago31.getDate() -31);
+		daysago100.setDate(daysago100.getDate() -100);
+
+		assertEqual("just now", $.format.prettyDate(today));
+		assertEqual("just now", $.format.prettyDate(today.toString()));
+
+		assertEqual("Yesterday", $.format.prettyDate(daysago1));
+
+		assertEqual("6 days ago", $.format.prettyDate(daysago6));
+		assertEqual("1 weeks ago", $.format.prettyDate(daysago7));
+
+		assertEqual("2 weeks ago", $.format.prettyDate(daysago8));
+		assertEqual("2 weeks ago", $.format.prettyDate(daysago13));
+		assertEqual("2 weeks ago", $.format.prettyDate(daysago14));
+
+		assertEqual("3 weeks ago", $.format.prettyDate(daysago15));
+		assertEqual("3 weeks ago", $.format.prettyDate(daysago20));
+		assertEqual("3 weeks ago", $.format.prettyDate(daysago21));
+
+		assertEqual("4 weeks ago", $.format.prettyDate(daysago27));
+		assertEqual("4 weeks ago", $.format.prettyDate(daysago28));
+
+		assertEqual("5 weeks ago", $.format.prettyDate(daysago29));
+		assertEqual("5 weeks ago", $.format.prettyDate(daysago30));
+
+		assertEqual("more than 31 days", $.format.prettyDate(daysago31));
+		assertEqual("more than 31 days", $.format.prettyDate(daysago100));
+	}}
   });
 // ]]>
 </script>
