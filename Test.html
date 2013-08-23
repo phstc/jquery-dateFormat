@@ -335,21 +335,15 @@
 		assertEqual('19/10/2010', $.format.date('2010-10-19T11:40:33.527+02:00', shortFormat));
 	}},
 	testToBrowserTimeZone: function() { with(this) {
-		var date = new Date("Sat Jun 15 2013 09:03:41 GMT (GMT)").toString();
 		var today = new Date();
 		assertEqual($.format.date(today, "MM/dd/yyyy"), $.format.toBrowserTimeZone(today));
-		assertEqual("06/15/2013", $.format.toBrowserTimeZone(date));
-		assertEqual("15/06/2013", $.format.toBrowserTimeZone(date, "dd/MM/yyyy"));
-		assertEqual("06/15/2013", $.format.toBrowserTimeZone(date, "MM/dd/yyyy"));
-		assertEqual("03/15/2013", $.format.toBrowserTimeZone(date, "mm/dd/yyyy"));
-		assertEqual("15/06/2013 02:03:41 AM", $.format.toBrowserTimeZone(date, "dd/MM/yyyy hh:mm:ss a"));
 	}},
 	testPrettyDate: function() { with(this) {
 		var today = new Date();
 		var daysago1 = new Date();
 		var daysago6 = new Date();
 		var daysago7 = new Date();
-		var daysago8= new Date();
+		var daysago8 = new Date();
 		var daysago13 = new Date();
 		var daysago14 = new Date();
 		var daysago15 = new Date();
@@ -393,8 +387,8 @@
 		assertEqual("4 weeks ago", $.format.prettyDate(daysago28));
 		assertEqual("5 weeks ago", $.format.prettyDate(daysago29));
 		assertEqual("5 weeks ago", $.format.prettyDate(daysago30));
-		assertEqual("more than 31 days", $.format.prettyDate(daysago31));
-		assertEqual("more than 31 days", $.format.prettyDate(daysago100));
+		assertEqual("more than 5 weeks ago", $.format.prettyDate(daysago31));
+		assertEqual("more than 5 weeks ago", $.format.prettyDate(daysago100));
 	}}
   });
 // ]]>

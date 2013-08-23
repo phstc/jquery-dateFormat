@@ -341,7 +341,7 @@
        * ('2008-01-27T22:24:17Z') // => 'Yesterday'
        * ('2008-01-26T22:24:17Z') // => '2 days ago'
        * ('2008-01-14T22:24:17Z') // => '2 weeks ago'
-       * ('2007-12-15T22:24:17Z') // => more than 31 days
+       * ('2007-12-15T22:24:17Z') // => 'more than 5 weeks ago'
        *
        */
       prettyDate : function(time) {
@@ -360,7 +360,7 @@
           return;
         }
         if(day_diff >= 31) {
-          return 'more than 31 days';
+          return 'more than 5 weeks ago';
         }
         return day_diff == 0
             && (diff < 60 && 'just now' || diff < 120 && '1 minute ago'
