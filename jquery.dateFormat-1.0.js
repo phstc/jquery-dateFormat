@@ -360,7 +360,7 @@
           return;
         }
         if(day_diff >= 31) {
-          return 'more than 31 days';
+          return 'more than 5 weeks ago';
         }
         return day_diff == 0
             && (diff < 60 && 'just now' || diff < 120 && '1 minute ago'
