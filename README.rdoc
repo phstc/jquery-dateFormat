@@ -81,7 +81,7 @@ Takes an ISO time and returns a string representing how long ago the date repres
  jQuery.format.prettyDate("2008-01-27T22:24:17Z") // => "Yesterday"
  jQuery.format.prettyDate("2008-01-26T22:24:17Z") // => "2 days ago"
  jQuery.format.prettyDate("2008-01-14T22:24:17Z") // => "2 weeks ago"
- jQuery.format.prettyDate("2007-12-15T22:24:17Z") // => more than 31 days
+ jQuery.format.prettyDate("2007-12-15T22:24:17Z") // => "more than 5 weeks ago"
 
 
 == toBrowserTimeZone
