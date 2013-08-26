@@ -56,10 +56,10 @@ The default shortDateFormat and longDateFormat are defined in the variables.
  jQuery.format.date.defaultShortDateFormat = "dd/MM/yyyy";
  jQuery.format.date.defaultLongDateFormat = "dd/MM/yyyy HH:mm:ss";
 
-=== output
+=== Output
 
- => 1 18/12/2009
- => 2 18/12/2009 10:54:50
+ => 18/12/2009
+ => 18/12/2009 10:54:50
 
 == Formatting using JavaScript
 
@@ -68,10 +68,10 @@ The default shortDateFormat and longDateFormat are defined in the variables.
    document.write($.format.date("Wed Jan 13 10:43:41 CET 2010", "dd~MM~yyyy"));
  </script>
 
-=== output
+=== Output
 
- => 1 Test: 18/12/2009
- => 2 18~12~2009
+ => Test: 18/12/2009
+ => 18~12~2009
 
 == Pretty date formatting
 Takes an ISO time and returns a string representing how long ago the date represents.
