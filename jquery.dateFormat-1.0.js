@@ -190,13 +190,13 @@
                 break;
               case 'D':
                 if(dayOfMonth == 1 || dayOfMonth == 21 || dayOfMonth == 31) {
-                  dayOfMonth = dayOfMonth + 'st';
+                  dayOfMonth = parseInt(dayOfMonth, 10) + 'st';
                 } else if(dayOfMonth == 2 || dayOfMonth == 22) {
-                  dayOfMonth = dayOfMonth + 'nd';
+                  dayOfMonth = parseInt(dayOfMonth, 10) + 'nd';
                 } else if(dayOfMonth == 3 || dayOfMonth == 23) {
-                  dayOfMonth = dayOfMonth + 'rd';
+                  dayOfMonth = parseInt(dayOfMonth, 10) + 'rd';
                 } else {
-                  dayOfMonth = dayOfMonth + 'th';
+                  dayOfMonth = parseInt(dayOfMonth, 10) + 'th';
                 }
                 retValue += dayOfMonth;
                 pattern = '';
