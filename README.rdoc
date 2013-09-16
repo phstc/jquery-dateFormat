@@ -74,9 +74,12 @@ The default shortDateFormat and longDateFormat are defined in the variables
  #2 18~12~2009
 
 == Pretty date formatting
-Takes an ISO time and returns a string representing how long ago the date represents
+jQuery.format.prettyDate(value) returns a string representing how long ago the date represents
+ 
+ value - String representing ISO time or date in milliseconds or javascript Date object
 
-
+ jQuery.format.prettyDate(new Date()) // => "just now"
+ jQuery.format.prettyDate(new Date().getTime()) // => "just now"
  jQuery.format.prettyDate("2008-01-28T20:24:17Z") // => "2 hours ago"
  jQuery.format.prettyDate("2008-01-27T22:24:17Z") // => "Yesterday"
  jQuery.format.prettyDate("2008-01-26T22:24:17Z") // => "2 days ago"
@@ -86,9 +89,18 @@ Takes an ISO time and returns a string representing how long ago the date repres
 
 == toBrowserTimeZone
 jQuery.format.toBrowserTimeZone(value, format) converts into browsers timezone.
+ 
+ value - String representing date in ISO time ("2013-09-14T23:22:33Z") or String representing default JAXB formatting of java.util.Date ("2013-09-14T16:22:33.527-07:00") or String representing Unix Timestamp (Sat Sep 14 2013 16:22:33 GMT-0700 (PDT)) or javascript date object.
+ format - All input formats valid for jQuery.format.date are valid for this method. The defaut format is MM/dd/yyyy HH:mm:ss.
 
- value - String representing date or date object
- format - All input formats valid for jQuery.format.date are valid for this method. The defaut format is MM/dd/yyyy.
+ Valid input formats
+ var date1 = "2013-09-14T23:22:33Z";
+ var date2 = "2013-09-14T16:22:33.527-07:00";
+ var date3 = "Sat Sep 14 2013 16:22:33 GMT-0700 (PDT)";
+
+ $.format.toBrowserTimeZone(date1)
+ $.format.toBrowserTimeZone(date2)
+ $.format.toBrowserTimeZone(date3)
 
 == Test
 

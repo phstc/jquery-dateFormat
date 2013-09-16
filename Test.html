@@ -319,7 +319,7 @@
 	}},
 	testDefaultLongDateFormat: function() { with(this) {
 		var longFormat = jQuery.format.date.defaultLongDateFormat;
-    assertEqual('01/01/2000 01:02:03', $.format.date(new Date("Jan 1, 2000 01:02:03"), longFormat));
+    	assertEqual('01/01/2000 01:02:03', $.format.date(new Date("Jan 1, 2000 01:02:03"), longFormat));
 		assertEqual('19/10/2010 11:40:33', $.format.date(new Date('10/19/2010 11:40:33').toString(), longFormat));
 		assertEqual('28/03/2011 17:45:00', $.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', longFormat));
 		assertEqual('08/04/2011 19:02:03', $.format.date('Fri Apr 08 2011 19:02:03 GMT+0200 (W. Europe Daylight Time)', longFormat));
@@ -336,7 +336,8 @@
 	}},
 	testToBrowserTimeZone: function() { with(this) {
 		var today = new Date();
-		assertEqual($.format.date(today, "MM/dd/yyyy"), $.format.toBrowserTimeZone(today));
+		assertEqual($.format.date(today, "MM/dd/yyyy"), $.format.toBrowserTimeZone(today, "MM/dd/yyyy"));
+		assertEqual($.format.date(today, "MM/dd/yyyy"), $.format.toBrowserTimeZone(today.toString(), "MM/dd/yyyy"));
 	}},
 	testPrettyDate: function() { with(this) {
 		var today = new Date();
@@ -356,6 +357,9 @@
 		var daysago30 = new Date();
 		var daysago31 = new Date();
 		var daysago100 = new Date();
+		var isoDateFormat = "2013-07-14T23:22:33Z";
+		var jaxbDateFormat = "2013-07-14T16:22:33.527-07:00";
+		var unixDateFormat = "Sat Jul 14 2013 16:22:33 GMT-0700 (PDT)";
 		daysago1.setDate(daysago1.getDate() -1);
 		daysago6.setDate(daysago6.getDate() -6);
 		daysago7.setDate(daysago7.getDate() -7);
@@ -374,6 +378,7 @@
 		daysago100.setDate(daysago100.getDate() -100);
 		assertEqual("just now", $.format.prettyDate(today));
 		assertEqual("just now", $.format.prettyDate(today.toString()));
+		assertEqual("just now", $.format.prettyDate(today.getTime()));
 		assertEqual("Yesterday", $.format.prettyDate(daysago1));
 		assertEqual("6 days ago", $.format.prettyDate(daysago6));
 		assertEqual("1 weeks ago", $.format.prettyDate(daysago7));
@@ -389,6 +394,9 @@
 		assertEqual("5 weeks ago", $.format.prettyDate(daysago30));
 		assertEqual("more than 5 weeks ago", $.format.prettyDate(daysago31));
 		assertEqual("more than 5 weeks ago", $.format.prettyDate(daysago100));
+		assertEqual("more than 5 weeks ago", $.format.prettyDate(isoDateFormat));
+		assertEqual("more than 5 weeks ago", $.format.prettyDate(jaxbDateFormat));
+		assertEqual("more than 5 weeks ago", $.format.prettyDate(unixDateFormat));
 	}}
   });
 // ]]>

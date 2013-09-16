@@ -348,7 +348,7 @@
         var date;
         var diff;
         var day_diff;
-        if(typeof time === 'string') {
+        if(typeof time === 'string' || typeof time === 'number') {
           date = new Date(time);
         }
         if(typeof time === 'object') {
@@ -371,7 +371,7 @@
             || day_diff < 31 && Math.ceil(day_diff / 7) + ' weeks ago';
       },
       toBrowserTimeZone : function(value, format) {
-        return this.date(value, format || 'MM/dd/yyyy');
+        return this.date(new Date(value), format || 'MM/dd/yyyy HH:mm:ss');
       }
     };
   }());
