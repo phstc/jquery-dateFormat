@@ -397,6 +397,13 @@
 		assertEqual("more than 5 weeks ago", $.format.prettyDate(isoDateFormat));
 		assertEqual("more than 5 weeks ago", $.format.prettyDate(jaxbDateFormat));
 		assertEqual("more than 5 weeks ago", $.format.prettyDate(unixDateFormat));
+	}},
+	testQuotedChars: function() { with(this) {
+		assertEqual('8 seconds', $.format.date('Wed Jan 09 06:3:8 PST 2012', "s 'seconds'"));
+		assertEqual('second: 8', $.format.date('Wed Jan 09 06:3:8 PST 2012', "'second:' s"));
+		assertEqual('3 sec 8', $.format.date('Wed Jan 09 06:3:8 PST 2012', "m 'sec' s"));
+		assertEqual("8'", $.format.date('Wed Jan 09 06:3:8 PST 2012', "s''"));
+		assertEqual("6 o'clock", $.format.date('Wed Jan 09 06:3:8 PST 2012', "h 'o''''clock'"));
 	}}
   });
 // ]]>

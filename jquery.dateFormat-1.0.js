@@ -164,9 +164,20 @@
           var pattern = '';
           var retValue = '';
           var unparsedRest = '';
+          var inQuote = false;
           /* Issue 1 - variable scope issue in format.date (Thanks jakemonO) */
           for(var i = 0; i < format.length; i++) {
             var currentPattern = format.charAt(i);
+            if (inQuote) {
+              if (currentPattern == "'") {
+                retValue += (pattern == '') ? "'" : pattern;
+                pattern = '';
+                inQuote = false;
+              } else {
+                pattern += currentPattern;
+              }
+              continue;
+            }
             pattern += currentPattern;
             unparsedRest = '';
             switch (pattern) {
@@ -316,6 +327,10 @@
               case 'p':
                 retValue += time.hour >= 12 ? 'p.m.' : 'a.m.';
                 pattern = '';
+                break;
+              case "'":
+                pattern = '';
+                inQuote = true;
                 break;
               default:
                 retValue += currentPattern;
