@@ -1,20 +1,13 @@
 (function(jQuery) {
-  var daysInWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var shortMonthsInYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  var longMonthsInYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var shortMonthsToNumber = [];
-  shortMonthsToNumber['Jan'] = '01';
-  shortMonthsToNumber['Feb'] = '02';
-  shortMonthsToNumber['Mar'] = '03';
-  shortMonthsToNumber['Apr'] = '04';
-  shortMonthsToNumber['May'] = '05';
-  shortMonthsToNumber['Jun'] = '06';
-  shortMonthsToNumber['Jul'] = '07';
-  shortMonthsToNumber['Aug'] = '08';
-  shortMonthsToNumber['Sep'] = '09';
-  shortMonthsToNumber['Oct'] = '10';
-  shortMonthsToNumber['Nov'] = '11';
-  shortMonthsToNumber['Dec'] = '12';
+  var daysInWeek          = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var shortMonthsInYear   = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var longMonthsInYear    = ['January', 'February', 'March', 'April', 'May', 'June',
+                              'July', 'August', 'September', 'October', 'November', 'December'];
+  var shortMonthsToNumber = { 'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
+                              'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12' };
+
+  var values, values2, values3, hour;
 
   jQuery.format = (function() {
     function strDay(value) {
@@ -44,7 +37,7 @@
         millis = delimited[1];
       }
 
-      var values3 = retValue.split(':');
+      values3 = retValue.split(':');
 
       if(values3.length === 3) {
         hour = values3[0];
@@ -77,7 +70,7 @@
     };
 
     var dateYYYYMMDDTimeRegexp = function() {
-      return /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[Z\-+]?(\d{2}:?\d{2})?/;
+      return (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[Z\-+]?(\d{2}:?\d{2})?/);
     };
 
     return {
@@ -103,7 +96,7 @@
             time = parseTime(value.toTimeString());
           } else if(value.search(dateYYYYMMDDTimeRegexp()) != -1) {
             /* 2009-04-19T16:11:05+02:00 || 2009-04-19T16:11:05Z */
-            var values = value.split(/[T\+-]/);
+            values = value.split(/[T\+-]/);
             year = values[0];
             month = values[1];
             dayOfMonth = values[2];
@@ -111,7 +104,7 @@
             date = new Date(year, month - 1, dayOfMonth);
             dayOfWeek = date.getDay();
           } else {
-            var values = value.split(' ');
+            values = value.split(' ');
             switch (values.length) {
               case 6:
                 /* Wed Jan 13 10:43:41 CET 2010 */
@@ -124,7 +117,7 @@
                 break;
               case 2:
                 /* 2009-12-18 10:54:50.546 */
-                var values2 = values[0].split('-');
+                values2 = values[0].split('-');
                 year = values2[0];
                 month = values2[1];
                 dayOfMonth = values2[2];
@@ -147,13 +140,11 @@
                 break;
               case 1:
                 /* added by Jonny, for 2012-02-07CET00:00:00 (Doctrine Entity -> Json Serializer) */
-                var values2 = values[0].split('');
+                values2 = values[0].split('');
                 year = values2[0] + values2[1] + values2[2] + values2[3];
                 month = values2[5] + values2[6];
                 dayOfMonth = values2[8] + values2[9];
-                time = parseTime(values2[13] + values2[14] + values2[15]
-                    + values2[16] + values2[17] + values2[18] + values2[19]
-                    + values2[20])
+                time = parseTime(values2[13] + values2[14] + values2[15] + values2[16] + values2[17] + values2[18] + values2[19] + values2[20]);
                 date = new Date(year, month - 1, dayOfMonth);
                 dayOfWeek = date.getDay();
                 break;
@@ -170,7 +161,7 @@
             var currentPattern = format.charAt(i);
             if (inQuote) {
               if (currentPattern == "'") {
-                retValue += (pattern == '') ? "'" : pattern;
+                retValue += (pattern === '') ? "'" : pattern;
                 pattern = '';
                 inQuote = false;
               } else {
@@ -269,16 +260,16 @@
                 break;
               case 'hh':
                 /* time.hour is '00' as string == is used instead of === */
-                var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour
+                hour = (time.hour === 0 ? 12 : time.hour < 13 ? time.hour
                     : time.hour - 12);
                 retValue += padding(hour, 2);
                 pattern = '';
                 break;
               case 'h':
-                if(format.charAt(i + 1) == 'h') {
+                if(format.charAt(i + 1) === 'h') {
                   break;
                 }
-                var hour = (time.hour == 0 ? 12 : time.hour < 13 ? time.hour
+                hour = (time.hour === 0 ? 12 : time.hour < 13 ? time.hour
                     : time.hour - 12);
                 retValue += parseInt(hour, 10);
                 // Fixing issue https://github.com/phstc/jquery-dateFormat/issues/21
@@ -363,27 +354,42 @@
         var date;
         var diff;
         var day_diff;
+
         if(typeof time === 'string' || typeof time === 'number') {
           date = new Date(time);
         }
+
         if(typeof time === 'object') {
           date = new Date(time.toString());
         }
+
         diff = (((new Date()).getTime() - date.getTime()) / 1000);
+
         day_diff = Math.floor(diff / 86400);
+
         if(isNaN(day_diff) || day_diff < 0) {
           return;
         }
-        if(day_diff >= 31) {
+
+        if(diff < 60) {
+          return 'just now';
+        } else if(diff < 120) {
+          return '1 minute ago';
+        } else if(diff < 3600) {
+          return Math.floor(diff / 60) + ' minutes ago';
+        } else if(diff < 7200) {
+          return '1 hour ago';
+        } else if(diff < 86400) {
+          return Math.floor(diff / 3600) + ' hours ago';
+        } else if(day_diff === 1) {
+          return 'Yesterday';
+        } else if(day_diff < 7) {
+          return day_diff + ' days ago';
+        } else if(day_diff < 31) {
+          return Math.ceil(day_diff / 7) + ' weeks ago';
+        } else if(day_diff >= 31) {
           return 'more than 5 weeks ago';
         }
-        return day_diff == 0
-            && (diff < 60 && 'just now' || diff < 120 && '1 minute ago'
-                || diff < 3600 && Math.floor(diff / 60) + ' minutes ago'
-                || diff < 7200 && '1 hour ago' || diff < 86400
-                && Math.floor(diff / 3600) + ' hours ago') || day_diff == 1
-            && 'Yesterday' || day_diff < 7 && day_diff + ' days ago'
-            || day_diff < 31 && Math.ceil(day_diff / 7) + ' weeks ago';
       },
       toBrowserTimeZone : function(value, format) {
         return this.date(new Date(value), format || 'MM/dd/yyyy HH:mm:ss');
@@ -391,3 +397,23 @@
     };
   }());
 }(jQuery));
+
+jQuery.format.date.defaultShortDateFormat = 'dd/MM/yyyy';
+jQuery.format.date.defaultLongDateFormat  = 'dd/MM/yyyy HH:mm:ss';
+
+jQuery(document).ready(function () {
+    jQuery(".shortDateFormat").each(function (idx, elem) {
+        if (jQuery(elem).is(":input")) {
+            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultShortDateFormat));
+        } else {
+            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultShortDateFormat));
+        }
+    });
+    jQuery(".longDateFormat").each(function (idx, elem) {
+        if (jQuery(elem).is(":input")) {
+            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultLongDateFormat));
+        } else {
+            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultLongDateFormat));
+        }
+    });
+});

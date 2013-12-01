@@ -1,12 +1,13 @@
-jquery-dateFormat - It's a jQuery Plugin that I made to formatting java.util.Date.toString output using JavaScript.
+jquery-dateFormat - It's a jQuery Plugin to format Date outputs using JavaScript.
 
-This plugin is also available on jQuery Plugin page:
+== Instalation
 
-http://plugins.jquery.com/project/jquery-dateFormat
+Download latest jquery.dateFormat.js or jquery.dateFormat.min.js.
 
-Blog post to explain the plugin usage:
+* https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.js
+* https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.min.js
 
-http://pablocantero.com/blog/2010/09/04/jquery-plugin-javascript-for-java-util-date-tostring-format/
+Note: jquery-dateFormat.js has a dependency on jQuery 1.4+, which must be loaded before jquery-dateFormat.js.
 
 == Format patterns
 
@@ -104,9 +105,9 @@ jQuery.format.toBrowserTimeZone(value, format) converts into browsers timezone.
  $.format.toBrowserTimeZone(date2)
  $.format.toBrowserTimeZone(date3)
 
-== Test
+== Testing
 
-This plugin was developed using http://jsunittest.com. To run all tests, open Test.html in your browser.
+Tests are written using Jasmine. To run the test suite with PhantomJS, run $ grunt test. To run the test suite in your default browser, run $ grunt test:browser.
 
 == Licenses
 
@@ -122,3 +123,4 @@ You're welcome to make your contributions and send them as a pull request.
 === Contributors
 
 Thanks to all contributors - https://github.com/phstc/jquery-dateFormat/graphs/contributors.
+
