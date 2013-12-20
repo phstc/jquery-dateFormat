@@ -339,28 +339,6 @@ describe('Ordinal days', function() {
   });
 });
 
-describe('Default long date format', function() {
-  it('formats properly', function() {
-    var longFormat = jQuery.format.date.defaultLongDateFormat;
-    expect($.format.date(new Date("Jan 1, 2000 01:02:03"), longFormat)).toEqual('01/01/2000 01:02:03');
-    expect($.format.date(new Date('10/19/2010 11:40:33').toString(), longFormat)).toEqual('19/10/2010 11:40:33');
-    expect($.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', longFormat)).toEqual('28/03/2011 17:45:00');
-    expect($.format.date('Fri Apr 08 2011 19:02:03 GMT+0200 (W. Europe Daylight Time)', longFormat)).toEqual('08/04/2011 19:02:03');
-    expect($.format.date('2010-10-19T11:40:33.527+02:00', longFormat)).toEqual('19/10/2010 11:40:33');
-  });
-});
-
-describe('Default short date format', function() {
-  it('formats properly', function() {
-    var shortFormat = jQuery.format.date.defaultShortDateFormat;
-    expect($.format.date(new Date('Jan 1, 2000 01:02:03'), shortFormat)).toEqual('01/01/2000');
-    expect($.format.date(new Date('10/19/2010 11:40:33').toString(), shortFormat)).toEqual('19/10/2010');
-    expect($.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', shortFormat)).toEqual('28/03/2011');
-    expect($.format.date('Fri Apr 08 2011 19:02:03 GMT+0200 (W. Europe Daylight Time)', shortFormat)).toEqual('08/04/2011');
-    expect($.format.date('2010-10-19T11:40:33.527+02:00', shortFormat)).toEqual('19/10/2010');
-  });
-});
-
 describe('Pretty date', function() {
   it('formats properly', function() {
     var today = new Date();

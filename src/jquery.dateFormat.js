@@ -7,71 +7,75 @@
   var shortMonthsToNumber = { 'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
                               'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12' };
 
-  var values, values2, values3, hour;
+  var values, values2, hour;
+
+  var YYYYMMDD_MATCHER = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[Z\-+]?(\d{2}:?\d{2})?/;
 
   jQuery.format = (function() {
-    function strDay(value) {
+    function numberToLongDay(value) {
+      // 0 to Sunday
+      // 1 to Monday
       return daysInWeek[parseInt(value, 10)] || value;
     }
 
-    function strMonth(value) {
+    function numberToShortMonth(value) {
+      // 1 to Jan
+      // 2 to Feb
       var monthArrayIndex = parseInt(value, 10) - 1;
       return shortMonthsInYear[monthArrayIndex] || value;
     }
 
-    function strLongMonth(value) {
+    function numberToLongMonth(value) {
+      // 1 to January
+      // 2 to February
       var monthArrayIndex = parseInt(value, 10) - 1;
       return longMonthsInYear[monthArrayIndex] || value;
     }
 
-    var parseMonth = function(value) {
+    function shortMonthToNumber(value) {
+      // Jan to 01
+      // Feb to 02
       return shortMonthsToNumber[value] || value;
-    };
+    }
 
-    var parseTime = function(value) {
-      var retValue = value;
-      var millis = '';
-      if(retValue.indexOf('.') !== -1) {
-        var delimited = retValue.split('.');
-        retValue = delimited[0];
-        millis = delimited[1];
+    function parseTime(strTime) {
+      var returnValue = strTime,
+          millis = '',
+          delimited,
+          timeArray;
+
+      if(returnValue.indexOf('.') !== -1) {
+        delimited = returnValue.split('.');
+        // slip time and milliseconds
+        returnValue = delimited[0];
+        millis      = delimited[1];
       }
 
-      values3 = retValue.split(':');
+      timeArray = returnValue.split(':');
 
-      if(values3.length === 3) {
-        hour = values3[0];
-        minute = values3[1];
-        second = values3[2];
+      if(timeArray.length === 3) {
+        hour   = timeArray[0];
+        minute = timeArray[1];
+        second = timeArray[2];
         return {
-          time : retValue,
-          hour : hour,
-          minute : minute,
-          second : second,
-          millis : millis
-        };
-      } else {
-        return {
-          time : '',
-          hour : '',
-          minute : '',
-          second : '',
-          millis : ''
+          time:    returnValue,
+          hour:    hour,
+          minute:  minute,
+          second:  second,
+          millis:  millis
         };
       }
-    };
 
-    var padding = function(value, length) {
+      return { time : '', hour : '', minute : '', second : '', millis : '' };
+    }
+
+    function padding(value, length) {
       var paddingCount = length - String(value).length;
       for(var i = 0; i < paddingCount; i++) {
         value = '0' + value;
       }
       return value;
-    };
-
-    var dateYYYYMMDDTimeRegexp = function() {
-      return (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[Z\-+]?(\d{2}:?\d{2})?/);
-    };
+    }
 
     return {
       date : function(value, format) {
@@ -94,7 +98,7 @@
             dayOfMonth = value.getDate();
             dayOfWeek = value.getDay();
             time = parseTime(value.toTimeString());
-          } else if(value.search(dateYYYYMMDDTimeRegexp()) != -1) {
+          } else if(value.search(YYYYMMDD_MATCHER) != -1) {
             /* 2009-04-19T16:11:05+02:00 || 2009-04-19T16:11:05Z */
             values = value.split(/[T\+-]/);
             year = values[0];
@@ -109,7 +113,7 @@
               case 6:
                 /* Wed Jan 13 10:43:41 CET 2010 */
                 year = values[5];
-                month = parseMonth(values[1]);
+                month = shortMonthToNumber(values[1]);
                 dayOfMonth = values[2];
                 time = parseTime(values[3]);
                 date = new Date(year, month - 1, dayOfMonth);
@@ -132,7 +136,7 @@
               case 10:
                 /* added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0200 (W. Europe Daylight Time) */
                 year = values[3];
-                month = parseMonth(values[1]);
+                month = shortMonthToNumber(values[1]);
                 dayOfMonth = values[2];
                 time = parseTime(values[4]);
                 date = new Date(year, month - 1, dayOfMonth);
@@ -173,7 +177,7 @@
             unparsedRest = '';
             switch (pattern) {
               case 'ddd':
-                retValue += strDay(dayOfWeek);
+                retValue += numberToLongDay(dayOfWeek);
                 pattern = '';
                 break;
               case 'dd':
@@ -204,14 +208,14 @@
                 pattern = '';
                 break;
               case 'MMMM':
-                retValue += strLongMonth(month);
+                retValue += numberToLongMonth(month);
                 pattern = '';
                 break;
               case 'MMM':
                 if(format.charAt(i + 1) === 'M') {
                   break;
                 }
-                retValue += strMonth(month);
+                retValue += numberToShortMonth(month);
                 pattern = '';
                 break;
               case 'MM':
@@ -398,22 +402,3 @@
   }());
 }(jQuery));
 
-jQuery.format.date.defaultShortDateFormat = 'dd/MM/yyyy';
-jQuery.format.date.defaultLongDateFormat  = 'dd/MM/yyyy HH:mm:ss';
-
-jQuery(document).ready(function () {
-    jQuery(".shortDateFormat").each(function (idx, elem) {
-        if (jQuery(elem).is(":input")) {
-            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultShortDateFormat));
-        } else {
-            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultShortDateFormat));
-        }
-    });
-    jQuery(".longDateFormat").each(function (idx, elem) {
-        if (jQuery(elem).is(":input")) {
-            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), jQuery.format.date.defaultLongDateFormat));
-        } else {
-            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), jQuery.format.date.defaultLongDateFormat));
-        }
-    });
-});

@@ -23,6 +23,9 @@
     "grunt-contrib-uglify": "git://github.com/jharding/grunt-contrib-uglify.git#support-enclose-option",
     "grunt-contrib-concat": "~0.1",
     "grunt-contrib-jasmine": "~0.3"
+  },
+  "scripts": {
+    "test": "grunt test --verbose"
   }
 }
 
