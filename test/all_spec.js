@@ -75,7 +75,6 @@ describe('DateType2', function() {
 
 describe('JAXB', function() {
   it('formats properly', function() {
-
     expect($.format.date('2010-10-19T11:40:33.527+02:00', 'dd/MM/yyyy')).toEqual('19/10/2010');
     expect($.format.date('2010-10-19T11:40:33.527+02:00', 'MMM/yyyy')).toEqual('Oct/2010');
     expect($.format.date('2010-10-19T11:40:33.527+02:00', 'MM')).toEqual('10');
@@ -286,11 +285,11 @@ describe('Unix timestamp', function() {
     // https://github.com/phstc/jquery-dateFormat/pull/22
     var testDate = new Date('Jan 2, 2000 01:02:03');
     expect($.format.date(testDate.getTime(), 'MM')).toEqual('01');
-  expect($.format.date(testDate.getTime(), 'd')).toEqual('2');
-  expect($.format.date(testDate.getTime(), 'yyyy')).toEqual('2000');
-  expect($.format.date(testDate.getTime(), 'HH')).toEqual('01');
-  expect($.format.date(testDate.getTime(), 'mm')).toEqual('02');
-  expect($.format.date(testDate.getTime(), 'ss')).toEqual('03');
+    expect($.format.date(testDate.getTime(), 'd')).toEqual('2');
+    expect($.format.date(testDate.getTime(), 'yyyy')).toEqual('2000');
+    expect($.format.date(testDate.getTime(), 'HH')).toEqual('01');
+    expect($.format.date(testDate.getTime(), 'mm')).toEqual('02');
+    expect($.format.date(testDate.getTime(), 'ss')).toEqual('03');
   });
 });
 
@@ -298,8 +297,8 @@ describe('testShortMonthNoPrependedZero', function() {
   it('formats properly', function() {
     var testDate = new Date('Jan 2, 2000 01:02:03');
     expect($.format.date('Wed Feb 09 06:23:38 PST 2012', 'M')).toEqual('2');
-  expect($.format.date(testDate.getTime(), 'M')).toEqual('1');
-  expect($.format.date('2012-05-07CET00:00:00', 'M')).toEqual('5');
+    expect($.format.date(testDate.getTime(), 'M')).toEqual('1');
+    expect($.format.date('2012-05-07CET00:00:00', 'M')).toEqual('5');
   });
 });
 

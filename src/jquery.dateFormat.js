@@ -39,26 +39,30 @@
     }
 
     function parseTime(strTime) {
-      var returnValue = strTime,
+      // 10:54:50.546
+      // => hour: 10, minute: 54, second: 50, millis: 546
+      // 10:54:50
+      // => hour: 10, minute: 54, second: 50, millis: ''
+      var returnTime = strTime,
           millis = '',
           delimited,
           timeArray;
 
-      if(returnValue.indexOf('.') !== -1) {
-        delimited = returnValue.split('.');
+      if(returnTime.indexOf('.') !== -1) {
+        delimited = returnTime.split('.');
         // split time and milliseconds
         returnValue = delimited[0];
         millis      = delimited[1];
       }
 
-      timeArray = returnValue.split(':');
+      timeArray = returnTime.split(':');
 
       if(timeArray.length === 3) {
         hour   = timeArray[0];
         minute = timeArray[1];
         second = timeArray[2];
         return {
-          time:    returnValue,
+          time:    returnTime,
           hour:    hour,
           minute:  minute,
           second:  second,
@@ -67,6 +71,77 @@
       }
 
       return { time : '', hour : '', minute : '', second : '', millis : '' };
+    }
+
+    function parseDate(value) {
+      var parsedDate = {
+        date:       null,
+        year:       null,
+        month:      null,
+        dayOfMonth: null,
+        dayOfWeek:  null,
+        time:       null
+      };
+
+      if(typeof value == 'number') {
+        return parseDate(new Date(value));
+      } else if(typeof value.getFullYear == 'function') {
+        parsedDate.year       = value.getFullYear();
+        parsedDate.month      = value.getMonth() + 1;
+        parsedDate.dayOfMonth = value.getDate();
+        parsedDate.time       = parseTime(value.toTimeString());
+      } else if(value.search(YYYYMMDD_MATCHER) != -1) {
+        /* 2009-04-19T16:11:05+02:00 || 2009-04-19T16:11:05Z */
+        values = value.split(/[T\+-]/);
+        parsedDate.year       = values[0];
+        parsedDate.month      = values[1];
+        parsedDate.dayOfMonth = values[2];
+        parsedDate.time       = parseTime(values[3].split('.')[0]);
+      } else {
+        values = value.split(' ');
+        switch (values.length) {
+          case 6:
+            /* Wed Jan 13 10:43:41 CET 2010 */
+            parsedDate.year       = values[5];
+            parsedDate.month      = shortMonthToNumber(values[1]);
+            parsedDate.dayOfMonth = values[2];
+            parsedDate.time       = parseTime(values[3]);
+            break;
+          case 2:
+            /* 2009-12-18 10:54:50.546 */
+            values2 = values[0].split('-');
+            parsedDate.year       = values2[0];
+            parsedDate.month      = values2[1];
+            parsedDate.dayOfMonth = values2[2];
+            parsedDate.time       = parseTime(values[1]);
+            break;
+          case 7:
+            /* Tue Mar 01 2011 12:01:42 GMT-0800 (PST) */
+          case 9:
+            /* added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0800 (China Standard Time) */
+          case 10:
+            /* added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0200 (W. Europe Daylight Time) */
+            parsedDate.year       = values[3];
+            parsedDate.month      = shortMonthToNumber(values[1]);
+            parsedDate.dayOfMonth = values[2];
+            parsedDate.time       = parseTime(values[4]);
+            break;
+          case 1:
+            /* added by Jonny, for 2012-02-07CET00:00:00 (Doctrine Entity -> Json Serializer) */
+            values2 = values[0].split('');
+            parsedDate.year       = values2[0] + values2[1] + values2[2] + values2[3];
+            parsedDate.month      = values2[5] + values2[6];
+            parsedDate.dayOfMonth = values2[8] + values2[9];
+            parsedDate.time       = parseTime(values2[13] + values2[14] + values2[15] + values2[16] + values2[17] + values2[18] + values2[19] + values2[20]);
+            break;
+          default:
+            return null;
+        }
+      }
+      parsedDate.date       = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth);
+      parsedDate.dayOfWeek  = parsedDate.date.getDay();
+
+      return parsedDate;
     }
 
     function padding(value, length) {
@@ -79,87 +154,25 @@
 
     return {
       date : function(value, format) {
-        /*
-         value = new java.util.Date()
-         => 2009-12-18 10:54:50.546
-        */
         try {
-          var date = null;
-          var year = null;
-          var month = null;
-          var dayOfMonth = null;
-          var dayOfWeek = null;
-          var time = null;
-          if(typeof value == 'number') {
-            return this.date(new Date(value), format);
-          } else if(typeof value.getFullYear == 'function') {
-            year = value.getFullYear();
-            month = value.getMonth() + 1;
-            dayOfMonth = value.getDate();
-            dayOfWeek = value.getDay();
-            time = parseTime(value.toTimeString());
-          } else if(value.search(YYYYMMDD_MATCHER) != -1) {
-            /* 2009-04-19T16:11:05+02:00 || 2009-04-19T16:11:05Z */
-            values = value.split(/[T\+-]/);
-            year = values[0];
-            month = values[1];
-            dayOfMonth = values[2];
-            time = parseTime(values[3].split('.')[0]);
-            date = new Date(year, month - 1, dayOfMonth);
-            dayOfWeek = date.getDay();
-          } else {
-            values = value.split(' ');
-            switch (values.length) {
-              case 6:
-                /* Wed Jan 13 10:43:41 CET 2010 */
-                year = values[5];
-                month = shortMonthToNumber(values[1]);
-                dayOfMonth = values[2];
-                time = parseTime(values[3]);
-                date = new Date(year, month - 1, dayOfMonth);
-                dayOfWeek = date.getDay();
-                break;
-              case 2:
-                /* 2009-12-18 10:54:50.546 */
-                values2 = values[0].split('-');
-                year = values2[0];
-                month = values2[1];
-                dayOfMonth = values2[2];
-                time = parseTime(values[1]);
-                date = new Date(year, month - 1, dayOfMonth);
-                dayOfWeek = date.getDay();
-                break;
-              case 7:
-                /* Tue Mar 01 2011 12:01:42 GMT-0800 (PST) */
-              case 9:
-                /* added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0800 (China Standard Time) */
-              case 10:
-                /* added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0200 (W. Europe Daylight Time) */
-                year = values[3];
-                month = shortMonthToNumber(values[1]);
-                dayOfMonth = values[2];
-                time = parseTime(values[4]);
-                date = new Date(year, month - 1, dayOfMonth);
-                dayOfWeek = date.getDay();
-                break;
-              case 1:
-                /* added by Jonny, for 2012-02-07CET00:00:00 (Doctrine Entity -> Json Serializer) */
-                values2 = values[0].split('');
-                year = values2[0] + values2[1] + values2[2] + values2[3];
-                month = values2[5] + values2[6];
-                dayOfMonth = values2[8] + values2[9];
-                time = parseTime(values2[13] + values2[14] + values2[15] + values2[16] + values2[17] + values2[18] + values2[19] + values2[20]);
-                date = new Date(year, month - 1, dayOfMonth);
-                dayOfWeek = date.getDay();
-                break;
-              default:
-                return value;
-            }
+          var parsedDate = parseDate(value);
+
+          if(parsedDate === null) {
+            return value;
           }
-          var pattern = '';
-          var retValue = '';
-          var unparsedRest = '';
-          var inQuote = false;
+
+          var date       = parsedDate.date,
+              year       = parsedDate.year,
+              month      = parsedDate.month,
+              dayOfMonth = parsedDate.dayOfMonth,
+              dayOfWeek  = parsedDate.dayOfWeek,
+              time       = parsedDate.time;
+
+          var pattern      = '',
+              retValue     = '',
+              unparsedRest = '',
+              inQuote      = false;
+
           /* Issue 1 - variable scope issue in format.date (Thanks jakemonO) */
           for(var i = 0; i < format.length; i++) {
             var currentPattern = format.charAt(i);
@@ -336,6 +349,7 @@
           retValue += unparsedRest;
           return retValue;
         } catch (e) {
+          // return e;
           return value;
         }
       },
