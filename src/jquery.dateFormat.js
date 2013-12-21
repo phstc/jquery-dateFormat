@@ -46,7 +46,7 @@
 
       if(returnValue.indexOf('.') !== -1) {
         delimited = returnValue.split('.');
-        // slip time and milliseconds
+        // split time and milliseconds
         returnValue = delimited[0];
         millis      = delimited[1];
       }
