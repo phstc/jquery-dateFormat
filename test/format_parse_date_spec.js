@@ -28,8 +28,8 @@ describe('#parseDate', function() {
     });
   });
 
-  it('parses `Thu Oct 15 01:10:20 CET 1982`', function() {
-    var date = 'Thu Oct 15 01:10:20 CET 1982';
+  it('parses `Fri Oct 15 01:10:20 CET 1982`', function() {
+    var date = 'Fri Oct 15 01:10:20 CET 1982';
 
     var parsedDate = $.format.parseDate(date);
 
@@ -44,24 +44,24 @@ describe('#parseDate', function() {
     pablosBirthdayExpects(parsedDate, '546');
   });
 
-  it('parses `Thu Oct 15 1982 01:10:20 GMT-0800 (PST)`', function() {
-    var date = 'Thu Oct 15 1982 01:10:20 GMT-0800 (PST)';
+  it('parses `Fri Oct 15 1982 01:10:20 GMT-0800 (PST)`', function() {
+    var date = 'Fri Oct 15 1982 01:10:20 GMT-0800 (PST)';
 
     var parsedDate = $.format.parseDate(date);
 
     pablosBirthdayExpects(parsedDate);
   });
 
-  it('parses `Thu Oct 15 1982 01:10:20 GMT+0800 (China Standard Time)`', function() {
-    var date = 'Thu Oct 15 1982 01:10:20 GMT+0800 (China Standard Time)';
+  it('parses `Fri Oct 15 1982 01:10:20 GMT+0800 (China Standard Time)`', function() {
+    var date = 'Fri Oct 15 1982 01:10:20 GMT+0800 (China Standard Time)';
 
     var parsedDate = $.format.parseDate(date);
 
     pablosBirthdayExpects(parsedDate);
   });
 
-  it('parses `Thu Oct 15 1982 01:10:20 GMT+0200 (W. Europe Daylight Time)`', function() {
-    var date = 'Thu Oct 15 1982 01:10:20 GMT+0200 (W. Europe Daylight Time)';
+  it('parses `Fri Oct 15 1982 01:10:20 GMT+0200 (W. Europe Daylight Time)`', function() {
+    var date = 'Fri Oct 15 1982 01:10:20 GMT+0200 (W. Europe Daylight Time)';
 
     var parsedDate = $.format.parseDate(date);
 
