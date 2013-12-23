@@ -7,8 +7,6 @@
   var shortMonthsToNumber = { 'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
                               'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12' };
 
-  var values, values2, hour;
-
   var YYYYMMDD_MATCHER = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[Z\-+]?(\d{2}:?\d{2})?/;
 
   jQuery.format = (function() {
@@ -44,6 +42,11 @@
       // 10:54:50
       // => hour: 10, minute: 54, second: 50, millis: ''
       var time = value,
+          values,
+          subValues,
+          hour,
+          minute,
+          second,
           millis = '',
           delimited,
           timeArray;
@@ -131,10 +134,10 @@
               break;
             case 2:
               /* 2009-12-18 10:54:50.546 */
-              values2 = values[0].split('-');
-              parsedDate.year       = values2[0];
-              parsedDate.month      = values2[1];
-              parsedDate.dayOfMonth = values2[2];
+              subValues = values[0].split('-');
+              parsedDate.year       = subValues[0];
+              parsedDate.month      = subValues[1];
+              parsedDate.dayOfMonth = subValues[2];
               parsedDate.time       = parseTime(values[1]);
               break;
             case 7:
@@ -150,11 +153,11 @@
               break;
             case 1:
               /* added by Jonny, for 2012-02-07CET00:00:00 (Doctrine Entity -> Json Serializer) */
-              values2 = values[0].split('');
-              parsedDate.year       = values2[0] + values2[1] + values2[2] + values2[3];
-              parsedDate.month      = values2[5] + values2[6];
-              parsedDate.dayOfMonth = values2[8] + values2[9];
-              parsedDate.time       = parseTime(values2[13] + values2[14] + values2[15] + values2[16] + values2[17] + values2[18] + values2[19] + values2[20]);
+              subValues = values[0].split('');
+              parsedDate.year       = subValues[0] + subValues[1] + subValues[2] + subValues[3];
+              parsedDate.month      = subValues[5] + subValues[6];
+              parsedDate.dayOfMonth = subValues[8] + subValues[9];
+              parsedDate.time       = parseTime(subValues[13] + subValues[14] + subValues[15] + subValues[16] + subValues[17] + subValues[18] + subValues[19] + subValues[20]);
               break;
             default:
               return null;
