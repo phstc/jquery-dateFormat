@@ -13,7 +13,7 @@ Note: jquery-dateFormat.js has a dependency on jQuery 1.4+, which must be loaded
 
 == Format patterns
 
-The patterns to formatting are based on {java.text.SimpleDateFormat}[http://download.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html].
+The patterns to formatting are based on {java.text.SimpleDateFormat}[http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html].
 
 === Date and time patterns
 

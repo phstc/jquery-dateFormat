@@ -192,6 +192,9 @@
           /* Issue 1 - variable scope issue in format.date (Thanks jakemonO) */
           for(var i = 0; i < format.length; i++) {
             var currentPattern = format.charAt(i);
+            // Look-Ahead Right (LALR)
+            var nextRight      = format.charAt(i + 1);
+
             if (inQuote) {
               if (currentPattern == "'") {
                 retValue += (pattern === '') ? "'" : pattern;
@@ -210,14 +213,14 @@
                 pattern = '';
                 break;
               case 'dd':
-                if(format.charAt(i + 1) == 'd') {
+                if(nextRight === 'd') {
                   break;
                 }
                 retValue += padding(dayOfMonth, 2);
                 pattern = '';
                 break;
               case 'd':
-                if(format.charAt(i + 1) == 'd') {
+                if(nextRight === 'd') {
                   break;
                 }
                 retValue += parseInt(dayOfMonth, 10);
@@ -241,21 +244,21 @@
                 pattern = '';
                 break;
               case 'MMM':
-                if(format.charAt(i + 1) === 'M') {
+                if(nextRight === 'M') {
                   break;
                 }
                 retValue += numberToShortMonth(month);
                 pattern = '';
                 break;
               case 'MM':
-                if(format.charAt(i + 1) == 'M') {
+                if(nextRight === 'M') {
                   break;
                 }
                 retValue += padding(month, 2);
                 pattern = '';
                 break;
               case 'M':
-                if(format.charAt(i + 1) == 'M') {
+                if(nextRight === 'M') {
                   break;
                 }
                 retValue += parseInt(month, 10);
@@ -263,14 +266,14 @@
                 break;
               case 'y':
               case 'yyy':
-                if(format.charAt(i + 1) == 'y') {
+                if(nextRight === 'y') {
                   break;
                 }
                 retValue += pattern;
                 pattern = '';
                 break;
               case 'yy':
-                if(format.charAt(i + 1) == 'y' && format.charAt(i + 2) == 'y') {
+                if(nextRight === 'y') {
                   break;
                 }
                 retValue += String(year).slice(-2);
@@ -285,7 +288,7 @@
                 pattern = '';
                 break;
               case 'H':
-                if(format.charAt(i + 1) == 'H') {
+                if(nextRight === 'H') {
                   break;
                 }
                 retValue += parseInt(time.hour, 10);
@@ -299,7 +302,7 @@
                 pattern = '';
                 break;
               case 'h':
-                if(format.charAt(i + 1) === 'h') {
+                if(nextRight === 'h') {
                   break;
                 }
                 hour = (time.hour === 0 ? 12 : time.hour < 13 ? time.hour
@@ -314,7 +317,7 @@
                 pattern = '';
                 break;
               case 'm':
-                if(format.charAt(i + 1) == 'm') {
+                if(nextRight === 'm') {
                   break;
                 }
                 retValue += time.minute;
@@ -326,7 +329,7 @@
                 pattern = '';
                 break;
               case 's':
-                if(format.charAt(i + 1) == 's') {
+                if(nextRight === 's') {
                   break;
                 }
                 retValue += time.second;
@@ -334,7 +337,7 @@
                 break;
               case 'S':
               case 'SS':
-                if(format.charAt(i + 1) == 'S') {
+                if(nextRight === 'S') {
                   break;
                 }
                 retValue += pattern;
@@ -365,7 +368,9 @@
           retValue += unparsedRest;
           return retValue;
         } catch (e) {
-          // return e;
+          if(console && console.log) {
+            console.log(e);
+          }
           return value;
         }
       },
