@@ -22,16 +22,36 @@ module.exports = function(grunt) {
       }
     },
     jasmine: {
-      js: {
+      coverage: {
         src: 'src/**/*.js',
         options: {
           specs: 'test/*_spec.js',
           helpers: 'test/helpers/*',
-          vendor: 'test/vendor/*'
+          vendor: 'test/vendor/*',
+          template: require('grunt-template-jasmine-istanbul'),
+          templateOptions: {
+            coverage: 'coverage/coverage.json',
+            report: [
+              {
+                type: 'html',
+                options: {
+                  dir: 'coverage/html'
+                }
+              },
+              {
+                type: 'cobertura',
+                options: {
+                  dir: 'coverage/cobertura'
+                }
+              },
+              {
+                type: 'text-summary'
+              }
+            ]
+          }
         }
       }
     },
-
     exec: {
       open_spec_runner: {
         cmd: 'open _SpecRunner.html'
@@ -59,7 +79,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   grunt.registerTask('test', ['jshint', 'jasmine']);
-  grunt.registerTask('test:browser', ['jasmine:js:build', 'exec:open_spec_runner']);
+  grunt.registerTask('test:browser', ['jasmine:coverage:build', 'exec:open_spec_runner']);
 
   grunt.registerTask('default', ['jshint', 'jasmine', 'concat', 'uglify']);
 };
