@@ -296,7 +296,7 @@
                 break;
               case 'hh':
                 /* time.hour is '00' as string == is used instead of === */
-                hour = (time.hour === 0 ? 12 : time.hour < 13 ? time.hour
+                hour = (parseInt(time.hour, 10) === 0 ? 12 : time.hour < 13 ? time.hour
                     : time.hour - 12);
                 retValue += padding(hour, 2);
                 pattern = '';
@@ -305,7 +305,7 @@
                 if(nextRight === 'h') {
                   break;
                 }
-                hour = (time.hour === 0 ? 12 : time.hour < 13 ? time.hour
+                hour = (parseInt(time.hour, 10) === 0 ? 12 : time.hour < 13 ? time.hour
                     : time.hour - 12);
                 retValue += parseInt(hour, 10);
                 // Fixing issue https://github.com/phstc/jquery-dateFormat/issues/21
