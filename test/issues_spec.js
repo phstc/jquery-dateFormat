@@ -47,5 +47,10 @@ describe('issues', function() {
     expect($.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', 'hh:mma')).toEqual('05:45PM');
     expect($.format.date('Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)', 'hh:mmp')).toEqual('05:45p.m.');
   });
+
+  xit('formats `h:mm` `2012-02-07CET00:00:00`', function() {
+    var testDate = new Date('Jan 2, 2000 00:00:00');
+    expect($.format.date(testDate, 'h:mm')).toEqual('12:00');
+  });
 });
 
