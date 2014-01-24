@@ -1,0 +1,17 @@
+{
+    "name": "phstc/jquery-dateFormat",
+    "type": "library",
+    "description": "jQuery Plugin to format Date outputs using JavaScript.",
+    "keywords": [
+        "dateformat"
+    ],
+    "homepage": "https://github.com/phstc/jquery-dateFormat",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pablo Cantero",
+            "email": "pablo@pablocantero.com",
+            "homepage": "http://pablocantero.com/"
+        }
+    ]
+}
