@@ -8,7 +8,7 @@ Download latest jquery.dateFormat.js or jquery.dateFormat.min.js.
 
 * {jquery-dateFormat.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.js]
 * {jquery-dateFormat.min.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.min.js]
-* {dateFormat.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.min.js] (pure Javascript without a dependency on jQuery)
+* {dateFormat.js}[https://raw.github.com/phstc/jquery-dateFormat/master/src/dateFormat.js] (pure Javascript without a dependency on jQuery)
 
 You can use <b>jquery-dateFormat without jQuery</b>. You just need to import the dateFormat.js above and instead of formatting with $.format(...) you should use DateFormat.format(...).
 
