@@ -10,11 +10,9 @@ Download latest jquery.dateFormat.js or jquery.dateFormat.min.js.
 * {jquery-dateFormat.min.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.min.js]
 * {dateFormat.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.min.js] (pure Javascript without a dependency on jQuery)
 
-=== jQuery
+You can use <b>jquery-dateFormat without jQuery</b>. You just need to import the dateFormat.js above and instead of formatting with $.format(...) you should use DateFormat.format(...).
 
-You can use jquery-dateFormat without jQuery. You just need to import the dateFormat.js above and instead of using $.format(...) you should use DateFormat.format(...).
-
-Otherwise you will need jQuery 1.4+, which must be loaded before jquery-dateFormat.js.
+If you use <b>jQuery Validate</b> plugin you must use jquery-dateFormat without jQuery.
 
 == Format patterns
 
