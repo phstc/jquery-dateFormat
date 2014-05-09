@@ -2,6 +2,7 @@ var DateFormat = {};
 
 (function($) {
   var daysInWeek          = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var shortDaysInWeek     = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   var shortMonthsInYear   = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   var longMonthsInYear    = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -16,6 +17,12 @@ var DateFormat = {};
       // 0 to Sunday
       // 1 to Monday
       return daysInWeek[parseInt(value, 10)] || value;
+    }
+    
+    function numberToShortDay(value) {
+      // 0 to Sun
+      // 1 to Mon
+      return shortDaysInWeek[parseInt(value, 10)] || value;
     }
 
     function numberToShortMonth(value) {
@@ -355,6 +362,10 @@ var DateFormat = {};
                 break;
               case 'p':
                 retValue += time.hour >= 12 ? 'p.m.' : 'a.m.';
+                pattern = '';
+                break;
+              case 'E':
+                retValue += numberToShortDay(dayOfWeek);
                 pattern = '';
                 break;
               case "'":

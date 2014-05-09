@@ -39,6 +39,7 @@ describe('#date', function() {
       expect($.format.date(date, 'd')).toEqual('15');
       expect($.format.date(date, 'dd')).toEqual('15');
       expect($.format.date(date, 'ddd')).toEqual('Friday');
+      expect($.format.date(date, 'E')).toEqual('Fri');
       expect($.format.date(date, 'D')).toEqual('15th');
       expect($.format.date(date, 'h')).toEqual('1');
       expect($.format.date(date, 'hh')).toEqual('01');
@@ -49,6 +50,7 @@ describe('#date', function() {
       expect($.format.date(date, 'SSS')).toEqual('546');
       expect($.format.date(date, 'a')).toEqual('AM');
       expect($.format.date(date, 'p')).toEqual('a.m.');
+      expect($.format.date(date, 'E')).toEqual('Fri');
      });
   });
 
@@ -99,5 +101,6 @@ describe('#date', function() {
       expect($.format.date(new Date('Jan 30, 2000 01:02:03'), 'D')).toEqual('30th');
       expect($.format.date(new Date('Jan 31, 2000 01:02:03'), 'D')).toEqual('31st');
     });
+
 });
 
