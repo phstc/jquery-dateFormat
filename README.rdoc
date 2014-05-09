@@ -8,8 +8,11 @@ Download latest jquery.dateFormat.js or jquery.dateFormat.min.js.
 
 * {jquery-dateFormat.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.js]
 * {jquery-dateFormat.min.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.min.js]
+* {dateFormat.js}[https://raw.github.com/phstc/jquery-dateFormat/master/src/dateFormat.js] (pure Javascript without a dependency on jQuery)
 
-Note: jquery-dateFormat.js has a dependency on jQuery 1.4+, which must be loaded before jquery-dateFormat.js.
+You can use <b>jquery-dateFormat without jQuery</b>. You just need to import the dateFormat.js above and instead of formatting with $.format(...) you should use DateFormat.format(...).
+
+If you use <b>jQuery Validate</b> plugin you must use jquery-dateFormat without jQuery.
 
 == Format patterns
 
@@ -26,6 +29,7 @@ The patterns to formatting are based on {java.text.SimpleDateFormat}[http://docs
 * d = day (1 - 31)
 * dd = day (01 - 31)
 * ddd = day of the week in words (Monday, Tuesday ... Sunday)
+* E = short day of the week in words (Mon, Tue ... Sun)
 * D - Ordinal day (1st, 2nd, 3rd, 21st, 22nd, 23rd, 31st, 4th...)
 * h = hour in am/pm (0-12)
 * hh = hour in am/pm (00-12)
