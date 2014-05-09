@@ -18,7 +18,7 @@ var DateFormat = {};
       // 1 to Monday
       return daysInWeek[parseInt(value, 10)] || value;
     }
-    
+
     function numberToShortDay(value) {
       // 0 to Sun
       // 1 to Mon
