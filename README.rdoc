@@ -8,7 +8,8 @@ Download latest jquery.dateFormat.js or jquery.dateFormat.min.js.
 
 * {jquery-dateFormat.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.js]
 * {jquery-dateFormat.min.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.min.js]
-* {dateFormat.js}[https://raw.github.com/phstc/jquery-dateFormat/master/src/dateFormat.js] (pure Javascript without a dependency on jQuery)
+* {dateFormat.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/dateFormat.js] (pure Javascript without a dependency on jQuery)
+* {dateFormat.min.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/dateFormat.min.js] (pure Javascript without a dependency on jQuery)
 
 You can use <b>jquery-dateFormat without jQuery</b>. You just need to import the dateFormat.js above and instead of formatting with $.format(...) you should use DateFormat.format(...).
 
@@ -128,9 +129,15 @@ jQuery.format.toBrowserTimeZone(value, format) converts into browsers timezone.
  $.format.toBrowserTimeZone(date2)
  $.format.toBrowserTimeZone(date3)
 
-== Testing
+== Development
 
-Tests are written using Jasmine. To run the test suite with PhantomJS, run $ grunt test. To run the test suite in your default browser, run $ grunt test:browser.
+To compile jquery-dateFormat (generate dist files):
+
+ $ grunt compile
+
+=== Testing
+
+Tests are written using Jasmine. To run the test suite with PhantomJS, run `$ grunt test`. To run the test suite in your default browser, run `$ grunt test:browser`.
 
 == Licenses
 

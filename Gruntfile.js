@@ -6,9 +6,13 @@ module.exports = function(grunt) {
       options: {
         separator: ';'
       },
-      dist: {
-        src: ['src/**/*.js'],
+      jQuery: {
+        src: ['src/dateFormat.js', 'src/jquery.dateFormat.js'],
         dest: 'dist/<%= pkg.name %>.js'
+      },
+      dateFormat: {
+        src: ['src/dateFormat.js'],
+        dest: 'dist/dateFormat.js'
       }
     },
     uglify: {
@@ -17,7 +21,8 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+          'dist/<%= pkg.name %>.min.js': ['<%= concat.jQuery.dest %>'],
+          'dist/dateFormat.min.js': ['<%= concat.dateFormat.dest %>']
         }
       }
     },
@@ -81,6 +86,10 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['jshint', 'jasmine']);
   grunt.registerTask('test:browser', ['jasmine:coverage:build', 'exec:open_spec_runner']);
 
-  grunt.registerTask('default', ['jshint', 'jasmine', 'concat', 'uglify']);
+  grunt.registerTask('concat:all', ['concat:dateFormat', 'concat:jQuery']);
+
+  grunt.registerTask('default', ['jshint', 'jasmine', 'concat:all', 'uglify']);
+
+  grunt.registerTask('compile', ['jshint', 'concat:all', 'uglify']);
 };
 

@@ -101,6 +101,5 @@ describe('#date', function() {
       expect($.format.date(new Date('Jan 30, 2000 01:02:03'), 'D')).toEqual('30th');
       expect($.format.date(new Date('Jan 31, 2000 01:02:03'), 'D')).toEqual('31st');
     });
-
 });
 
