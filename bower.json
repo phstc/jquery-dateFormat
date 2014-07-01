@@ -1,7 +1,7 @@
 {
   "name":     "jquery-dateFormat",
   "homepage": "https://github.com/phstc/jquery-dateFormat",
-  "version":  "1.0.0",
+  "version":  "1.0.1",
   "ignore": [
     "src",
     "test",
