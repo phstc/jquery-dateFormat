@@ -2,7 +2,7 @@ jquery-dateFormat - jQuery Plugin to format Date outputs using JavaScript.
 
 {<img src="https://travis-ci.org/phstc/jquery-dateFormat.png" />}[http://travis-ci.org/phstc/jquery-dateFormat]
 
-== Instalation
+== Installation
 
 Download latest jquery.dateFormat.js or jquery.dateFormat.min.js.
 
