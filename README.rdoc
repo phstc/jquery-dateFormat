@@ -141,10 +141,7 @@ Tests are written using Jasmine. To run the test suite with PhantomJS, run `$ gr
 
 == Licenses
 
-This plugin is licensed under:
-
-MIT License
-GPL
+jquery-dateFormat is released under the {MIT License}[http://opensource.org/licenses/MIT].
 
 == Do you want to improve jquery-dateFormat
 
