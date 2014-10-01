@@ -2,6 +2,7 @@
   "name":     "jquery-dateFormat",
   "homepage": "https://github.com/phstc/jquery-dateFormat",
   "version":  "1.0.1",
+  "main": "./dist/jquery-dateFormat.js",
   "ignore": [
     "src",
     "test",
