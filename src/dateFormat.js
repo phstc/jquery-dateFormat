@@ -123,7 +123,7 @@ var DateFormat = {};
           // => Thu Feb 01 1900 00:00:00
           parsedDate.month      = String(value.getMonth() + 1);
           parsedDate.dayOfMonth = String(value.getDate());
-          parsedDate.time       = parseTime(value.toTimeString());
+          parsedDate.time       = parseTime(value.toTimeString() + "." + value.getMilliseconds());
         } else if(value.search(YYYYMMDD_MATCHER) != -1) {
           /* 2009-04-19T16:11:05+02:00 || 2009-04-19T16:11:05Z */
           values = value.split(/[T\+-]/);

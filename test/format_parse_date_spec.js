@@ -2,12 +2,12 @@ describe('#parseDate', function() {
   var dateWithoutTime = new Date(1982, 9, 15);
 
   it('parses a timestamp', function() {
-    var date            = new Date(1982, 9, 15, 1, 10, 20),
+    var date            = new Date(1982, 9, 15, 1, 10, 20, 546),
         timestamp       = date.getTime();
 
     var parsedDate = $.format.parseDate(timestamp);
 
-    pablosBirthdayExpects(parsedDate);
+    pablosBirthdayExpects(parsedDate, '546');
   });
 
   describe('yyyy-MM-dd', function() {
