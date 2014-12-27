@@ -1,4 +1,4 @@
-jquery-dateFormat - jQuery Plugin to format Date outputs using JavaScript.
+jquery-dateFormat - jQuery Plugin to format Date outputs using JavaScript - <b><em>Less than 5kb, jquery-dateFormat is the smallest date format library available!</em></b>
 
 {<img src="https://travis-ci.org/phstc/jquery-dateFormat.png" />}[http://travis-ci.org/phstc/jquery-dateFormat]
 
