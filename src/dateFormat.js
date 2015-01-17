@@ -182,7 +182,11 @@ var DateFormat = {};
               return null;
           }
         }
-        parsedDate.date       = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth);
+        if(!parsedDate.time){
+          parsedDate.date       = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth);
+        }else{
+          parsedDate.date       = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth,parsedDate.time.hour,parsedDate.time.minute,parsedDate.time.second);
+        }
         parsedDate.dayOfWeek  = String(parsedDate.date.getDay());
 
         return parsedDate;
