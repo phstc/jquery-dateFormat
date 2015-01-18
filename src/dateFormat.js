@@ -182,12 +182,14 @@ var DateFormat = {};
               return null;
           }
         }
-        if(!parsedDate.time){
-          parsedDate.date       = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth);
-        }else{
-          parsedDate.date       = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth,parsedDate.time.hour,parsedDate.time.minute,parsedDate.time.second);
+
+        if(parsedDate.time) {
+          parsedDate.date = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth, parsedDate.time.hour, parsedDate.time.minute, parsedDate.time.second, parsedDate.time.millis);
+        } else {
+          parsedDate.date = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth);
         }
-        parsedDate.dayOfWeek  = String(parsedDate.date.getDay());
+
+        parsedDate.dayOfWeek = String(parsedDate.date.getDay());
 
         return parsedDate;
       },
