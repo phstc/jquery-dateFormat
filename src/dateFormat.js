@@ -182,8 +182,14 @@ var DateFormat = {};
               return null;
           }
         }
-        parsedDate.date       = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth);
-        parsedDate.dayOfWeek  = String(parsedDate.date.getDay());
+
+        if(parsedDate.time) {
+          parsedDate.date = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth, parsedDate.time.hour, parsedDate.time.minute, parsedDate.time.second, parsedDate.time.millis);
+        } else {
+          parsedDate.date = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth);
+        }
+
+        parsedDate.dayOfWeek = String(parsedDate.date.getDay());
 
         return parsedDate;
       },

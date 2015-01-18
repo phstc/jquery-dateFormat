@@ -1,6 +1,4 @@
 describe('#parseDate', function() {
-  var dateWithoutTime = new Date(1982, 9, 15);
-
   it('parses a timestamp', function() {
     var date            = new Date(1982, 9, 15, 1, 10, 20, 546),
         timestamp       = date.getTime();
@@ -80,7 +78,7 @@ describe('#parseDate', function() {
     if (millis === undefined) {
       millis = '';
     }
-    expect(parsedDate.date).toEqual(dateWithoutTime);
+
     expect(parsedDate.year).toEqual('1982');
     expect(parsedDate.month).toEqual('10');
     expect(parsedDate.dayOfMonth).toEqual('15');
@@ -92,4 +90,3 @@ describe('#parseDate', function() {
     expect(parsedDate.time.millis).toEqual(millis);
   }
 });
-

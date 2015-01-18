@@ -58,4 +58,10 @@ describe('issues', function() {
     // Mon Mar 28 2011 17:45:00 GMT-0400 (Eastern Daylight Time)
     expect($.format.date('Mon Apr 28 2014 05:30:00 GMT-0300', 'dd/MM/yyyy HH:mm')).toEqual('28/04/2014 05:30');
   });
+
+  it('parseDate `yyyy-MM-dd HH:mm:ss` `2015-01-16 12:55:54` missing time ?', function() {
+    // https://github.com/phstc/jquery-dateFormat/issues/75
+    // missing time when parsing ??
+    expect($.format.parseDate('2015-01-16 12:55:54', 'yyyy-MM-dd HH:mm:ss').date.getMinutes()).toEqual(55);
+  });
 });
