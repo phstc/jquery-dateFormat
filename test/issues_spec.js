@@ -64,4 +64,10 @@ describe('issues', function() {
     // missing time when parsing ??
     expect($.format.parseDate('2015-01-16 12:55:54', 'yyyy-MM-dd HH:mm:ss').date.getMinutes()).toEqual(55);
   });
+
+  it('formats `dd/MM/yyyy HH:mm` `Mon Apr 28 2014 05:30:00 GMT-0300`', function() {
+    // https://github.com/phstc/jquery-dateFormat/issues/77
+    // Leading 0 for "SSS"(milliseconds) is missing
+    expect($.format.date(new Date(2015, 4, 6, 15, 32, 12, 34), 'MM/dd/yyyy HH:mm:ss.SSS')).toEqual('05/06/2015 15:32:12.034');
+  });
 });
