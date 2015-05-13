@@ -369,7 +369,8 @@ var DateFormat = {};
                 pattern = '';
                 break;
               case 'SSS':
-                retValue += time.millis.substring(0, 3);
+                var sss = '000' + time.millis.substring(0, 3);
+                retValue +=  sss.substring(sss.length - 3);
                 pattern = '';
                 break;
               case 'a':
