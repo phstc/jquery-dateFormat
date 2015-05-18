@@ -62,7 +62,7 @@ var DateFormat = {};
         delimited = time.split('.');
         // split time and milliseconds
         time   = delimited[0];
-        millis = delimited[1];
+        millis = delimited[delimited.length - 1];
       }
 
       timeArray = time.split(':');
