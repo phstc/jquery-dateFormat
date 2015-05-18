@@ -51,8 +51,6 @@ var DateFormat = {};
       // 10:54:50
       // => hour: 10, minute: 54, second: 50, millis: ''
       var time = value,
-          values,
-          subValues,
           hour,
           minute,
           second,
@@ -106,6 +104,9 @@ var DateFormat = {};
     return {
 
       parseDate: function(value) {
+        var values,
+            subValues;
+
         var parsedDate = {
           date:       null,
           year:       null,
