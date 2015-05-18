@@ -202,8 +202,7 @@ var DateFormat = {};
             return value;
           }
 
-          var date       = parsedDate.date,
-              year       = parsedDate.year,
+          var year       = parsedDate.year,
               month      = parsedDate.month,
               dayOfMonth = parsedDate.dayOfMonth,
               dayOfWeek  = parsedDate.dayOfWeek,
