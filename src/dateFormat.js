@@ -208,6 +208,7 @@ var DateFormat = {};
               dayOfMonth = parsedDate.dayOfMonth,
               dayOfWeek  = parsedDate.dayOfWeek,
               time       = parsedDate.time;
+          var hour;
 
           var pattern      = '',
               retValue     = '',
