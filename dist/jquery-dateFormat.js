@@ -51,8 +51,6 @@ var DateFormat = {};
       // 10:54:50
       // => hour: 10, minute: 54, second: 50, millis: ''
       var time = value,
-          values,
-          subValues,
           hour,
           minute,
           second,
@@ -64,7 +62,7 @@ var DateFormat = {};
         delimited = time.split('.');
         // split time and milliseconds
         time   = delimited[0];
-        millis = delimited[1];
+        millis = delimited[delimited.length - 1];
       }
 
       timeArray = time.split(':');
@@ -106,6 +104,9 @@ var DateFormat = {};
     return {
 
       parseDate: function(value) {
+        var values,
+            subValues;
+
         var parsedDate = {
           date:       null,
           year:       null,
@@ -182,8 +183,14 @@ var DateFormat = {};
               return null;
           }
         }
-        parsedDate.date       = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth);
-        parsedDate.dayOfWeek  = String(parsedDate.date.getDay());
+
+        if(parsedDate.time) {
+          parsedDate.date = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth, parsedDate.time.hour, parsedDate.time.minute, parsedDate.time.second, parsedDate.time.millis);
+        } else {
+          parsedDate.date = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth);
+        }
+
+        parsedDate.dayOfWeek = String(parsedDate.date.getDay());
 
         return parsedDate;
       },
@@ -196,12 +203,12 @@ var DateFormat = {};
             return value;
           }
 
-          var date       = parsedDate.date,
-              year       = parsedDate.year,
+          var year       = parsedDate.year,
               month      = parsedDate.month,
               dayOfMonth = parsedDate.dayOfMonth,
               dayOfWeek  = parsedDate.dayOfWeek,
               time       = parsedDate.time;
+          var hour;
 
           var pattern      = '',
               retValue     = '',
@@ -363,7 +370,8 @@ var DateFormat = {};
                 pattern = '';
                 break;
               case 'SSS':
-                retValue += time.millis.substring(0, 3);
+                var sss = '000' + time.millis.substring(0, 3);
+                retValue +=  sss.substring(sss.length - 3);
                 pattern = '';
                 break;
               case 'a':

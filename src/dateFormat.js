@@ -51,8 +51,6 @@ var DateFormat = {};
       // 10:54:50
       // => hour: 10, minute: 54, second: 50, millis: ''
       var time = value,
-          values,
-          subValues,
           hour,
           minute,
           second,
@@ -64,7 +62,7 @@ var DateFormat = {};
         delimited = time.split('.');
         // split time and milliseconds
         time   = delimited[0];
-        millis = delimited[1];
+        millis = delimited[delimited.length - 1];
       }
 
       timeArray = time.split(':');
@@ -106,6 +104,9 @@ var DateFormat = {};
     return {
 
       parseDate: function(value) {
+        var values,
+            subValues;
+
         var parsedDate = {
           date:       null,
           year:       null,
@@ -202,12 +203,12 @@ var DateFormat = {};
             return value;
           }
 
-          var date       = parsedDate.date,
-              year       = parsedDate.year,
+          var year       = parsedDate.year,
               month      = parsedDate.month,
               dayOfMonth = parsedDate.dayOfMonth,
               dayOfWeek  = parsedDate.dayOfWeek,
               time       = parsedDate.time;
+          var hour;
 
           var pattern      = '',
               retValue     = '',
