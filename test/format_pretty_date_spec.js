@@ -71,8 +71,8 @@ describe('#prettyDate', function() {
     expect($.format.prettyDate(daysahead28)).toEqual('4 weeks from now');
     expect($.format.prettyDate(daysahead29)).toEqual('5 weeks from now');
     expect($.format.prettyDate(daysahead30)).toEqual('5 weeks from now');
-    expect($.format.prettyDate(daysahead31)).toEqual('more than 5 weeks from now;);
-    expect($.format.prettyDate(daysahead100)).toEqual('more than 5 weeks from now;);
+    expect($.format.prettyDate(daysahead31)).toEqual('more than 5 weeks from now');
+    expect($.format.prettyDate(daysahead100)).toEqual('more than 5 weeks from now');
   });
 
   it('formats other formats', function() {
