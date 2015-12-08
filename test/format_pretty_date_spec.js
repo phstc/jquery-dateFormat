@@ -1,6 +1,7 @@
 describe('#prettyDate', function() {
   it('formats properly', function() {
     var today      = new Date();
+    
     var daysago1   = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
     var daysago6   = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6);
     var daysago7   = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
@@ -17,10 +18,29 @@ describe('#prettyDate', function() {
     var daysago30  = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 30);
     var daysago31  = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 31);
     var daysago100 = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 100);
+    
+    var daysahead1   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    var daysahead4   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 4);
+    var daysahead7   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+    var daysahead8   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 8);
+    var daysahead13  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 13);
+    var daysahead14  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 14);
+    var daysahead15  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 15);
+    var daysahead20  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 20);
+    var daysahead21  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 21);
+    var daysahead22  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 22);
+    var daysahead27  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 27);
+    var daysahead28  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 28);
+    var daysahead29  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 29);
+    var daysahead30  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+    var daysahead31  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 31);
+    var daysahead100 = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 100);
 
     expect($.format.prettyDate(today)).toEqual('just now');
     expect($.format.prettyDate(today.toString())).toEqual('just now');
     expect($.format.prettyDate(today.getTime())).toEqual('just now');
+    
+    expect($.format.prettyDate(today.getTime() + 500)).toEqual('in a moment');
 
     expect($.format.prettyDate(daysago1)).toEqual('Yesterday');
     expect($.format.prettyDate(daysago6)).toEqual('6 days ago');
@@ -37,6 +57,22 @@ describe('#prettyDate', function() {
     expect($.format.prettyDate(daysago30)).toEqual('5 weeks ago');
     expect($.format.prettyDate(daysago31)).toEqual('more than 5 weeks ago');
     expect($.format.prettyDate(daysago100)).toEqual('more than 5 weeks ago');
+    
+    expect($.format.prettyDate(daysahead1)).toEqual('Tomorrow');
+    expect($.format.prettyDate(daysahead4)).toEqual('4 days from now;);
+    expect($.format.prettyDate(daysahead7)).toEqual('1 weeks from now;);
+    expect($.format.prettyDate(daysahead8)).toEqual('2 weeks from now;);
+    expect($.format.prettyDate(daysahead13)).toEqual('2 weeks from now;);
+    expect($.format.prettyDate(daysahead14)).toEqual('2 weeks from now;);
+    expect($.format.prettyDate(daysahead15)).toEqual('3 weeks from now;);
+    expect($.format.prettyDate(daysahead20)).toEqual('3 weeks from now;);
+    expect($.format.prettyDate(daysahead21)).toEqual('3 weeks from now;);
+    expect($.format.prettyDate(daysahead27)).toEqual('4 weeks from now;);
+    expect($.format.prettyDate(daysahead28)).toEqual('4 weeks from now;);
+    expect($.format.prettyDate(daysahead29)).toEqual('5 weeks from now;);
+    expect($.format.prettyDate(daysahead30)).toEqual('5 weeks from now;);
+    expect($.format.prettyDate(daysahead31)).toEqual('more than 5 weeks from now;);
+    expect($.format.prettyDate(daysahead100)).toEqual('more than 5 weeks from now;);
   });
 
   it('formats other formats', function() {
