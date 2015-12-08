@@ -440,7 +440,7 @@ var DateFormat = {};
         day_diff = Math.floor(diff / 86400);
         abs_diff = Math.abs(diff);
         abs_day_diff = Math.abs(day_diff);
-  
+
         if(isNaN(abs_day_diff)) {
           return;
         }
@@ -449,7 +449,7 @@ var DateFormat = {};
   
         if(abs_diff < 60) {
           if (diff >= 0)
-          	return 'just now';
+            return 'just now';
           else
             return 'in a moment';
         } else if(abs_diff < 120) {
