@@ -66,7 +66,7 @@ The patterns to formatting are based on {java.text.SimpleDateFormat}[http://docs
 ==== Output
 
  => Test: 18/12/2009
- => 18~12~2009
+ => 13~01~2010
 
 === Formatting using css classes
 
