@@ -437,9 +437,8 @@ var DateFormat = {};
 
         diff = (((new Date()).getTime() - date.getTime()) / 1000);
   
-        day_diff = Math.floor(diff / 86400);
         abs_diff = Math.abs(diff);
-        abs_day_diff = Math.abs(day_diff);
+        abs_day_diff = Math.floor(abs_diff / 86400);
 
         if(isNaN(abs_day_diff)) {
           return;
@@ -448,7 +447,7 @@ var DateFormat = {};
         tense = diff < 0 ? 'from now' : 'ago';
   
         if(abs_diff < 60) {
-          if (diff >= 0)
+          if(diff >= 0)
             return 'just now';
           else
             return 'in a moment';
@@ -460,12 +459,15 @@ var DateFormat = {};
           return '1 hour ' + tense;
         } else if(abs_diff < 86400) {
           return Math.floor(abs_diff / 3600) + ' hours ' + tense;
-        } else if(day_diff === 1) {
-          return 'Yesterday';
-        } else if(day_diff === -1) {
-          return 'Tomorrow';
+        } else if(abs_day_diff === 1) {
+          if(diff >= 0)
+            return 'Yesterday';
+          else
+            return 'Tomorrow';
         } else if(abs_day_diff < 7) {
           return abs_day_diff + ' days ' + tense;
+        } else if(abs_day_diff === 7) {
+          return '1 week ' + tense;
         } else if(abs_day_diff < 31) {
           return Math.ceil(abs_day_diff / 7) + ' weeks ' + tense;
         } else {

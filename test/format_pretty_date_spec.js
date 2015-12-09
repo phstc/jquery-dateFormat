@@ -18,23 +18,25 @@ describe('#prettyDate', function() {
     var daysago30  = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 30);
     var daysago31  = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 31);
     var daysago100 = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 100);
-    
-    var daysahead1   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
-    var daysahead4   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 4);
-    var daysahead7   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
-    var daysahead8   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 8);
-    var daysahead13  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 13);
-    var daysahead14  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 14);
-    var daysahead15  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 15);
-    var daysahead20  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 20);
-    var daysahead21  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 21);
-    var daysahead22  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 22);
-    var daysahead27  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 27);
-    var daysahead28  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 28);
-    var daysahead29  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 29);
-    var daysahead30  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
-    var daysahead31  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 31);
-    var daysahead100 = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 100);
+
+    // We need to count the hours, minutes, seconds and milliseconds here
+    // to be correct: getHours() + 1 is just a shortcut for this    
+    var daysahead1   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, today.getHours() + 1);
+    var daysahead4   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 4, today.getHours() + 1);
+    var daysahead7   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7, today.getHours() + 1);
+    var daysahead8   = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 8, today.getHours() + 1);
+    var daysahead13  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 13, today.getHours() + 1);
+    var daysahead14  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 14, today.getHours() + 1);
+    var daysahead15  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 15, today.getHours() + 1);
+    var daysahead20  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 20, today.getHours() + 1);
+    var daysahead21  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 21, today.getHours() + 1);
+    var daysahead22  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 22, today.getHours() + 1);
+    var daysahead27  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 27, today.getHours() + 1);
+    var daysahead28  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 28, today.getHours() + 1);
+    var daysahead29  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 29, today.getHours() + 1);
+    var daysahead30  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30, today.getHours() + 1);
+    var daysahead31  = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 31, today.getHours() + 1);
+    var daysahead100 = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 100, today.getHours() + 1);
 
     expect($.format.prettyDate(today)).toEqual('just now');
     expect($.format.prettyDate(today.toString())).toEqual('just now');
@@ -44,7 +46,7 @@ describe('#prettyDate', function() {
 
     expect($.format.prettyDate(daysago1)).toEqual('Yesterday');
     expect($.format.prettyDate(daysago6)).toEqual('6 days ago');
-    expect($.format.prettyDate(daysago7)).toEqual('1 weeks ago');
+    expect($.format.prettyDate(daysago7)).toEqual('1 week ago');
     expect($.format.prettyDate(daysago8)).toEqual('2 weeks ago');
     expect($.format.prettyDate(daysago13)).toEqual('2 weeks ago');
     expect($.format.prettyDate(daysago14)).toEqual('2 weeks ago');
@@ -60,7 +62,7 @@ describe('#prettyDate', function() {
     
     expect($.format.prettyDate(daysahead1)).toEqual('Tomorrow');
     expect($.format.prettyDate(daysahead4)).toEqual('4 days from now');
-    expect($.format.prettyDate(daysahead7)).toEqual('1 weeks from now');
+    expect($.format.prettyDate(daysahead7)).toEqual('1 week from now');
     expect($.format.prettyDate(daysahead8)).toEqual('2 weeks from now');
     expect($.format.prettyDate(daysahead13)).toEqual('2 weeks from now');
     expect($.format.prettyDate(daysahead14)).toEqual('2 weeks from now');
