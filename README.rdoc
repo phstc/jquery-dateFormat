@@ -52,7 +52,7 @@ The patterns to formatting are based on {java.text.SimpleDateFormat}[http://docs
 * Thu Oct 15 1982 01:10:20 GMT+0800 (China Standard Time)
 * Thu Oct 15 1982 01:10:20 GMT+0200 (W. Europe Daylight Time)
 * 1982-10-15CET01:10:20
-* Unix Timestamp (i.e. new Date().getTime())
+* JavaScript: new Date().getTime()
 
 {Some examples}[https://github.com/phstc/jquery-dateFormat/blob/master/test/format_parse_date_spec.js].
 
