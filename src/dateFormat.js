@@ -167,9 +167,17 @@ var DateFormat = {};
             case 10:
               /* added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0200 (W. Europe Daylight Time) */
               parsedDate.year       = values[3];
-              parsedDate.month      = shortMonthToNumber(values[1]);
-              parsedDate.dayOfMonth = values[2];
-              parsedDate.time       = parseTime(values[4]);
+              /* edited by Andrey, for Mon 18 Apr 2016 -//-: '[Day] [Month]' format (russian) */
+              var parsedVal1 = parseInt(values[1]);
+              var parsedVal2 = parseInt(values[2]);
+              if (parsedVal1 && !parsedVal2) {
+                  parsedDate.month  = shortMonthToNumber(values[2]);
+                  parsedDate.dayOfMonth = values[1];
+              } else {
+                  parsedDate.month = shortMonthToNumber(values[1]);
+                  parsedDate.dayOfMonth = values[2];
+              }
+              parsedDate.time = parseTime(values[4]);
               break;
             case 1:
               /* added by Jonny, for 2012-02-07CET00:00:00 (Doctrine Entity -> Json Serializer) */
