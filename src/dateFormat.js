@@ -422,7 +422,10 @@ var DateFormat = {};
       prettyDate : function(time) {
         var date;
         var diff;
+        var abs_diff;
         var day_diff;
+        var abs_day_diff;
+        var tense;
 
         if(typeof time === 'string' || typeof time === 'number') {
           date = new Date(time);
@@ -433,31 +436,42 @@ var DateFormat = {};
         }
 
         diff = (((new Date()).getTime() - date.getTime()) / 1000);
+  
+        abs_diff = Math.abs(diff);
+        abs_day_diff = Math.floor(abs_diff / 86400);
 
-        day_diff = Math.floor(diff / 86400);
-
-        if(isNaN(day_diff) || day_diff < 0) {
+        if(isNaN(abs_day_diff)) {
           return;
         }
 
-        if(diff < 60) {
-          return 'just now';
-        } else if(diff < 120) {
-          return '1 minute ago';
-        } else if(diff < 3600) {
-          return Math.floor(diff / 60) + ' minutes ago';
-        } else if(diff < 7200) {
-          return '1 hour ago';
-        } else if(diff < 86400) {
-          return Math.floor(diff / 3600) + ' hours ago';
-        } else if(day_diff === 1) {
-          return 'Yesterday';
-        } else if(day_diff < 7) {
-          return day_diff + ' days ago';
-        } else if(day_diff < 31) {
-          return Math.ceil(day_diff / 7) + ' weeks ago';
-        } else if(day_diff >= 31) {
-          return 'more than 5 weeks ago';
+        tense = diff < 0 ? 'from now' : 'ago';
+  
+        if(abs_diff < 60) {
+          if(diff >= 0)
+            return 'just now';
+          else
+            return 'in a moment';
+        } else if(abs_diff < 120) {
+          return '1 minute ' + tense;
+        } else if(abs_diff < 3600) {
+          return Math.floor(abs_diff / 60) + ' minutes ' + tense;
+        } else if(abs_diff < 7200) {
+          return '1 hour ' + tense;
+        } else if(abs_diff < 86400) {
+          return Math.floor(abs_diff / 3600) + ' hours ' + tense;
+        } else if(abs_day_diff === 1) {
+          if(diff >= 0)
+            return 'Yesterday';
+          else
+            return 'Tomorrow';
+        } else if(abs_day_diff < 7) {
+          return abs_day_diff + ' days ' + tense;
+        } else if(abs_day_diff === 7) {
+          return '1 week ' + tense;
+        } else if(abs_day_diff < 31) {
+          return Math.ceil(abs_day_diff / 7) + ' weeks ' + tense;
+        } else {
+          return 'more than 5 weeks ' + tense;
         }
       },
       toBrowserTimeZone : function(value, format) {
