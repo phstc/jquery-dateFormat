@@ -1,6 +1,6 @@
 {
   "name": "jquery-dateformat",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://github.com/phstc/jquery-dateFormat",
   "description": "It's a jQuery Plugin to format Date outputs using JavaScript.",
   "author": "Pablo Cantero <pablo@pablocantero.com>",
