@@ -1,25 +1,25 @@
-jquery-dateFormat - jQuery Plugin to format Date outputs using JavaScript - <b><em>Having less than 5kb, jquery-dateFormat is the smallest date format library available!</em></b>
+jquery-dateFormat - jQuery Plugin to format Date outputs using JavaScript - ***Having less than 5kb, jquery-dateFormat is the smallest date format library available!***
 
-{<img src="https://travis-ci.org/phstc/jquery-dateFormat.png" />}[http://travis-ci.org/phstc/jquery-dateFormat]
+[![build passing](https://travis-ci.org/phstc/jquery-dateFormat.png "build passing")](http://travis-ci.org/phstc/jquery-dateFormat)
 
-== Installation
+# Installation
 
 Download latest jquery.dateFormat.js or jquery.dateFormat.min.js.
 
-* {jquery-dateFormat.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.js]
-* {jquery-dateFormat.min.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.min.js]
-* {dateFormat.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/dateFormat.js] (pure Javascript, no jQuery dependency)
-* {dateFormat.min.js}[https://raw.github.com/phstc/jquery-dateFormat/master/dist/dateFormat.min.js] (pure Javascript, no jQuery dependency)
+* [jquery-dateFormat.js](https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.js)
+* [jquery-dateFormat.min.js](https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.min.js)
+* [dateFormat.js](https://raw.github.com/phstc/jquery-dateFormat/master/dist/dateFormat.js) (pure Javascript, no jQuery dependency)
+* [dateFormat.min.js](https://raw.github.com/phstc/jquery-dateFormat/master/dist/dateFormat.min.js) (pure Javascript, no jQuery dependency)
 
-You can use <b>jquery-dateFormat without jQuery</b>. You just need to import the dateFormat.js above and instead of formatting with $.format(...) you should use DateFormat.format(...).
+You can use **jquery-dateFormat without jQuery**. You just need to import the dateFormat.js above and instead of formatting with `$.format(...)` you should use `DateFormat.format(...)`.
 
-If you use <b>jQuery Validate</b> plugin you must use jquery-dateFormat without jQuery.
+If you use **jQuery Validate** plugin you must use jquery-dateFormat without jQuery.
 
-== Format patterns
+# Format patterns
 
-The patterns to formatting are based on {java.text.SimpleDateFormat}[http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html].
+The patterns to formatting are based on [java.text.SimpleDateFormat](http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html).
 
-=== Date and time patterns
+## Date and time patterns
 
 * yy = short year
 * yyyy = long year
@@ -42,7 +42,7 @@ The patterns to formatting are based on {java.text.SimpleDateFormat}[http://docs
 * a = AM/PM marker
 * p = a.m./p.m. marker
 
-== Expected input dates formats
+# Expected input dates formats
 
 * 1982-10-15T01:10:20+02:00
 * 1982-10-15T01:10:20Z
@@ -54,25 +54,27 @@ The patterns to formatting are based on {java.text.SimpleDateFormat}[http://docs
 * 1982-10-15CET01:10:20
 * JavaScript: new Date().getTime()
 
-{Some examples}[https://github.com/phstc/jquery-dateFormat/blob/master/test/format_parse_date_spec.js].
+[Some examples](https://github.com/phstc/jquery-dateFormat/blob/master/test/format_parse_date_spec.js).
 
-== Usage
-
+# Usage
+```javascript
  <script>
    document.write($.format.date("2009-12-18 10:54:50.546", "Test: dd/MM/yyyy"));
    document.write($.format.date("Wed Jan 13 10:43:41 CET 2010", "dd~MM~yyyy"));
  </script>
-
-==== Output
-
+```
+**Output**
+```
  => Test: 18/12/2009
  => 13~01~2010
+```
 
-=== Formatting using css classes
-
+## Formatting using css classes
+```html
   <span class="shortDateFormat">2009-12-18 10:54:50.546</span>
   <span class="longDateFormat">2009-12-18 10:54:50.546</span>
-
+```
+```javascript
   jQuery(function() {
       var shortDateFormat = 'dd/MM/yyyy';
       var longDateFormat  = 'dd/MM/yyyy HH:mm:ss';
@@ -92,18 +94,19 @@ The patterns to formatting are based on {java.text.SimpleDateFormat}[http://docs
           }
       });
   });
-
-==== Output
-
+```
+**Output**
+```
  => 18/12/2009
  => 18/12/2009 10:54:50
+```
 
-=== Pretty date formatting
+## Pretty date formatting
 
-jQuery.format.prettyDate(value) returns a string representing how long ago the date represents
+`jQuery.format.prettyDate(value)` returns a string representing how long ago the date represents
 
 * value = String representing ISO time or date in milliseconds or javascript Date object
-
+```javascript
  jQuery.format.prettyDate(new Date())             // => "just now"
  jQuery.format.prettyDate(new Date().getTime())   // => "just now"
  jQuery.format.prettyDate("2008-01-28T20:24:17Z") // => "2 hours ago"
@@ -111,16 +114,17 @@ jQuery.format.prettyDate(value) returns a string representing how long ago the d
  jQuery.format.prettyDate("2008-01-26T22:24:17Z") // => "2 days ago"
  jQuery.format.prettyDate("2008-01-14T22:24:17Z") // => "2 weeks ago"
  jQuery.format.prettyDate("2007-12-15T22:24:17Z") // => "more than 5 weeks ago"
+```
 
-=== toBrowserTimeZone
+## toBrowserTimeZone
 
-jQuery.format.toBrowserTimeZone(value, format) converts into browsers timezone.
+`jQuery.format.toBrowserTimeZone(value, format)` converts into browsers timezone.
 
-* value = String representing date in ISO time ("2013-09-14T23:22:33Z") or String representing default JAXB formatting of java.util.Date ("2013-09-14T16:22:33.527-07:00") or String representing Unix Timestamp (Sat Sep 14 2013 16:22:33 GMT-0700 (PDT)) or javascript date object.
-* format = All input formats valid for jQuery.format.date are valid for this method. The defaut format is MM/dd/yyyy HH:mm:ss.
+* value = String representing date in ISO time ("2013-09-14T23:22:33Z") or String representing default JAXB formatting of `java.util.Date` ("2013-09-14T16:22:33.527-07:00") or String representing Unix Timestamp (Sat Sep 14 2013 16:22:33 GMT-0700 (PDT)) or javascript date object.
+* format = All input formats valid for `jQuery.format.date` are valid for this method. The defaut format is MM/dd/yyyy HH:mm:ss.
 
-==== Valid input formats
-
+### Valid input formats
+```javascript
  var date1 = "2013-09-14T23:22:33Z";
  var date2 = "2013-09-14T16:22:33.527-07:00";
  var date3 = "Sat Sep 14 2013 16:22:33 GMT-0700 (PDT)";
@@ -128,25 +132,27 @@ jQuery.format.toBrowserTimeZone(value, format) converts into browsers timezone.
  $.format.toBrowserTimeZone(date1)
  $.format.toBrowserTimeZone(date2)
  $.format.toBrowserTimeZone(date3)
+```
 
-== Development
+# Development
 
 To compile jquery-dateFormat (generate dist files):
-
+```
  $ grunt compile
+```
 
-=== Testing
+## Testing
 
 Tests are written using Jasmine. To run the test suite with PhantomJS, run `$ grunt test`. To run the test suite in your default browser, run `$ grunt test:browser`.
 
-== Licenses
+# Licenses
 
-jquery-dateFormat is released under the {MIT License}[http://opensource.org/licenses/MIT].
+jquery-dateFormat is released under the [MIT License](http://opensource.org/licenses/MIT).
 
-== Do you want to improve jquery-dateFormat
+# Do you want to improve jquery-dateFormat
 
 You're welcome to make your contributions and send them as a pull request.
 
-=== Contributors
+## Contributors
 
-Thanks to {all contributors}[https://github.com/phstc/jquery-dateFormat/graphs/contributors].
+Thanks to [all contributors](https://github.com/phstc/jquery-dateFormat/graphs/contributors).
