@@ -354,7 +354,7 @@ var DateFormat = {};
                 if(nextRight === 'm') {
                   break;
                 }
-                retValue += time.minute;
+                retValue += parseInt(time.minute,10);
                 pattern = '';
                 break;
               case 'ss':
@@ -366,7 +366,7 @@ var DateFormat = {};
                 if(nextRight === 's') {
                   break;
                 }
-                retValue += time.second;
+                retValue += parseInt(time.second,10);
                 pattern = '';
                 break;
               case 'S':
@@ -444,7 +444,7 @@ var DateFormat = {};
         }
 
         diff = (((new Date()).getTime() - date.getTime()) / 1000);
-  
+
         abs_diff = Math.abs(diff);
         abs_day_diff = Math.floor(abs_diff / 86400);
 
@@ -453,7 +453,7 @@ var DateFormat = {};
         }
 
         tense = diff < 0 ? 'from now' : 'ago';
-  
+
         if(abs_diff < 60) {
           if(diff >= 0)
             return 'just now';
