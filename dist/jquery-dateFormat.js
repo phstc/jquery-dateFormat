@@ -11,6 +11,7 @@ var DateFormat = {};
                               'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12' };
 
   var YYYYMMDD_MATCHER = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[Z\-+]?(\d{2}:?\d{2})?/;
+  var EN_US_FORMAT_MATCHER = /\d{1,2}\/\d{1,2}\/\d{4},??\s\d{1,2}:\d{1,2}:\d{1,2}/;
 
   $.format = (function() {
     function numberToLongDay(value) {
@@ -132,6 +133,14 @@ var DateFormat = {};
           parsedDate.month      = values[1];
           parsedDate.dayOfMonth = values[2];
           parsedDate.time       = parseTime(values[3].split('.')[0]);
+        } else if(value.search(EN_US_FORMAT_MATCHER) != -1) {
+            /* 10/1/2017, 0:00:00 || 10/1/2017 0:00:00 */
+            value = value.replace(',', '');
+            values = value.split(/[\s\/]/);
+            parsedDate.year       = values[2];
+            parsedDate.month      = values[0];
+            parsedDate.dayOfMonth = values[1];
+            parsedDate.time       = parseTime(values[3]);
         } else {
           values = value.split(' ');
           if(values.length === 6 && isNaN(values[5])) {
@@ -463,6 +472,12 @@ var DateFormat = {};
       },
       toBrowserTimeZone : function(value, format) {
         return this.date(new Date(value), format || 'MM/dd/yyyy HH:mm:ss');
+      },
+      toTimeZone : function (value, timeZone, format){
+        // timeZone : Asia/Tokyo etc..
+        // clear LRM in IE
+        var date = new Date(value).toLocaleString('en-US', {timeZone: timeZone, hour12: false}).replace(/&lrm;|\u200E/gi, '');
+        return this.date(new Date(date), format || 'MM/dd/yyyy HH:mm:ss');
       }
     };
   }());
