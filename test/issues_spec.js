@@ -70,4 +70,9 @@ describe('issues', function() {
     // Leading 0 for "SSS"(milliseconds) is missing
     expect($.format.date(new Date(2015, 4, 6, 15, 32, 12, 34), 'MM/dd/yyyy HH:mm:ss.SSS')).toEqual('05/06/2015 15:32:12.034');
   });
+
+  it('formats `m s` `2017-05-10 15:02:03`', function() {
+    //Leading 0 should not appear in these cases
+    expect($.format.date(new Date(2017, 4, 10, 15, 2, 3), 'm s')).toEqual('2 3');
+  });
 });
