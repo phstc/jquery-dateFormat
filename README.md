@@ -6,8 +6,8 @@ jquery-dateFormat - jQuery Plugin to format Date outputs using JavaScript - ***H
 
 Download latest jquery.dateFormat.js or jquery.dateFormat.min.js.
 
-* [jquery-dateFormat.js](https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.js)
-* [jquery-dateFormat.min.js](https://raw.github.com/phstc/jquery-dateFormat/master/dist/jquery-dateFormat.min.js)
+* [jquery-dateFormat.js](https://raw.githubusercontent.com/phstc/jquery-dateFormat/master/dist/jquery-dateformat.js)
+* [jquery-dateFormat.min.js](https://raw.githubusercontent.com/phstc/jquery-dateFormat/master/dist/dateFormat.min.js)
 * [dateFormat.js](https://raw.github.com/phstc/jquery-dateFormat/master/dist/dateFormat.js) (pure Javascript, no jQuery dependency)
 * [dateFormat.min.js](https://raw.github.com/phstc/jquery-dateFormat/master/dist/dateFormat.min.js) (pure Javascript, no jQuery dependency)
 
