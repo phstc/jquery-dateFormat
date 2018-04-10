@@ -113,7 +113,7 @@ The patterns to formatting are based on [java.text.SimpleDateFormat](http://docs
  jQuery.format.prettyDate("2008-01-27T22:24:17Z") // => "Yesterday"
  jQuery.format.prettyDate("2008-01-26T22:24:17Z") // => "2 days ago"
  jQuery.format.prettyDate("2008-01-14T22:24:17Z") // => "2 weeks ago"
- jQuery.format.prettyDate("2007-12-15T22:24:17Z") // => "more than 5 weeks ago"
+ jQuery.format.prettyDate("2007-12-15T22:24:17Z") // => "10 years and 5 months ago"
 ```
 
 ## toBrowserTimeZone

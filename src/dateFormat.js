@@ -1,18 +1,20 @@
 var DateFormat = {};
 
-(function($) {
-  var daysInWeek          = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var shortDaysInWeek     = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  var shortMonthsInYear   = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  var longMonthsInYear    = ['January', 'February', 'March', 'April', 'May', 'June',
-                              'July', 'August', 'September', 'October', 'November', 'December'];
-  var shortMonthsToNumber = { 'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
-                              'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12' };
+(function ($) {
+  var daysInWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var shortDaysInWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var shortMonthsInYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var longMonthsInYear = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
+  var shortMonthsToNumber = {
+    'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
+    'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
+  };
 
   var YYYYMMDD_MATCHER = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[Z\-+]?(\d{2}:?\d{2})?/;
 
-  $.format = (function() {
+  $.format = (function () {
     function numberToLongDay(value) {
       // 0 to Sunday
       // 1 to Monday
@@ -45,30 +47,37 @@ var DateFormat = {};
       return shortMonthsToNumber[value] || value;
     }
 
+    function pluralize(string, count) {
+      if (count > 1) {
+        return (count + string + 's');
+      }
+      return count + string;
+    }
+
     function parseTime(value) {
       // 10:54:50.546
       // => hour: 10, minute: 54, second: 50, millis: 546
       // 10:54:50
       // => hour: 10, minute: 54, second: 50, millis: ''
       var time = value,
-          hour,
-          minute,
-          second,
-          millis = '',
-          delimited,
-          timeArray;
+        hour,
+        minute,
+        second,
+        millis = '',
+        delimited,
+        timeArray;
 
-      if(time.indexOf('.') !== -1) {
+      if (time.indexOf('.') !== -1) {
         delimited = time.split('.');
         // split time and milliseconds
-        time   = delimited[0];
+        time = delimited[0];
         millis = delimited[delimited.length - 1];
       }
 
       timeArray = time.split(':');
 
-      if(timeArray.length === 3) {
-        hour   = timeArray[0];
+      if (timeArray.length === 3) {
+        hour = timeArray[0];
         minute = timeArray[1];
         // '20 GMT-0200 (BRST)'.replace(/\s.+/, '').replace(/[a-z]/gi, '');
         // => 20
@@ -81,21 +90,21 @@ var DateFormat = {};
         // => 01:10:20
         time = time.replace(/\s.+/, '').replace(/[a-z]/gi, '');
         return {
-          time:    time,
-          hour:    hour,
-          minute:  minute,
-          second:  second,
-          millis:  millis
+          time: time,
+          hour: hour,
+          minute: minute,
+          second: second,
+          millis: millis
         };
       }
 
-      return { time : '', hour : '', minute : '', second : '', millis : '' };
+      return {time: '', hour: '', minute: '', second: '', millis: ''};
     }
 
 
     function padding(value, length) {
       var paddingCount = length - String(value).length;
-      for(var i = 0; i < paddingCount; i++) {
+      for (var i = 0; i < paddingCount; i++) {
         value = '0' + value;
       }
       return value;
@@ -103,38 +112,38 @@ var DateFormat = {};
 
     return {
 
-      parseDate: function(value) {
+      parseDate: function (value) {
         var values,
-            subValues;
+          subValues;
 
         var parsedDate = {
-          date:       null,
-          year:       null,
-          month:      null,
+          date: null,
+          year: null,
+          month: null,
           dayOfMonth: null,
-          dayOfWeek:  null,
-          time:       null
+          dayOfWeek: null,
+          time: null
         };
 
-        if(typeof value == 'number') {
+        if (typeof value === 'number') {
           return this.parseDate(new Date(value));
-        } else if(typeof value.getFullYear == 'function') {
-          parsedDate.year       = String(value.getFullYear());
+        } else if (typeof value.getFullYear === 'function') {
+          parsedDate.year = String(value.getFullYear());
           // d = new Date(1900, 1, 1) // 1 for Feb instead of Jan.
           // => Thu Feb 01 1900 00:00:00
-          parsedDate.month      = String(value.getMonth() + 1);
+          parsedDate.month = String(value.getMonth() + 1);
           parsedDate.dayOfMonth = String(value.getDate());
-          parsedDate.time       = parseTime(value.toTimeString() + '.' + value.getMilliseconds());
-        } else if(value.search(YYYYMMDD_MATCHER) != -1) {
+          parsedDate.time = parseTime(value.toTimeString() + '.' + value.getMilliseconds());
+        } else if (value.search(YYYYMMDD_MATCHER) !== -1) {
           /* 2009-04-19T16:11:05+02:00 || 2009-04-19T16:11:05Z */
-          values = value.split(/[T\+-]/);
-          parsedDate.year       = values[0];
-          parsedDate.month      = values[1];
+          values = value.split(/[T+-]/);
+          parsedDate.year = values[0];
+          parsedDate.month = values[1];
           parsedDate.dayOfMonth = values[2];
-          parsedDate.time       = parseTime(values[3].split('.')[0]);
+          parsedDate.time = parseTime(values[3].split('.')[0]);
         } else {
           values = value.split(' ');
-          if(values.length === 6 && isNaN(values[5])) {
+          if (values.length === 6 && isNaN(values[5])) {
             // values[5] == year
             /*
              * This change is necessary to make `Mon Apr 28 2014 05:30:00 GMT-0300` work
@@ -147,52 +156,52 @@ var DateFormat = {};
           switch (values.length) {
             case 6:
               /* Wed Jan 13 10:43:41 CET 2010 */
-              parsedDate.year       = values[5];
-              parsedDate.month      = shortMonthToNumber(values[1]);
+              parsedDate.year = values[5];
+              parsedDate.month = shortMonthToNumber(values[1]);
               parsedDate.dayOfMonth = values[2];
-              parsedDate.time       = parseTime(values[3]);
+              parsedDate.time = parseTime(values[3]);
               break;
             case 2:
               /* 2009-12-18 10:54:50.546 */
               subValues = values[0].split('-');
-              parsedDate.year       = subValues[0];
-              parsedDate.month      = subValues[1];
+              parsedDate.year = subValues[0];
+              parsedDate.month = subValues[1];
               parsedDate.dayOfMonth = subValues[2];
-              parsedDate.time       = parseTime(values[1]);
+              parsedDate.time = parseTime(values[1]);
               break;
             case 7:
-              /* Tue Mar 01 2011 12:01:42 GMT-0800 (PST) */
+            /* Tue Mar 01 2011 12:01:42 GMT-0800 (PST) */
             case 9:
-              /* added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0800 (China Standard Time) */
+            /* added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0800 (China Standard Time) */
             case 10:
               /* added by Larry, for Fri Apr 08 2011 00:00:00 GMT+0200 (W. Europe Daylight Time) */
-              parsedDate.year       = values[3];
+              parsedDate.year = values[3];
               /* edited by Andrey, for Mon 18 Apr 2016 -//-: '[Day] [Month]' format (russian) */
               var parsedVal1 = parseInt(values[1]);
               var parsedVal2 = parseInt(values[2]);
               if (parsedVal1 && !parsedVal2) {
-                  parsedDate.month  = shortMonthToNumber(values[2]);
-                  parsedDate.dayOfMonth = values[1];
+                parsedDate.month = shortMonthToNumber(values[2]);
+                parsedDate.dayOfMonth = values[1];
               } else {
-                  parsedDate.month = shortMonthToNumber(values[1]);
-                  parsedDate.dayOfMonth = values[2];
+                parsedDate.month = shortMonthToNumber(values[1]);
+                parsedDate.dayOfMonth = values[2];
               }
               parsedDate.time = parseTime(values[4]);
               break;
             case 1:
               /* added by Jonny, for 2012-02-07CET00:00:00 (Doctrine Entity -> Json Serializer) */
               subValues = values[0].split('');
-              parsedDate.year       = subValues[0] + subValues[1] + subValues[2] + subValues[3];
-              parsedDate.month      = subValues[5] + subValues[6];
+              parsedDate.year = subValues[0] + subValues[1] + subValues[2] + subValues[3];
+              parsedDate.month = subValues[5] + subValues[6];
               parsedDate.dayOfMonth = subValues[8] + subValues[9];
-              parsedDate.time       = parseTime(subValues[13] + subValues[14] + subValues[15] + subValues[16] + subValues[17] + subValues[18] + subValues[19] + subValues[20]);
+              parsedDate.time = parseTime(subValues[13] + subValues[14] + subValues[15] + subValues[16] + subValues[17] + subValues[18] + subValues[19] + subValues[20]);
               break;
             default:
               return null;
           }
         }
 
-        if(parsedDate.time) {
+        if (parsedDate.time) {
           parsedDate.date = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth, parsedDate.time.hour, parsedDate.time.minute, parsedDate.time.second, parsedDate.time.millis);
         } else {
           parsedDate.date = new Date(parsedDate.year, parsedDate.month - 1, parsedDate.dayOfMonth);
@@ -203,34 +212,34 @@ var DateFormat = {};
         return parsedDate;
       },
 
-      date : function(value, format) {
+      date: function (value, format) {
         try {
           var parsedDate = this.parseDate(value);
 
-          if(parsedDate === null) {
+          if (parsedDate === null) {
             return value;
           }
 
-          var year       = parsedDate.year,
-              month      = parsedDate.month,
-              dayOfMonth = parsedDate.dayOfMonth,
-              dayOfWeek  = parsedDate.dayOfWeek,
-              time       = parsedDate.time;
+          var year = parsedDate.year,
+            month = parsedDate.month,
+            dayOfMonth = parsedDate.dayOfMonth,
+            dayOfWeek = parsedDate.dayOfWeek,
+            time = parsedDate.time;
           var hour;
 
-          var pattern      = '',
-              retValue     = '',
-              unparsedRest = '',
-              inQuote      = false;
+          var pattern = '',
+            retValue = '',
+            unparsedRest = '',
+            inQuote = false;
 
           /* Issue 1 - variable scope issue in format.date (Thanks jakemonO) */
-          for(var i = 0; i < format.length; i++) {
+          for (var i = 0; i < format.length; i++) {
             var currentPattern = format.charAt(i);
             // Look-Ahead Right (LALR)
-            var nextRight      = format.charAt(i + 1);
+            var nextRight = format.charAt(i + 1);
 
             if (inQuote) {
-              if (currentPattern == "'") {
+              if (currentPattern === "'") {
                 retValue += (pattern === '') ? "'" : pattern;
                 pattern = '';
                 inQuote = false;
@@ -247,25 +256,25 @@ var DateFormat = {};
                 pattern = '';
                 break;
               case 'dd':
-                if(nextRight === 'd') {
+                if (nextRight === 'd') {
                   break;
                 }
                 retValue += padding(dayOfMonth, 2);
                 pattern = '';
                 break;
               case 'd':
-                if(nextRight === 'd') {
+                if (nextRight === 'd') {
                   break;
                 }
                 retValue += parseInt(dayOfMonth, 10);
                 pattern = '';
                 break;
               case 'D':
-                if(dayOfMonth == 1 || dayOfMonth == 21 || dayOfMonth == 31) {
+                if (dayOfMonth == 1 || dayOfMonth == 21 || dayOfMonth == 31) {
                   dayOfMonth = parseInt(dayOfMonth, 10) + 'st';
-                } else if(dayOfMonth == 2 || dayOfMonth == 22) {
+                } else if (dayOfMonth == 2 || dayOfMonth == 22) {
                   dayOfMonth = parseInt(dayOfMonth, 10) + 'nd';
-                } else if(dayOfMonth == 3 || dayOfMonth == 23) {
+                } else if (dayOfMonth == 3 || dayOfMonth == 23) {
                   dayOfMonth = parseInt(dayOfMonth, 10) + 'rd';
                 } else {
                   dayOfMonth = parseInt(dayOfMonth, 10) + 'th';
@@ -278,21 +287,21 @@ var DateFormat = {};
                 pattern = '';
                 break;
               case 'MMM':
-                if(nextRight === 'M') {
+                if (nextRight === 'M') {
                   break;
                 }
                 retValue += numberToShortMonth(month);
                 pattern = '';
                 break;
               case 'MM':
-                if(nextRight === 'M') {
+                if (nextRight === 'M') {
                   break;
                 }
                 retValue += padding(month, 2);
                 pattern = '';
                 break;
               case 'M':
-                if(nextRight === 'M') {
+                if (nextRight === 'M') {
                   break;
                 }
                 retValue += parseInt(month, 10);
@@ -300,14 +309,14 @@ var DateFormat = {};
                 break;
               case 'y':
               case 'yyy':
-                if(nextRight === 'y') {
+                if (nextRight === 'y') {
                   break;
                 }
                 retValue += pattern;
                 pattern = '';
                 break;
               case 'yy':
-                if(nextRight === 'y') {
+                if (nextRight === 'y') {
                   break;
                 }
                 retValue += String(year).slice(-2);
@@ -322,7 +331,7 @@ var DateFormat = {};
                 pattern = '';
                 break;
               case 'H':
-                if(nextRight === 'H') {
+                if (nextRight === 'H') {
                   break;
                 }
                 retValue += parseInt(time.hour, 10);
@@ -331,16 +340,16 @@ var DateFormat = {};
               case 'hh':
                 /* time.hour is '00' as string == is used instead of === */
                 hour = (parseInt(time.hour, 10) === 0 ? 12 : time.hour < 13 ? time.hour
-                    : time.hour - 12);
+                  : time.hour - 12);
                 retValue += padding(hour, 2);
                 pattern = '';
                 break;
               case 'h':
-                if(nextRight === 'h') {
+                if (nextRight === 'h') {
                   break;
                 }
                 hour = (parseInt(time.hour, 10) === 0 ? 12 : time.hour < 13 ? time.hour
-                    : time.hour - 12);
+                  : time.hour - 12);
                 retValue += parseInt(hour, 10);
                 // Fixing issue https://github.com/phstc/jquery-dateFormat/issues/21
                 // retValue = parseInt(retValue, 10);
@@ -351,10 +360,10 @@ var DateFormat = {};
                 pattern = '';
                 break;
               case 'm':
-                if(nextRight === 'm') {
+                if (nextRight === 'm') {
                   break;
                 }
-                retValue += parseInt(time.minute,10);
+                retValue += parseInt(time.minute, 10);
                 pattern = '';
                 break;
               case 'ss':
@@ -363,22 +372,22 @@ var DateFormat = {};
                 pattern = '';
                 break;
               case 's':
-                if(nextRight === 's') {
+                if (nextRight === 's') {
                   break;
                 }
-                retValue += parseInt(time.second,10);
+                retValue += parseInt(time.second, 10);
                 pattern = '';
                 break;
               case 'S':
               case 'SS':
-                if(nextRight === 'S') {
+                if (nextRight === 'S') {
                   break;
                 }
                 retValue += pattern;
                 pattern = '';
                 break;
               case 'SSS':
-                retValue +=  padding(time.millis.substring(0, 3), 3);
+                retValue += padding(time.millis.substring(0, 3), 3);
                 pattern = '';
                 break;
               case 'a':
@@ -406,7 +415,7 @@ var DateFormat = {};
           retValue += unparsedRest;
           return retValue;
         } catch (e) {
-          if(console && console.log) {
+          if (console && console.log) {
             console.log(e);
           }
           return value;
@@ -427,62 +436,71 @@ var DateFormat = {};
        * ('2007-12-15T22:24:17Z') // => 'more than 5 weeks ago'
        *
        */
-      prettyDate : function(time) {
+      prettyDate: function (time) {
         var date;
+        var now = new Date();
         var diff;
         var abs_diff;
-        var day_diff;
+        var year_diff;
+        var month_diff;
         var abs_day_diff;
         var tense;
 
-        if(typeof time === 'string' || typeof time === 'number') {
+        if (typeof time === 'string' || typeof time === 'number') {
           date = new Date(time);
         }
 
-        if(typeof time === 'object') {
+        if (typeof time === 'object') {
           date = new Date(time.toString());
         }
 
-        diff = (((new Date()).getTime() - date.getTime()) / 1000);
+        diff = ((now.getTime() - date.getTime()) / 1000);
 
         abs_diff = Math.abs(diff);
         abs_day_diff = Math.floor(abs_diff / 86400);
+        var months_delta = Math.abs(((date.getFullYear() - now.getFullYear()) * 12) + (date.getMonth() - now.getMonth()));
+        year_diff = Math.floor(months_delta / 12);
+        month_diff = (months_delta % 12);
 
-        if(isNaN(abs_day_diff)) {
+        if (isNaN(abs_day_diff)) {
           return;
         }
 
-        tense = diff < 0 ? 'from now' : 'ago';
+        tense = diff < 0 ? ' from now' : ' ago';
 
-        if(abs_diff < 60) {
-          if(diff >= 0)
+        if (abs_diff < 60) {
+          if (diff >= 0)
             return 'just now';
           else
             return 'in a moment';
-        } else if(abs_diff < 120) {
-          return '1 minute ' + tense;
-        } else if(abs_diff < 3600) {
-          return Math.floor(abs_diff / 60) + ' minutes ' + tense;
-        } else if(abs_diff < 7200) {
-          return '1 hour ' + tense;
-        } else if(abs_diff < 86400) {
-          return Math.floor(abs_diff / 3600) + ' hours ' + tense;
-        } else if(abs_day_diff === 1) {
-          if(diff >= 0)
+        } else if (abs_diff < 120) {
+          return '1 minute' + tense;
+        } else if (abs_diff < 3600) {
+          return Math.floor(abs_diff / 60) + ' minutes' + tense;
+        } else if (abs_diff < 7200) {
+          return '1 hour' + tense;
+        } else if (abs_diff < 86400) {
+          return Math.floor(abs_diff / 3600) + ' hours' + tense;
+        } else if (abs_day_diff === 1) {
+          if (diff >= 0)
             return 'Yesterday';
           else
             return 'Tomorrow';
-        } else if(abs_day_diff < 7) {
-          return abs_day_diff + ' days ' + tense;
-        } else if(abs_day_diff === 7) {
-          return '1 week ' + tense;
-        } else if(abs_day_diff < 31) {
-          return Math.ceil(abs_day_diff / 7) + ' weeks ' + tense;
+        } else if (abs_day_diff < 7) {
+          return abs_day_diff + ' days' + tense;
+        } else if (abs_day_diff === 7) {
+          return '1 week' + tense;
+        } else if (abs_day_diff < 31) {
+          return Math.ceil(abs_day_diff / 7) + ' weeks' + tense;
+        } else if (year_diff === 0) {
+          return pluralize(' month', month_diff) + tense;
+        } else if (month_diff > 0) {
+          return pluralize(' year', year_diff) + ' and ' + pluralize(' month', month_diff) + tense;
         } else {
-          return 'more than 5 weeks ' + tense;
+          return pluralize(' year', year_diff) + tense;
         }
       },
-      toBrowserTimeZone : function(value, format) {
+      toBrowserTimeZone: function (value, format) {
         return this.date(new Date(value), format || 'MM/dd/yyyy HH:mm:ss');
       }
     };
