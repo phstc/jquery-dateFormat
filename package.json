@@ -19,7 +19,8 @@
     "grunt-contrib-jshint": "~0.7",
     "grunt-contrib-watch": "~0.2",
     "grunt-exec": "~0.4",
-    "grunt-template-jasmine-istanbul": "~0.4.0"
+    "grunt-template-jasmine-istanbul": "~0.4.0",
+    "hoek": "~> 5.0.3"
   },
   "scripts": {
     "test": "grunt test --verbose"
