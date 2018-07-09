@@ -1,4 +1,17 @@
 describe('issues', function() {
+  it('see #112', function() {
+    // https://github.com/phstc/jquery-dateFormat/issues/112
+    var testDate = new Date('Jul 9, 2018 12:28:00');
+
+    expect(
+      $.format.date(testDate, 'HH:mm:ss a ddd MMMM d yyyy')
+    ).toEqual('12:28:00 PM Monday July 9 2018');
+
+    expect(
+      $.format.date(testDate, 'ddd MMMM d yyyy, h:mm:ss')
+    ).toEqual('Monday July 9 2018, 12:28:00');
+  });
+
   it('formats `2011-09-29 14:50:49`', function() {
     // https://github.com/phstc/jquery-dateFormat/issues/19
     expect($.format.date('2011-09-29 14:50:49', 'MMM dd, yyyy')).toEqual('Sep 29, 2011');
