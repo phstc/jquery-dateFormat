@@ -4,7 +4,7 @@
   "homepage": "https://github.com/phstc/jquery-dateFormat",
   "description": "It's a jQuery Plugin to format Date outputs using JavaScript.",
   "author": "Pablo Cantero <pablo@pablocantero.com>",
-  "license": "MIT License GPL",
+  "license": "MIT License",
   "ignore": [
     "**/.*",
     "node_modules",
