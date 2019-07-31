@@ -67,7 +67,7 @@ var DateFormat = {};
 
       timeArray = time.split(':');
 
-      if(timeArray.length === 3) {
+      if(timeArray.length >= 3) {
         hour   = timeArray[0];
         minute = timeArray[1];
         // '20 GMT-0200 (BRST)'.replace(/\s.+/, '').replace(/[a-z]/gi, '');
