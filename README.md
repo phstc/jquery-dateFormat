@@ -57,23 +57,28 @@ The patterns to formatting are based on [java.text.SimpleDateFormat](http://docs
 [Some examples](https://github.com/phstc/jquery-dateFormat/blob/master/test/format_parse_date_spec.js).
 
 # Usage
+
 ```javascript
  <script>
    document.write($.format.date("2009-12-18 10:54:50.546", "Test: dd/MM/yyyy"));
    document.write($.format.date("Wed Jan 13 10:43:41 CET 2010", "dd~MM~yyyy"));
  </script>
 ```
+
 **Output**
+
 ```
  => Test: 18/12/2009
  => 13~01~2010
 ```
 
 ## Formatting using css classes
+
 ```html
   <span class="shortDateFormat">2009-12-18 10:54:50.546</span>
   <span class="longDateFormat">2009-12-18 10:54:50.546</span>
 ```
+
 ```javascript
   jQuery(function() {
       var shortDateFormat = 'dd/MM/yyyy';
@@ -96,6 +101,7 @@ The patterns to formatting are based on [java.text.SimpleDateFormat](http://docs
   });
 ```
 **Output**
+
 ```
  => 18/12/2009
  => 18/12/2009 10:54:50
@@ -124,6 +130,7 @@ The patterns to formatting are based on [java.text.SimpleDateFormat](http://docs
 * format = All input formats valid for `jQuery.format.date` are valid for this method. The defaut format is MM/dd/yyyy HH:mm:ss.
 
 ### Valid input formats
+
 ```javascript
  var date1 = "2013-09-14T23:22:33Z";
  var date2 = "2013-09-14T16:22:33.527-07:00";
@@ -137,8 +144,9 @@ The patterns to formatting are based on [java.text.SimpleDateFormat](http://docs
 # Development
 
 To compile jquery-dateFormat (generate dist files):
-```
- $ grunt compile
+
+```sh
+grunt compile
 ```
 
 ## Testing
