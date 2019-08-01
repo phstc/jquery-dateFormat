@@ -24,7 +24,9 @@
     "hoek": "~> 5.0.3"
   },
   "scripts": {
-    "test": "grunt test --verbose"
+    "test": "grunt test",
+    "test:browser": "grunt test:browser",
+    "compile": "grunt compile"
   },
   "dependencies": {
     "grunt-contrib-uglify": "^3.3.0"

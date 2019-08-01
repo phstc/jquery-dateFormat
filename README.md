@@ -146,12 +146,12 @@ The patterns to formatting are based on [java.text.SimpleDateFormat](http://docs
 To compile jquery-dateFormat (generate dist files):
 
 ```sh
-grunt compile
+npm run compile
 ```
 
 ## Testing
 
-Tests are written using Jasmine. To run the test suite with PhantomJS, run `$ grunt test`. To run the test suite in your default browser, run `$ grunt test:browser`.
+Tests are written using Jasmine. To run the test suite with PhantomJS, run `npm run test`. To run the test suite in your default browser, run `npm run test:browser`.
 
 # Licenses
 
