@@ -1,5 +1,11 @@
 describe('issues', function() {
-  it('see #112', function() {
+  it('fixes #115', function() {
+    expect($.format.date('Wed Jul 31 2019 15:12:13 GMT+0200 (heure d’été d’Europe centrale)', 'HH:mm:ss a ddd MMMM d yyyy')).toEqual('15:12:13 PM Wednesday July 31 2019');
+    expect($.format.date('Wed Jul 31 2019 15:11:29 GMT+0200 (GMT+02:00)', 'HH:mm:ss a ddd MMMM d yyyy')).toEqual('15:11:29 PM Wednesday July 31 2019');
+    expect($.format.date('Sun Jan 13 2019 23:38:49 GMT-1200 (GMT-12:00)', 'HH:mm:ss')).toEqual('23:38:49');
+  });
+
+  it('fixes #112', function() {
     // https://github.com/phstc/jquery-dateFormat/issues/112
     var testDate = new Date('Jul 9, 2018 12:28:00');
 
