@@ -164,3 +164,4 @@ You're welcome to make your contributions and send them as a pull request.
 ## Contributors
 
 Thanks to [all contributors](https://github.com/phstc/jquery-dateFormat/graphs/contributors).
+
