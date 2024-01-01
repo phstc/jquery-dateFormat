@@ -1,48 +1,60 @@
 var DateFormat = {};
 
 (function($) {
-  var daysInWeek          = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var shortDaysInWeek     = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  var shortMonthsInYear   = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  var longMonthsInYear    = ['January', 'February', 'March', 'April', 'May', 'June',
-                              'July', 'August', 'September', 'October', 'November', 'December'];
-  var shortMonthsToNumber = { 'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
-                              'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12' };
+  var options             = {local: 'en'};
+  
+  var daysInWeek          = {'en' : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                            'fr' : ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']};
+
+  var shortDaysInWeek     = {'en' : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                            'fr' : ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']};
+
+  var shortMonthsInYear   = {'en' : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            'fr' : ['Janv.', 'Févr.', 'Mars', 'Avr.', 'Mai', 'Juin', 'Juill.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.']};
+
+  var longMonthsInYear    = {'en' : ['January', 'February', 'March', 'April', 'May', 'June',
+                              'July', 'August', 'September', 'October', 'November', 'December'],
+                            'fr' : ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+                              'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']};
+
+  var shortMonthsToNumber = {'en' : { 'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
+                              'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12' },
+                            'fr' : { 'Janv.': '01', 'Févr.': '02', 'Mars': '03', 'Avr.': '04', 'Mai': '05', 'Juin': '06',
+                              'Juill.': '07', 'Août': '08', 'Sept.': '09', 'Oct.': '10', 'Nov.': '11', 'Déc.': '12' }};
 
   var YYYYMMDD_MATCHER = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.?\d{0,3}[Z\-+]?(\d{2}:?\d{2})?/;
 
-  $.format = (function() {
+    $.format = (function() {
     function numberToLongDay(value) {
       // 0 to Sunday
       // 1 to Monday
-      return daysInWeek[parseInt(value, 10)] || value;
+      return daysInWeek[options.local][parseInt(value, 10)] || value;
     }
 
     function numberToShortDay(value) {
       // 0 to Sun
       // 1 to Mon
-      return shortDaysInWeek[parseInt(value, 10)] || value;
+      return shortDaysInWeek[options.local][parseInt(value, 10)] || value;
     }
 
     function numberToShortMonth(value) {
       // 1 to Jan
       // 2 to Feb
       var monthArrayIndex = parseInt(value, 10) - 1;
-      return shortMonthsInYear[monthArrayIndex] || value;
+      return shortMonthsInYear[options.local][monthArrayIndex] || value;
     }
 
     function numberToLongMonth(value) {
       // 1 to January
       // 2 to February
       var monthArrayIndex = parseInt(value, 10) - 1;
-      return longMonthsInYear[monthArrayIndex] || value;
+      return longMonthsInYear[options.local][monthArrayIndex] || value;
     }
 
     function shortMonthToNumber(value) {
       // Jan to 01
       // Feb to 02
-      return shortMonthsToNumber[value] || value;
+      return shortMonthsToNumber[options.local][value] || value;
     }
 
     function parseTime(value) {
@@ -202,9 +214,27 @@ var DateFormat = {};
 
         return parsedDate;
       },
+      
+      extend : function(out) {
+        // source http://youmightnotneedjquery.com
+        out = out || {};
 
-      date : function(value, format) {
+        for (var i = 1; i < arguments.length; i++) {
+          if (!arguments[i])
+            continue;
+
+          for (var key in arguments[i]) {
+            if (arguments[i].hasOwnProperty(key))
+              out[key] = arguments[i][key];
+          }
+        }
+
+        return out;
+      },
+      
+      date : function(value, format, opts) {
         try {
+          options = this.extend( {}, options, opts );
           var parsedDate = this.parseDate(value);
 
           if(parsedDate === null) {
